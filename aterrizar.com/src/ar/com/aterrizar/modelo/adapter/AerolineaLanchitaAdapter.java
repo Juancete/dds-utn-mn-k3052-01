@@ -9,13 +9,13 @@ import ar.com.aterrizar.modelo.Busqueda;
 
 import com.lanchita.AerolineaLanchita;
 
-public class AerolineaLanchitaAdapter extends Aerolinea {
+public class AerolineaLanchitaAdapter extends Aerolinea{
 
 	protected Integer porcentajePorCompania;
 	protected AerolineaLanchita aerolinea;
 
-	public AerolineaLanchitaAdapter() {
-		aerolinea = AerolineaLanchita.getInstance();
+	public AerolineaLanchitaAdapter(){
+		
 	}
 
 	/*
@@ -23,7 +23,7 @@ public class AerolineaLanchitaAdapter extends Aerolinea {
 	 * origen, String destino, String fechaSalida, String horaSalida, String
 	 * fechaLlegada, String horaLlegada)
 	 */
-	public List<Asiento> buscarAsientos(Busqueda unaBusqueda) {
+	public List<Asiento> buscarAsientosConComision(Busqueda unaBusqueda) {
 
 		//TODO falta implementar la logica, agregar en asiento el parser para la construccion de asciento a partir de una lista de strings
 		//		String origen = unaBusqueda.getOrigen();
@@ -49,13 +49,14 @@ public class AerolineaLanchitaAdapter extends Aerolinea {
 		throw new RuntimeException("must implements");
 	}
 
-	@Override
+	
 	/**
 	 * <h1>Dado un codigo de Asiento compra efectivamente el asiento
 	 */
-	public void comprarAsiento(String codigoAsiento) {
-		// TODO Implementar el codigo
+	public void comprarAsiento(Asiento unAsiento) {
+		// TODO Implementar el codigo de compra de asiento
 		
 	}
+
 
 }
