@@ -1,13 +1,13 @@
 package ar.com.aterrizar.modelo;
 
 import java.util.Collection;
-//import java.util.List;
+import java.util.List;
 
 public class AterrizarApp {
 
 	protected static AterrizarApp instance;
 	protected Collection<Usuario> usuarios;
-	//protected List<Aerolinea> aerolineas;
+	protected List<Aerolinea> aerolineas;
 	
 	private AterrizarApp() {
 	}
