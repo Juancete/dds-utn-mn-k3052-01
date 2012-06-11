@@ -2,7 +2,6 @@ package ar.com.aterrizar.modelo;
 
 import java.util.List;
 import java.math.*;
-import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
 
 public class Usuario {
 
@@ -45,14 +44,14 @@ public class Usuario {
 		this.nivelDeUsuario = unNivel;
 	}
 	
-	List <Asiento> buscarAsiento(Busqueda unaBusqueda,AerolineaLanchitaAdapter unaAerolinea){
+	List <Asiento> buscarAsiento(Busqueda unaBusqueda,Aerolinea unaAerolinea){
 		busquedas.add(unaBusqueda);
 		List <Asiento> unaListaDeAsientos = unaAerolinea.buscarAsientosConComision(unaBusqueda);
 		return nivelDeUsuario.obtenerAsientosListosParaComprar(unaListaDeAsientos);
 	}
 	
 	void comprarUnAsiento(Asiento unAsiento) throws Exception {
-		AerolineaLanchitaAdapter instanciaDeAerolinea = unAsiento.getAerolinea();
+		Aerolinea instanciaDeAerolinea = unAsiento.getAerolinea();
 		//Si no puede comprar, la excepción se trata mas afuera.
 		instanciaDeAerolinea.comprarAsiento(unAsiento);
 		aumentarMonto(unAsiento.precio);
