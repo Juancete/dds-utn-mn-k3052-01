@@ -11,13 +11,8 @@ import com.lanchita.excepciones.EstadoErroneoException;
 
 public class AerolineaLanchitaAdapter extends Aerolinea{
 
-	protected Double porcentajePorCompania;
-	private AerolineaLanchita aerolinea;
-
-	public AerolineaLanchitaAdapter(){
-		
-	}
-
+	protected AerolineaLanchita aerolinea;
+	
 	/*
 	 * String[][] com.lanchita.AerolineaLanchita.asientosDisponibles(String
 	 * origen, String destino, String fechaSalida, String horaSalida, String
@@ -60,11 +55,6 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 		
 	}
 
-	public void setPorcentaje(double unPorcentaje) {
-		this.porcentajePorCompania = unPorcentaje;
-		
-	}
-
 	public AerolineaLanchita getAerolinea() {
 		return aerolinea;
 	}
@@ -72,6 +62,5 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 	public void setAerolinea(AerolineaLanchita aerolinea) {
 		this.aerolinea = aerolinea;
 	}
-
 
 }
