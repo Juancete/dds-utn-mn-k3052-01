@@ -1,7 +1,8 @@
-package ar.com.aterrizar.modelo;
+package ar.com.aterrizar.modelo.adapter;
 
 import java.util.List;
 
+import ar.com.aterrizar.modelo.*;
 import ar.com.aterrizar.modelo.adapter.NoSeEncuentraDisponibleElAsientoException;
 
 public abstract class Aerolinea {

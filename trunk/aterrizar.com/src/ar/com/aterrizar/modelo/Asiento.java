@@ -2,6 +2,8 @@ package ar.com.aterrizar.modelo;
 
 import java.math.BigDecimal;
 
+import ar.com.aterrizar.modelo.adapter.Aerolinea;
+
 public class Asiento {
 
 	protected String codigo;
@@ -21,7 +23,7 @@ public class Asiento {
 		this.aerolinea = unaAerolinea;
 	}
 	
-	public Boolean soySuperOferta(){
+	public boolean soySuperOferta(){
 //		Implementación la condición de super-oferta		
 //		Existen asientos que son considerados super ofertas, estos son aquellos asientos que
 //		cumplen con alguna de las siguientes condiciones
