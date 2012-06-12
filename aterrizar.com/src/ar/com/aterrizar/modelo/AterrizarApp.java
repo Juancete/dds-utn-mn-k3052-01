@@ -3,6 +3,8 @@ package ar.com.aterrizar.modelo;
 import java.util.Collection;
 import java.util.List;
 
+import ar.com.aterrizar.modelo.adapter.Aerolinea;
+
 public class AterrizarApp {
 
 	protected static AterrizarApp instance;

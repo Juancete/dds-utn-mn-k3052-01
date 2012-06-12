@@ -3,6 +3,8 @@ package ar.com.aterrizar.modelo;
 import java.util.List;
 import java.math.*;
 
+import ar.com.aterrizar.modelo.adapter.Aerolinea;
+
 public class Usuario {
 
 	protected String nombre;
