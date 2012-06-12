@@ -38,15 +38,15 @@ public class AerolineaLanchitaInterfaceTest {
 		 
 		aerolineaLanchitaAdapter = new AerolineaLanchitaAdapter();
 		aerolineaLanchitaAdapter.setAerolinea(aerolineaLancitaMock);
-		aerolineaLanchitaAdapter.setPorcentaje(1.2);
+		aerolineaLanchitaAdapter.setPorcentajePorCompania(1.2);
 		busquedaBALA20121010= new Busqueda("BUE", "LA","20121010", null, null, null);
 	}
 	
 	@Test
 	public void losAsientosSonGeneradosCorrectamente(){
 		final List<Asiento> asientosMock = new ArrayList<Asiento>();
-		asientosMock.add(new Asiento("01202022220202-3", (new BigDecimal("159.90")).multiply(new BigDecimal(aerolineaLanchitaAdapter.getPorcentaje())), 'V', 'P', 'D' == 'D' , aerolineaLanchitaAdapter));
-		asientosMock.add(new Asiento("01202022220123-3", (new BigDecimal("205.10")).multiply(new BigDecimal(aerolineaLanchitaAdapter.getPorcentaje())), 'P', 'E', 'D' == 'D' , aerolineaLanchitaAdapter));
+		asientosMock.add(new Asiento("01202022220202-3", (new BigDecimal("159.90")).multiply(new BigDecimal(aerolineaLanchitaAdapter.getPorcentajePorCompania())), 'V', 'P', 'D' == 'D' , aerolineaLanchitaAdapter));
+		asientosMock.add(new Asiento("01202022220123-3", (new BigDecimal("205.10")).multiply(new BigDecimal(aerolineaLanchitaAdapter.getPorcentajePorCompania())), 'P', 'E', 'D' == 'D' , aerolineaLanchitaAdapter));
 		Assert.assertTrue(aerolineaLanchitaAdapter.buscarAsientosConComision(busquedaBALA20121010).containsAll(asientosMock));
 	}
 	
@@ -55,7 +55,7 @@ public class AerolineaLanchitaInterfaceTest {
 	public void buscoAsientosDisponiblesEnLanchita(){
 		List<Asiento> listaDeAsientos = aerolineaLanchitaAdapter.buscarAsientosConComision(busquedaBALA20121010);
 		for(Asiento unAsiento : listaDeAsientos){
-			System.out.println(unAsiento);
+			//System.out.println(unAsiento);
 //			for(String asiento: unAsiento){
 //				System.out.println(asiento);
 //			}
@@ -63,6 +63,7 @@ public class AerolineaLanchitaInterfaceTest {
 		
 		//System.out.println(aerolineaLanchita.buscarAsientosConComision(busquedaBALA20121010);
 	}
+	
 	@Test
 	public void obtenerAsientoApartirDeUnaBusquedaConBue20121010La(){
 		String origen = busquedaBALA20121010.getOrigen();
