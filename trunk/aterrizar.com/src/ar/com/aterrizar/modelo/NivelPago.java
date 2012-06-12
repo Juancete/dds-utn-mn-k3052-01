@@ -1,22 +1,27 @@
 package ar.com.aterrizar.modelo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class NivelPago extends Nivel {
+	
+	BigDecimal montoMinimoParaSerVip;
 
 	public NivelPago(Usuario unUsuario) {
 		super(unUsuario);
-		// TODO Auto-generated constructor stub
+		montoMinimoParaSerVip = new BigDecimal(100000);
 	}
+	
 	private boolean soyVip(){
-		// TODO implementar la condición para ser vip
-		return false;
-		
+	return(unUsuario.montoAcumulado.compareTo(montoMinimoParaSerVip) == 1);
 	}
+	
 	@Override
 	public List<Asiento> obtenerAsientosListosParaComprar(List<Asiento> listaDeAsientos) {
-		// TODO filtra las super ofertas si no sos vip
-		return null;
+		if(!soyVip()){
+			listaDeAsientos = this.filtrarSuperOfertas(listaDeAsientos);
+		}
+		return listaDeAsientos;
 	}
 
 
