@@ -2,7 +2,6 @@ package ar.com.aterrizar.modelo;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import junit.framework.Assert;
@@ -52,7 +51,25 @@ public class NivelTest {
 	}
 	
 	@Test
-	public void nivelPagoNoVipFiltraLasSuperOfertas(){
-		listaDeAsientos
+	public void nivelPagoUsuarioNoVipFiltraLasSuperOfertas(){
+		listaDeAsientos = nivelPago.obtenerAsientosListosParaComprar(listaDeAsientos);
+		Assert.assertEquals(listaDeAsientos.size(), 1);
+		Assert.assertTrue(listaDeAsientos.contains(unAsiento));
 	}
+	
+	@Test
+	public void seLeSumaUnRecargoALosObjetosDeUnNivelNoPago(){
+		listaDeAsientos = nivelNoPago.obtenerAsientosListosParaComprar(listaDeAsientos);
+		Assert.assertEquals(listaDeAsientos.size(), 1);
+		Assert.assertEquals(listaDeAsientos.get(0).precio.intValue(),10020);
+	}
+	
+	@Test
+	public void usuarioNoVipPagoSeConvierteAVip(){
+		usuarioNoVipPago.aumentarMonto(new BigDecimal(5000000));
+		Assert.assertTrue(nivelPago.soyVip());
+	}
+	
+	
+	
 }

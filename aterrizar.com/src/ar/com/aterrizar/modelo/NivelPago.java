@@ -12,7 +12,7 @@ public class NivelPago extends Nivel {
 		montoMinimoParaSerVip = new BigDecimal(100000);
 	}
 	
-	private boolean soyVip(){
+	public boolean soyVip(){
 	return(unUsuario.montoAcumulado.compareTo(montoMinimoParaSerVip) == 1);
 	}
 	
