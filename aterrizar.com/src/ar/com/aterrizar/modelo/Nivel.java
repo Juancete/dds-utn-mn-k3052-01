@@ -1,5 +1,7 @@
 package ar.com.aterrizar.modelo;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Nivel {
@@ -16,9 +18,13 @@ public abstract class Nivel {
 	}
 
 	public List<Asiento> filtrarSuperOfertas(List<Asiento> listaDeAsientos){
-		
-		return listaDeAsientos;
-		
+		List<Asiento> listaSinSuperOfertas = new ArrayList<Asiento>();
+		for(Asiento unAsiento : listaDeAsientos ){
+			if(!unAsiento.soySuperOferta()){
+				listaSinSuperOfertas.add(unAsiento);
+			}
+		}
+return listaSinSuperOfertas;
 	}
 	
 	public abstract List<Asiento> obtenerAsientosListosParaComprar(List<Asiento> listaDeAsientos);
