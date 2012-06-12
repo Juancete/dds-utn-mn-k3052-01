@@ -52,7 +52,7 @@ public class Usuario {
 		return nivelDeUsuario.obtenerAsientosListosParaComprar(unaListaDeAsientos);
 	}
 	
-	void comprarUnAsiento(Asiento unAsiento) throws Exception {
+	void comprarUnAsiento(Asiento unAsiento) {
 		Aerolinea instanciaDeAerolinea = unAsiento.getAerolinea();
 		//Si no puede comprar, la excepción se trata mas afuera.
 		instanciaDeAerolinea.comprarAsiento(unAsiento);
@@ -60,7 +60,7 @@ public class Usuario {
 	}
 	
 	void aumentarMonto(BigDecimal unPrecio){
-		this.montoAcumulado.add(unPrecio);
+		 this.montoAcumulado=this.montoAcumulado.add(unPrecio);;
 	}
 	
 }
