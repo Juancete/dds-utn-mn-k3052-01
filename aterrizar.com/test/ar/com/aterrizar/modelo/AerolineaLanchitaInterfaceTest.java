@@ -3,27 +3,30 @@ package ar.com.aterrizar.modelo;
 import static org.mockito.Mockito.*;
 import org.mockito.invocation.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
-
 import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.stubbing.Answer;
-
 import com.lanchita.AerolineaLanchita;
-
 import ar.com.aterrizar.modelo.adapter.*;
+
+import com.lanchita.*;
 
 public class AerolineaLanchitaInterfaceTest {
 
 	protected AerolineaLanchitaAdapter aerolineaLanchitaAdapter;
 	protected Busqueda busquedaBALA20121010;
+	protected AerolineaLanchita aerolineaLancita;
 	protected AerolineaLanchita aerolineaLancitaMock;
-	protected String[][] retornoImpostor= new String[][] {{ "01202022220202-3", "159.90", "P", "V", "D", "" },{ "01202022220123-3", "205.10", "E", "P", "D", "" }};
+	protected String[][] retornoImpostor;
 	
 	@Before
 	public void setUp(){
+		aerolineaLancita = AerolineaLanchita.getInstance();
+		
+		retornoImpostor = new String[][] {{ "01202022220202-3", "159.90", "P", "V", "D", "" },{ "01202022220123-3", "205.10", "E", "P", "D", "" }};
 		
 		aerolineaLancitaMock = mock(AerolineaLanchita.class);
 		
@@ -36,7 +39,15 @@ public class AerolineaLanchitaInterfaceTest {
 		aerolineaLanchitaAdapter = new AerolineaLanchitaAdapter();
 		aerolineaLanchitaAdapter.setAerolinea(aerolineaLancitaMock);
 		aerolineaLanchitaAdapter.setPorcentaje(1.2);
-		busquedaBALA20121010= new Busqueda("BUE", "20121010",null, "LA", null, null);
+		busquedaBALA20121010= new Busqueda("BUE", "LA","20121010", null, null, null);
+	}
+	
+	@Test
+	public void losAsientosSonGeneradosCorrectamente(){
+		final List<Asiento> asientosMock = new ArrayList<Asiento>();
+		asientosMock.add(new Asiento("01202022220202-3", (new BigDecimal("159.90")).multiply(new BigDecimal(aerolineaLanchitaAdapter.getPorcentaje())), 'V', 'P', 'D' == 'D' , aerolineaLanchitaAdapter));
+		asientosMock.add(new Asiento("01202022220123-3", (new BigDecimal("205.10")).multiply(new BigDecimal(aerolineaLanchitaAdapter.getPorcentaje())), 'P', 'E', 'D' == 'D' , aerolineaLanchitaAdapter));
+		Assert.assertTrue(aerolineaLanchitaAdapter.buscarAsientosConComision(busquedaBALA20121010).containsAll(asientosMock));
 	}
 	
 	
@@ -52,7 +63,7 @@ public class AerolineaLanchitaInterfaceTest {
 		
 		//System.out.println(aerolineaLanchita.buscarAsientosConComision(busquedaBALA20121010);
 	}
-	
+	@Test
 	public void obtenerAsientoApartirDeUnaBusquedaConBue20121010La(){
 		String origen = busquedaBALA20121010.getOrigen();
 		
@@ -62,7 +73,7 @@ public class AerolineaLanchitaInterfaceTest {
 		String fechaLlegada = busquedaBALA20121010.getFechaLlegada();
 		String horaLlegada = busquedaBALA20121010.getHoraLlegada();		
 
-//		Assert.assertNotNull(aerolineaLanchita.asientosDisponibles(origen, destino, fechaSalida, horaSalida, fechaLlegada, horaLlegada));
+		Assert.assertNotNull(aerolineaLancita.asientosDisponibles(origen, destino, fechaSalida, horaSalida, fechaLlegada, horaLlegada));
 	}
 	
 	@Test
