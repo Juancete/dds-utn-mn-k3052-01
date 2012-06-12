@@ -28,7 +28,7 @@ public class Asiento {
 //		Existen asientos que son considerados super ofertas, estos son aquellos asientos que
 //		cumplen con alguna de las siguientes condiciones
 //		* son de primera clase y su precio total es menor a $8000
-//		* son de clase ejecutiva y su precio total es menor a $4000
+//		* son de clase ejecutiva y su precio total es menor a $4000s
 		return (this.precio.compareTo(new BigDecimal(8000))<0 && this.tipo == 'P')||(this.precio.compareTo(new BigDecimal(4000))<0 && this.tipo == 'E');
 	}
 	public void setCodigo(String unCodigo){
@@ -48,5 +48,20 @@ public class Asiento {
 	}
 	public void setAerolinea(Aerolinea unaAerolinea){
 		this.aerolinea = unaAerolinea;
+	}
+	
+	@Override
+	public int hashCode() {
+		int enteroDisponible= 0;
+		if(this.disponible) enteroDisponible = 1;
+		return (int)this.tipo + (int)this.ubicacion + (int)this.aerolinea.hashCode() + this.precio.hashCode() + this.codigo.hashCode()+ enteroDisponible ;
+	}
+	
+	@Override
+	public boolean equals(Object obj){
+		if (!(obj instanceof Asiento))
+			return false;
+		Asiento otroAsiento = (Asiento) obj;
+		return codigo.equals(otroAsiento.getCodigo()) && precio.equals(otroAsiento.precio) && ubicacion == otroAsiento.ubicacion && tipo == otroAsiento.tipo && disponible == otroAsiento.disponible && aerolinea.equals(otroAsiento.getAerolinea());
 	}
 }
