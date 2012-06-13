@@ -1,5 +1,6 @@
 package ar.com.aterrizar.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.math.*;
 
@@ -13,6 +14,11 @@ public class Usuario {
 	protected Nivel nivelDeUsuario;
 	protected BigDecimal montoAcumulado;
 	protected List<Busqueda> busquedas;
+	
+	
+	public Usuario(){
+		this.busquedas = new ArrayList<Busqueda>();
+	}
 	
 	public String getNombre() {
 		return nombre;

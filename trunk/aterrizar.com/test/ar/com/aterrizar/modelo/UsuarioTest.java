@@ -26,10 +26,12 @@ public class UsuarioTest {
 	private Asiento asientoNoDisponible;
 	private Aerolinea aerolineaAdapterMock;
 	private Busqueda unaBusqueda;
+	private Busqueda otraBusqueda;
 	
 	@Before
 	public void setUp() throws Exception {
-		unaBusqueda= new Busqueda("BUE", "20121010",null, "LA", null, null);
+		unaBusqueda= new Busqueda("BUE", "20121010","U", "LA", "A", "E");
+		otraBusqueda = new Busqueda("BUE", "20121111",null, "RIO", null, null);
 		
 		//usuario Pago VIP
 		usuarioPagoVIP = new Usuario();
@@ -59,6 +61,7 @@ public class UsuarioTest {
 		
 		doThrow(new NoSeEncuentraDisponibleElAsientoException()).when(aerolineaAdapterMock).comprarAsiento(asientoNoDisponible);
 		when(aerolineaAdapterMock.buscarAsientosConComision(unaBusqueda)).thenReturn(listaImpostora);
+		when(aerolineaAdapterMock.buscarAsientosConComision(otraBusqueda)).thenThrow(new NoHayAsientosDisponiblesParaUnaBusquedaException());
 		
 	}
 
@@ -71,6 +74,17 @@ public class UsuarioTest {
 	@Test (expected=NoSeEncuentraDisponibleElAsientoException.class)
 	public void siUnUsuarioCompraUnAsientoNoDisponibleDisparaUnaNoSeEncuentraDisponibleElAsientoException(){
 		usuarioPagoVIP.comprarUnAsiento(asientoNoDisponible);
+	}
+	
+	@Test (expected=NoHayAsientosDisponiblesParaUnaBusquedaException.class)
+	public void siUnUsuarioBuscayNoHayDisponibilidadesEmiteUnaException(){
+		usuarioPagoVIP.buscarAsiento(otraBusqueda, aerolineaAdapterMock);
+	}	
+	
+	@Test
+	public void siUnUsuarioRealizaUnaBusquedaSeAgregaLaBusquedaASuLista(){
+		usuarioNoPago.buscarAsiento(unaBusqueda, aerolineaAdapterMock);
+		Assert.assertTrue(usuarioNoPago.getBusquedasRealizadas().contains(unaBusqueda));
 	}
 	
 	@Test
