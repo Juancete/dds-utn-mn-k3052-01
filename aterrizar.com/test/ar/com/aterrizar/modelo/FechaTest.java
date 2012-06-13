@@ -35,9 +35,9 @@ public class FechaTest {
 	public void setup() {
 		long MILLIS_IN_A_DAY = 1000*60*60*24;
 		elCalendario.setTime(new Date());
-		fecha_ISO8601 = "2012-06-10";
-		fecha_compacta = "20120610";
-		fecha_Latinoamericano = "10/06/2012";
+		fecha_ISO8601 = "2012-06-13";
+		fecha_compacta = "20120613";
+		fecha_Latinoamericano = "13/06/2012";
 		String ISO8601= "yyyy-MM-dd";
 		String LATINO_AMERICANO="dd/MM/yyyy";
 		String COMPACTO="yyyyMMdd"; 
