@@ -1,5 +1,6 @@
 package ar.com.aterrizar.modelo;
 
+import static org.mockito.Mockito.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,8 @@ import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
 
 public class NivelTest {
 	
@@ -19,10 +22,12 @@ public class NivelTest {
 	protected List<Asiento> listaDeAsientos;
 	protected Asiento unAsiento;
 	protected Asiento otroAsiento;
-	
+	protected AerolineaLanchitaAdapter unaAerolinea;
 	
 	@Before
 	public void setUp(){
+		
+		unaAerolinea = mock(AerolineaLanchitaAdapter.class);
 		usuarioNoVipNoPago = new Usuario();
 		usuarioNoVipNoPago.montoAcumulado = new BigDecimal(0);
 		usuarioNoVipNoPago.aumentarMonto(new BigDecimal(200000));
@@ -34,8 +39,8 @@ public class NivelTest {
 		usuarioNoVipPago.aumentarMonto(new BigDecimal(100));
 		nivelNoPago = new NivelNoPago(usuarioNoVipNoPago);
 		nivelPago = new NivelPago(usuarioNoVipPago);
-		unAsiento = new Asiento(null, new BigDecimal(10000), (char) 0, 'P', true, null);
-		otroAsiento = new Asiento(null, new BigDecimal(10), (char) 0, 'E', true, null);
+		unAsiento = new Asiento("asiento1", new BigDecimal(10000), (char) 0, 'P', true,unaAerolinea);
+		otroAsiento = new Asiento("asiento2", new BigDecimal(10), (char) 0, 'E', true, unaAerolinea);
 		listaDeAsientos = new ArrayList<Asiento>();
 		listaDeAsientos.add(unAsiento);
 		listaDeAsientos.add(otroAsiento);
@@ -45,9 +50,9 @@ public class NivelTest {
 	
 	@Test
 	public void nivelNoPagoFiltraLasSuperOfertas(){
-		listaDeAsientos = nivelNoPago.obtenerAsientosListosParaComprar(listaDeAsientos);
-		Assert.assertEquals(listaDeAsientos.size(), 1);
-		Assert.assertTrue(listaDeAsientos.contains(unAsiento));
+		List<Asiento> nuevaListaDeAsientos = nivelNoPago.obtenerAsientosListosParaComprar(listaDeAsientos);
+		Assert.assertEquals(nuevaListaDeAsientos.size(), 1);
+		Assert.assertTrue(nuevaListaDeAsientos.contains(unAsiento));
 	}
 	
 	@Test

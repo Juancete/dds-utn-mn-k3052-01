@@ -23,7 +23,7 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 		String[][] datosAsientos = this.getAerolinea().asientosDisponibles(unaBusqueda.getOrigen(),
 				unaBusqueda.getDestino(), unaBusqueda.getFechaSalida(), unaBusqueda.getHoraSalida(), unaBusqueda.getFechaLlegada(), unaBusqueda.getHoraLlegada());
 		if (datosAsientos == null)
-			return new ArrayList<Asiento>(0);
+			throw new NoHayAsientosDisponiblesParaUnaBusquedaException();
 		
 		List<Asiento> listaDeAsientos = new ArrayList<Asiento>();
 		
