@@ -54,7 +54,7 @@ public class Asiento {
 	public int hashCode() {
 		int enteroDisponible= 0;
 		if(this.disponible) enteroDisponible = 1;
-		return (int)this.tipo + (int)this.ubicacion + (int)this.aerolinea.hashCode() + this.precio.hashCode() + this.codigo.hashCode()+ enteroDisponible ;
+		return (int)this.tipo + (int)this.ubicacion + this.aerolinea.hashCode() + this.precio.hashCode() + this.codigo.hashCode()+ enteroDisponible ;
 	}
 	
 	@Override
