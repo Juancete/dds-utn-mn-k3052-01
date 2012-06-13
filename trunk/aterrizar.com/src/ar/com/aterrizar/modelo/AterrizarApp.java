@@ -1,5 +1,6 @@
 package ar.com.aterrizar.modelo;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -12,6 +13,9 @@ public class AterrizarApp {
 	protected List<Aerolinea> aerolineas;
 	
 	private AterrizarApp() {
+		super();
+		usuarios = new ArrayList<Usuario>();
+		aerolineas = new ArrayList<Aerolinea>();
 	}
 
 	public static AterrizarApp getInstance(){
@@ -25,6 +29,10 @@ public class AterrizarApp {
 		nuevoUsuario.setNombre(nombre);
 		nuevoUsuario.setAPellido(apellido);
 		nuevoUsuario.setDNI(dni);
-		
+		usuarios.add(nuevoUsuario);
+	}
+	
+	public void agregarAerolinea(Aerolinea unaAerolinea){
+		aerolineas.add(unaAerolinea);
 	}
 }
