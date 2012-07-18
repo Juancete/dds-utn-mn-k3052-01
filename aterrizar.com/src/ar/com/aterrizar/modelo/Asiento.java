@@ -8,8 +8,8 @@ public class Asiento {
 
 	protected String codigo;
 	protected BigDecimal precio;
-	protected char ubicacion;
-	protected char tipo;
+	protected char ubicacion; //'V' ventanilla, 'C' centro, 'P' pasillo
+	protected char tipo;	//clase: 'P' primera, 'E' ejecutivo, 'C' turista
 	protected boolean disponible;
 	protected Aerolinea aerolinea;
 
