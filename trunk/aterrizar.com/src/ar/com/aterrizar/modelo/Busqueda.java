@@ -4,9 +4,9 @@ public class Busqueda {
 
 	protected String origen;
 	protected String destino;
-	protected String fechaSalida;
+	protected String fechaSalida; //formato: "AAAAMMdd"
 	protected String horaSalida;
-	protected String fechaLlegada;
+	protected String fechaLlegada; //idem formato fecha salida
 
 	public String getOrigen() {
 		return origen;
