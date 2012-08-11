@@ -34,7 +34,9 @@ public class FechaTest {
 	@Before
 	public void setup() {
 		long MILLIS_IN_A_DAY = 1000*60*60*24;
-		elCalendario.setTime(new Date());
+		elCalendario.set(Calendar.YEAR, 2012);
+		elCalendario.set(Calendar.MONTH, 5);
+		elCalendario.set(Calendar.DAY_OF_MONTH, 13);
 		fecha_ISO8601 = "2012-06-13";
 		fecha_compacta = "20120613";
 		fecha_Latinoamericano = "13/06/2012";

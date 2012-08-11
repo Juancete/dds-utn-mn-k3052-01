@@ -6,12 +6,12 @@ import ar.com.aterrizar.modelo.adapter.Aerolinea;
 
 public class Asiento {
 
-	protected String codigo;
-	protected BigDecimal precio;
-	protected char ubicacion; //'V' ventanilla, 'C' centro, 'P' pasillo
-	protected char tipo;	//clase: 'P' primera, 'E' ejecutivo, 'C' turista
-	protected boolean disponible;
-	protected Aerolinea aerolinea;
+	public String codigo;
+	public BigDecimal precio;
+	public char ubicacion; //'V' ventanilla, 'C' centro, 'P' pasillo
+	public char tipo;	//clase: 'P' primera, 'E' ejecutivo, 'T' turista
+	public boolean disponible;
+	public Aerolinea aerolinea;
 
 	
 	public Asiento(String unCodigo, BigDecimal unPrecio,char unaUbicacion, char unTipo, boolean estaDisponible, Aerolinea unaAerolinea){

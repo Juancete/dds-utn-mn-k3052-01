@@ -22,9 +22,9 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		String origen = this.evaluarStringYRetornarCorrecto(unaBusqueda.getOrigen());
 		//TODO verificar el formato de la fecha y entregarla en formato correcto("dd/MM/AAAA")
 		if(destino == null){
-			 datosAsientos = this.getAerolinea().asientosDisponiblesParaOrigen(origen, unaBusqueda.getFechaSalida());
+			 datosAsientos = this.getAerolinea().asientosDisponiblesParaOrigen(origen, unaBusqueda.getFecha());
 			}else{
-				datosAsientos = this.getAerolinea().asientosDisponiblesParaOrigenYDestino(origen, destino, unaBusqueda.getFechaSalida());
+				datosAsientos = this.getAerolinea().asientosDisponiblesParaOrigenYDestino(origen, destino, unaBusqueda.getFecha());
 		}
 		
 		if(datosAsientos.isEmpty()){
