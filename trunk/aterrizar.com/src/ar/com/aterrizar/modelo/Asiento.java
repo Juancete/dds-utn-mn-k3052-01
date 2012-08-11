@@ -35,6 +35,12 @@ public class Asiento {
 		this.codigo = unCodigo;
 	}
 	
+	//TODO esta es una implementacion falsa que aleatoriamente toma asientos reservados segun si 
+	//la cantidad de segundos epox es par o no.
+	public boolean estaReservado(){
+		return ((System.currentTimeMillis() %2)==0);
+	}
+	
 	public String getCodigo(){
 		return this.codigo;
 	}
