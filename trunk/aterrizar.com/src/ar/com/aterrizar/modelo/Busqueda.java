@@ -1,12 +1,16 @@
 package ar.com.aterrizar.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ar.com.aterrizar.modelo.FiltrosDeBusqueda.Filtro;
+
 public class Busqueda {
 
 	protected String origen;
 	protected String destino;
-	protected String fechaSalida; //formato: "AAAAMMdd"
-	protected String horaSalida;
-	protected String fechaLlegada; //idem formato fecha salida
+	protected String fecha; //formato: "AAAAMMdd"
+	protected List<Filtro> filtros = new ArrayList<Filtro>();
 
 	public String getOrigen() {
 		return origen;
@@ -24,49 +28,26 @@ public class Busqueda {
 		this.destino = destino;
 	}
 
-	public String getFechaSalida() {
-		return fechaSalida;
+	public String getFecha() {
+		return fecha;
 	}
 
-	public void setFechaSalida(String fechaSalida) {
-		this.fechaSalida = fechaSalida;
+	public void setFecha(String unaFecha) {
+		this.fecha = unaFecha;
 	}
 
-	public String getHoraSalida() {
-		return horaSalida;
-	}
-
-	public void setHoraSalida(String horaSalida) {
-		this.horaSalida = horaSalida;
-	}
-
-	public String getFechaLlegada() {
-		return fechaLlegada;
-	}
-
-	public void setFechaLlegada(String fechaLlegada) {
-		this.fechaLlegada = fechaLlegada;
-	}
-
-	public String getHoraLlegada() {
-		return horaLlegada;
-	}
-
-	public void setHoraLlegada(String horaLlegada) {
-		this.horaLlegada = horaLlegada;
-	}
-
-	protected String horaLlegada;
-
-	public Busqueda(String origen, String destino, String fechaSalida,
-			String horaSalida, String fechaLlegada, String horaLlegada) {
+	public Busqueda(String origen, String destino, String unaFecha) {
 		super();
 		this.origen = origen;
 		this.destino = destino;
-		this.fechaSalida = fechaSalida;
-		this.horaSalida = horaSalida;
-		this.fechaLlegada = fechaLlegada;
-		this.horaLlegada = horaLlegada;
-	}
+		this.fecha = unaFecha;
 
+	}
+	
+	public List<Asiento> filtrarAsientos(List<Asiento> listaSinFiltrar){
+		for (Filtro unFiltro: this.filtros){
+			listaSinFiltrar = unFiltro.evaluarLista(listaSinFiltrar);
+		}
+		return listaSinFiltrar;
+	}
 }

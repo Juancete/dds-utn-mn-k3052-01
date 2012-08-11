@@ -39,7 +39,7 @@ public class AerolineaLanchitaInterfaceTest {
 		aerolineaLanchitaAdapter = new AerolineaLanchitaAdapter();
 		aerolineaLanchitaAdapter.setAerolinea(aerolineaLancitaMock);
 		aerolineaLanchitaAdapter.setPorcentajePorCompania(1.2);
-		busquedaBALA20121010= new Busqueda("BUE", "LA","20121010", null, null, null);
+		busquedaBALA20121010= new Busqueda("BUE", "LA","20121010");
 	}
 	
 	@Test
@@ -69,12 +69,9 @@ public class AerolineaLanchitaInterfaceTest {
 		String origen = busquedaBALA20121010.getOrigen();
 		
 		String destino = busquedaBALA20121010.getDestino();
-		String fechaSalida = busquedaBALA20121010.getFechaSalida();
-		String horaSalida = busquedaBALA20121010.getHoraSalida();
-		String fechaLlegada = busquedaBALA20121010.getFechaLlegada();
-		String horaLlegada = busquedaBALA20121010.getHoraLlegada();		
+		String fecha = busquedaBALA20121010.getFecha();
 
-		Assert.assertNotNull(aerolineaLancita.asientosDisponibles(origen, destino, fechaSalida, horaSalida, fechaLlegada, horaLlegada));
+		Assert.assertNotNull(aerolineaLancita.asientosDisponibles(origen, destino, fecha, null, null, null));
 	}
 	
 	@Test

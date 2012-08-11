@@ -1,5 +1,6 @@
 package ar.com.aterrizar.modelo.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ar.com.aterrizar.modelo.*;
@@ -20,6 +21,5 @@ public abstract class Aerolinea {
 	public Double getPorcentajePorCompania(){
 		return this.porcentajePorCompania;
 	}
-	
 }
 

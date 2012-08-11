@@ -1,9 +1,11 @@
 package ar.com.aterrizar.modelo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.math.*;
 
+import ar.com.aterrizar.modelo.CriteriosDeOrdenamientoDeBusqueda.CriterioDeOrdenamiento;
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
 
 public class Usuario {
@@ -14,6 +16,7 @@ public class Usuario {
 	protected Nivel nivelDeUsuario;
 	protected BigDecimal montoAcumulado;
 	protected List<Busqueda> busquedas;
+	protected CriterioDeOrdenamiento unCriterio;
 	
 	
 	public Usuario(){
@@ -55,7 +58,9 @@ public class Usuario {
 	List <Asiento> buscarAsiento(Busqueda unaBusqueda,Aerolinea unaAerolinea){
 		busquedas.add(unaBusqueda);
 		List <Asiento> unaListaDeAsientos = unaAerolinea.buscarAsientosConComision(unaBusqueda);
-		return nivelDeUsuario.obtenerAsientosListosParaComprar(unaListaDeAsientos);
+		List <Asiento> unaListaFiltrada = unaBusqueda.filtrarAsientos(nivelDeUsuario.obtenerAsientosListosParaComprar(unaListaDeAsientos)); 
+		Collections.sort(unaListaFiltrada,unCriterio);
+		return unaListaFiltrada;
 	}
 	
 	void comprarUnAsiento(Asiento unAsiento) {
@@ -66,7 +71,9 @@ public class Usuario {
 	}
 	
 	void aumentarMonto(BigDecimal unPrecio){
-		 this.montoAcumulado=this.montoAcumulado.add(unPrecio);;
+		 this.montoAcumulado=this.montoAcumulado.add(unPrecio);
 	}
+	
+
 	
 }

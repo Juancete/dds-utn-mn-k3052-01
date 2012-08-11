@@ -30,8 +30,8 @@ public class UsuarioTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		unaBusqueda= new Busqueda("BUE", "20121010","U", "LA", "A", "E");
-		otraBusqueda = new Busqueda("BUE", "20121111",null, "RIO", null, null);
+		unaBusqueda= new Busqueda("BUE", "LA", "20121010");
+		otraBusqueda = new Busqueda("BUE","RIO", "20121111");
 		
 		//usuario Pago VIP
 		usuarioPagoVIP = new Usuario();
