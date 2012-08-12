@@ -59,7 +59,7 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 	/**
 	 * <h1>Dado un codigo de Asiento compra efectivamente el asiento 
 	 */
-	public void comprarAsiento(Asiento unAsiento) {
+	public void comprarAsiento(Asiento unAsiento,String dni) {
 		try
 		{
 		getAerolinea().comprar(unAsiento.getCodigo());

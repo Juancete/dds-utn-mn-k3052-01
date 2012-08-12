@@ -20,7 +20,7 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		List<AsientoDTO> datosAsientos = new ArrayList<AsientoDTO>();
 		String destino = this.evaluarStringYRetornarCorrecto(unaBusqueda.getDestino());
 		String origen = this.evaluarStringYRetornarCorrecto(unaBusqueda.getOrigen());
-		//TODO verificar el formato de la fecha y entregarla en formato correcto("dd/MM/AAAA")
+		String fechaSalida = this.evaluarFechaYRetornarCorrecto(unaBusqueda.getFechaSalida());
 		if(destino == null){
 			 datosAsientos = this.getAerolinea().asientosDisponiblesParaOrigen(origen, unaBusqueda.getFecha());
 			}else{
@@ -56,13 +56,25 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		}
 		return lugar;
 	}
+	
+	private String evaluarFechaYRetornarCorrecto(String fechaSalida) {
+		//formato correcto("dd/MM/AAAA")
+		int fechaInteger = Integer.parseInt(fechaSalida);
+		int anio = fechaInteger/10000;
+		int mes = (fechaInteger%10000)/100;
+		String mesString  = String.format("%02d",mes);
+		int dia = (fechaInteger%10000)%100;
+		//dia = String.format(,dia);
+		String fechaString = Integer.toString(dia).concat("/").concat(mesString).concat("/").concat(Integer.toString(anio));
+		return fechaString;
+	}
 
 	@Override
-	public void comprarAsiento(Asiento unAsiento)
+	public void comprarAsiento(Asiento unAsiento,String dni)
 			throws NoSeEncuentraDisponibleElAsientoException {
 		//TODO modificar los metodos para que reciban el dni de la persona q compra
 		String codigoAterrizar = unAsiento.getCodigo();
-		Boolean compraExitosa =  this.getAerolinea().comprarSiHayDisponibilidad("36398008", 
+		Boolean compraExitosa =  this.getAerolinea().comprarSiHayDisponibilidad(dni, 
 				codigoAterrizar.substring(0, codigoAterrizar.length()) , 
 				Integer.parseInt(codigoAterrizar.substring(codigoAterrizar.length() - 1)));
 		if(!compraExitosa){
@@ -83,7 +95,7 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 			}
 		}
 	
-	//TODO cambiar el lugar de estos metodos
+	
 	public AerolineaOceanic getAerolinea() {
 		return aerolinea;
 	}
