@@ -76,6 +76,13 @@ public class AerolineaOceanicInterfaceTest {
 	}	
 	
 	@Test
+	public void fechaCorrecta(){
+		Fecha fecha = new Fecha("20121117",new FormatoSimple("yyyyMMdd"));
+		String fechaString = Integer.toString(fecha.obtenerDia()).concat("/").concat(Integer.toString(fecha.obtenerMes()+1)).concat("/").concat(Integer.toString(fecha.obtenerAnio()));
+		System.out.println(fechaString);
+	}
+	
+	@Test
 	public void reservarAsientoTest() {
 		String dni = this.tony.getApellido();
 		String codigoDeVuelo = "OC100";
