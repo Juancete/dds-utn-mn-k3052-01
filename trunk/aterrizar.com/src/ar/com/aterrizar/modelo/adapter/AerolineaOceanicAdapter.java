@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.aterrizar.fecha.modelo.Fecha;
 import com.oceanic.*;
 
 
@@ -20,11 +21,11 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		List<AsientoDTO> datosAsientos = new ArrayList<AsientoDTO>();
 		String destino = this.evaluarStringYRetornarCorrecto(unaBusqueda.getDestino());
 		String origen = this.evaluarStringYRetornarCorrecto(unaBusqueda.getOrigen());
-		String fechaSalida = this.evaluarFechaYRetornarCorrecto(unaBusqueda.getFechaSalida());
+		String fecha = this.evaluarFechaYRetornarCorrecto(unaBusqueda.getFecha());
 		if(destino == null){
-			 datosAsientos = this.getAerolinea().asientosDisponiblesParaOrigen(origen, unaBusqueda.getFecha());
+			 datosAsientos = this.getAerolinea().asientosDisponiblesParaOrigen(origen, fecha);
 			}else{
-				datosAsientos = this.getAerolinea().asientosDisponiblesParaOrigenYDestino(origen, destino, unaBusqueda.getFecha());
+				datosAsientos = this.getAerolinea().asientosDisponiblesParaOrigenYDestino(origen, destino,fecha);
 		}
 		
 		if(datosAsientos.isEmpty()){
@@ -57,22 +58,15 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		return lugar;
 	}
 	
-	private String evaluarFechaYRetornarCorrecto(String fechaSalida) {
+	private String evaluarFechaYRetornarCorrecto(Fecha fecha) {
 		//formato correcto("dd/MM/AAAA")
-		int fechaInteger = Integer.parseInt(fechaSalida);
-		int anio = fechaInteger/10000;
-		int mes = (fechaInteger%10000)/100;
-		String mesString  = String.format("%02d",mes);
-		int dia = (fechaInteger%10000)%100;
-		//dia = String.format(,dia);
-		String fechaString = Integer.toString(dia).concat("/").concat(mesString).concat("/").concat(Integer.toString(anio));
+		String fechaString = Integer.toString(fecha.obtenerDia()).concat("/").concat(Integer.toString(fecha.obtenerMes())).concat("/").concat(Integer.toString(fecha.obtenerAnio()));
 		return fechaString;
 	}
 
 	@Override
 	public void comprarAsiento(Asiento unAsiento,String dni)
 			throws NoSeEncuentraDisponibleElAsientoException {
-		//TODO modificar los metodos para que reciban el dni de la persona q compra
 		String codigoAterrizar = unAsiento.getCodigo();
 		Boolean compraExitosa =  this.getAerolinea().comprarSiHayDisponibilidad(dni, 
 				codigoAterrizar.substring(0, codigoAterrizar.length()) , 

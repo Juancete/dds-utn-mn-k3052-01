@@ -16,6 +16,7 @@ import org.mockito.stubbing.Answer;
 
 import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
 
+import com.aterrizar.fecha.modelo.Fecha;
 import com.lanchita.AerolineaLanchita;
 
 public class AerolineaLanchitaInterfaceTest {
@@ -73,7 +74,7 @@ public class AerolineaLanchitaInterfaceTest {
 		String origen = busquedaBALA20121010.getOrigen();
 		
 		String destino = busquedaBALA20121010.getDestino();
-		String fecha = busquedaBALA20121010.getFecha();
+		Fecha fecha = busquedaBALA20121010.getFecha();
 
 		Assert.assertNotNull(aerolineaLancita.asientosDisponibles(origen, destino, fecha, null, null, null));
 	}
