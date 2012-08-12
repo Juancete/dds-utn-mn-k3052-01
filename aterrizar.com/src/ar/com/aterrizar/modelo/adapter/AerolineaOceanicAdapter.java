@@ -37,8 +37,7 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		for(AsientoDTO unAsientoDTO : datosAsientos){
 			char clase = unAsientoDTO.getClase().charAt(0);
 			if(clase == 'T') clase = 'C';
-			//notar que codigo de Vuelo del asiento de aterrizar.com es distinto al codigo de vuelo de Oceanic	
-			listaDeAsientos.add(new Asiento(unAsientoDTO.getCodigoDeVuelo().concat(Integer.toString(unAsientoDTO.getNumeroDeAsiento())),
+			listaDeAsientos.add(new Asiento(Integer.toString(unAsientoDTO.getNumeroDeAsiento()),
 					unAsientoDTO.getPrecio().multiply(new BigDecimal(porcentajePorCompania)),
 					unAsientoDTO.getUbicacion().charAt(0),
 					clase,
@@ -67,12 +66,12 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 	@Override
 	public void comprarAsiento(Asiento unAsiento,String dni)
 			throws NoSeEncuentraDisponibleElAsientoException {
-		String codigoAterrizar = unAsiento.getCodigo();
+		String codigoAterrizar = unAsiento.getCodigo();//quitar esto
 		Boolean compraExitosa =  this.getAerolinea().comprarSiHayDisponibilidad(dni, 
-				codigoAterrizar.substring(0, codigoAterrizar.length()) , 
-				Integer.parseInt(codigoAterrizar.substring(codigoAterrizar.length() - 1)));
+				codigoAterrizar.substring(0, codigoAterrizar.length()) , //codigo vuelo
+				Integer.parseInt(unAsiento.getCodigo()));
 		if(!compraExitosa){
-			throw new NoSeEncuentraDisponibleElAsientoException();
+			throw new NoSeEncuentraDisponibleElAsientoException("El asiento no se pudo comprar");
 		}
 	}
 	
@@ -85,7 +84,7 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 	public void reservarAsiento(String dni, String codigoDeVuelo, Integer numeroDeAsiento){
 		if(!(aerolinea.estaReservado(codigoDeVuelo, numeroDeAsiento)).booleanValue()){
 			if(!aerolinea.reservar(dni, codigoDeVuelo, numeroDeAsiento).booleanValue())
-				throw new AsientoNoDisponibleException("El asiento no se pudo reservar");
+				throw new NoSeEncuentraDisponibleElAsientoException("El asiento no se pudo reservar");
 			}
 		}
 	

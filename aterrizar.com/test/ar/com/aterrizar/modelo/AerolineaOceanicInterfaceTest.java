@@ -65,15 +65,17 @@ public class AerolineaOceanicInterfaceTest {
 	}
 	
 	@Test
-	public void losAsientosSonGeneradosCorrectamente(){
+	public void losAsientosSonGeneradosCorrectamente(){//0C100
 		final List<Asiento> asientosMock = new ArrayList<Asiento>();
-		asientosMock.add(new Asiento("OC10010", (new BigDecimal("3150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'P', 'E', true , aerolineaOceanicAdapter));
-		asientosMock.add(new Asiento("OC10011", (new BigDecimal("3150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'C', 'E', true , aerolineaOceanicAdapter));
-		asientosMock.add(new Asiento("OC10012", (new BigDecimal("3150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'V', 'E', true , aerolineaOceanicAdapter));
-		asientosMock.add(new Asiento("OC10030", (new BigDecimal("6150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'P', 'P', false , aerolineaOceanicAdapter));
+		asientosMock.add(new Asiento("10", (new BigDecimal("3150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'P', 'E', true , aerolineaOceanicAdapter));
+		asientosMock.add(new Asiento("11", (new BigDecimal("3150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'C', 'E', true , aerolineaOceanicAdapter));
+		asientosMock.add(new Asiento("12", (new BigDecimal("3150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'V', 'E', true , aerolineaOceanicAdapter));
+		asientosMock.add(new Asiento("30", (new BigDecimal("6150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'P', 'P', false , aerolineaOceanicAdapter));
 		List<Asiento> asientosDisponibles = aerolineaOceanicAdapter.buscarAsientosConComision(busquedaBALA20121010);
 		Assert.assertTrue(asientosDisponibles.containsAll(asientosMock));
 	}	
+	
+	
 	
 	@Test
 	public void fechaCorrecta(){
