@@ -70,6 +70,19 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		}
 	}
 	
+	/**
+	 * @author Nacho
+	 * @param dni
+	 * @param codigoDeVuelo
+	 * @param numeroDeAsiento
+	 */
+	public void reservarAsiento(String dni, String codigoDeVuelo, Integer numeroDeAsiento){
+		if(!(aerolinea.estaReservado(codigoDeVuelo, numeroDeAsiento)).booleanValue()){
+			if(!aerolinea.reservar(dni, codigoDeVuelo, numeroDeAsiento).booleanValue())
+				throw new AsientoNoDisponibleException("El asiento no se pudo reservar");
+			}
+		}
+	
 	//TODO cambiar el lugar de estos metodos
 	public AerolineaOceanic getAerolinea() {
 		return aerolinea;

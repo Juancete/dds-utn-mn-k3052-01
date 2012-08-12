@@ -35,4 +35,8 @@ public class AterrizarApp {
 	public void agregarAerolinea(Aerolinea unaAerolinea){
 		aerolineas.add(unaAerolinea);
 	}
+	
+	public void reservarAsiento(Usuario unUsuario, Asiento unAsiento){
+		
+	}
 }
