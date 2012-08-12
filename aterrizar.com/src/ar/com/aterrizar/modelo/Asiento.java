@@ -12,6 +12,7 @@ public class Asiento {
 	public char tipo;	//clase: 'P' primera, 'E' ejecutivo, 'T' turista
 	public boolean disponible;
 	public Aerolinea aerolinea;
+	private Vuelo vuelo;
 
 	
 	public Asiento(String unCodigo, BigDecimal unPrecio,char unaUbicacion, char unTipo, boolean estaDisponible, Aerolinea unaAerolinea){
@@ -69,5 +70,13 @@ public class Asiento {
 			return false;
 		Asiento otroAsiento = (Asiento) obj;
 		return codigo.equals(otroAsiento.getCodigo()) && precio.equals(otroAsiento.precio) && ubicacion == otroAsiento.ubicacion && tipo == otroAsiento.tipo && disponible == otroAsiento.disponible && aerolinea.equals(otroAsiento.getAerolinea());
+	}
+
+	public Vuelo getVuelo() {
+		return vuelo;
+	}
+
+	public void setVuelo(Vuelo vuelo) {
+		this.vuelo = vuelo;
 	}
 }
