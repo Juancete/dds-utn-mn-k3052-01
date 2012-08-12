@@ -66,7 +66,7 @@ public class Usuario {
 	void comprarUnAsiento(Asiento unAsiento) {
 		Aerolinea instanciaDeAerolinea = unAsiento.getAerolinea();
 		//Si no puede comprar, la excepción se trata mas afuera.
-		instanciaDeAerolinea.comprarAsiento(unAsiento);
+		instanciaDeAerolinea.comprarAsiento(unAsiento,null);
 		aumentarMonto(unAsiento.precio);
 	}
 	
