@@ -17,6 +17,7 @@ import org.mockito.stubbing.Answer;
 import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
 
 import com.aterrizar.fecha.modelo.Fecha;
+import com.aterrizar.fecha.modelo.FormatoSimple;
 import com.lanchita.AerolineaLanchita;
 
 public class AerolineaLanchitaInterfaceTest {
@@ -44,7 +45,7 @@ public class AerolineaLanchitaInterfaceTest {
 		aerolineaLanchitaAdapter = new AerolineaLanchitaAdapter();
 		aerolineaLanchitaAdapter.setAerolinea(aerolineaLancitaMock);
 		aerolineaLanchitaAdapter.setPorcentajePorCompania(1.2);
-		busquedaBALA20121010= new Busqueda("BUE", "LA","20121010");
+		busquedaBALA20121010= new Busqueda("BUE", "LA",new Fecha("20121010",new FormatoSimple("yyyyMMdd")));
 	}
 	
 	@Test
@@ -76,7 +77,7 @@ public class AerolineaLanchitaInterfaceTest {
 		String destino = busquedaBALA20121010.getDestino();
 		Fecha fecha = busquedaBALA20121010.getFecha();
 
-		Assert.assertNotNull(aerolineaLancita.asientosDisponibles(origen, destino, fecha, null, null, null));
+		Assert.assertNotNull(aerolineaLancita.asientosDisponibles(origen, destino, Integer.toString(fecha.obtenerAnio()).concat(Integer.toString(fecha.obtenerMes())).concat(Integer.toString(fecha.obtenerDia())), null, null, null));
 	}
 	
 	@Test
