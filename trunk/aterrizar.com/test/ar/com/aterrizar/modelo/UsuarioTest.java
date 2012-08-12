@@ -59,7 +59,7 @@ public class UsuarioTest {
 		listaImpostora.add(asientoNormal);
 		listaImpostora.add(asientoNoDisponible);
 		
-		doThrow(new NoSeEncuentraDisponibleElAsientoException()).when(aerolineaAdapterMock).comprarAsiento(asientoNoDisponible);
+		doThrow(new NoSeEncuentraDisponibleElAsientoException()).when(aerolineaAdapterMock).comprarAsiento(asientoNoDisponible,null);
 		when(aerolineaAdapterMock.buscarAsientosConComision(unaBusqueda)).thenReturn(listaImpostora);
 		when(aerolineaAdapterMock.buscarAsientosConComision(otraBusqueda)).thenThrow(new NoHayAsientosDisponiblesParaUnaBusquedaException());
 		
