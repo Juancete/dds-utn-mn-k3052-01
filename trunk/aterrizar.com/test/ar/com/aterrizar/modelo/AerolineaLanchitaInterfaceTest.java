@@ -1,18 +1,22 @@
 package ar.com.aterrizar.modelo;
 
-import static org.mockito.Mockito.*;
-import org.mockito.invocation.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
 import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-import com.lanchita.AerolineaLanchita;
-import ar.com.aterrizar.modelo.adapter.*;
 
-import com.lanchita.*;
+import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
+
+import com.lanchita.AerolineaLanchita;
 
 public class AerolineaLanchitaInterfaceTest {
 
