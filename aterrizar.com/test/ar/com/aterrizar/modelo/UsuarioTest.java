@@ -11,6 +11,9 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.aterrizar.fecha.modelo.Fecha;
+import com.aterrizar.fecha.modelo.FormatoSimple;
+
 import ar.com.aterrizar.modelo.adapter.*;
 
 public class UsuarioTest {
@@ -30,8 +33,9 @@ public class UsuarioTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		unaBusqueda= new Busqueda("BUE", "LA", "20121010");
-		otraBusqueda = new Busqueda("BUE","RIO", "20121111");
+		
+		unaBusqueda= new Busqueda("BUE", "LA", new Fecha("20121010",new FormatoSimple("yyyyMMdd")));
+		otraBusqueda = new Busqueda("BUE","RIO", new Fecha("20121111",new FormatoSimple("yyyyMMdd")));
 		
 		//usuario Pago VIP
 		usuarioPagoVIP = new Usuario();

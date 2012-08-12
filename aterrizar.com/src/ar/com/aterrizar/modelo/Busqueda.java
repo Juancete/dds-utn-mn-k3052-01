@@ -3,13 +3,15 @@ package ar.com.aterrizar.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.aterrizar.fecha.modelo.Fecha;
+
 import ar.com.aterrizar.modelo.FiltrosDeBusqueda.Filtro;
 
 public class Busqueda {
 
 	protected String origen;
 	protected String destino;
-	protected String fecha; //formato: "AAAAMMdd"
+	protected Fecha fecha; //formato: "AAAAMMdd"
 	protected List<Filtro> filtros = new ArrayList<Filtro>();
 
 	public String getOrigen() {
@@ -28,15 +30,15 @@ public class Busqueda {
 		this.destino = destino;
 	}
 
-	public String getFecha() {
+	public Fecha getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String unaFecha) {
+	public void setFecha(Fecha unaFecha) {
 		this.fecha = unaFecha;
 	}
 
-	public Busqueda(String origen, String destino, String unaFecha) {
+	public Busqueda(String origen, String destino, Fecha unaFecha) {
 		super();
 		this.origen = origen;
 		this.destino = destino;
