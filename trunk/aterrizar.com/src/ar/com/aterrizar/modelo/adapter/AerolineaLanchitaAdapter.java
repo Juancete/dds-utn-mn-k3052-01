@@ -8,6 +8,7 @@ import ar.com.aterrizar.modelo.Asiento;
 import ar.com.aterrizar.modelo.Busqueda;
 import ar.com.aterrizar.modelo.Usuario;
 
+import com.aterrizar.fecha.modelo.Fecha;
 import com.lanchita.AerolineaLanchita;
 import com.lanchita.excepciones.EstadoErroneoException;
 
@@ -41,7 +42,7 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 	public List<Asiento> buscarAsientosConComision(Busqueda unaBusqueda) {
 
 		String[][] datosAsientos = this.getAerolinea().asientosDisponibles(unaBusqueda.getOrigen(),
-				unaBusqueda.getDestino(), Integer.toString(unaBusqueda.getFecha().obtenerAnio()).concat(Integer.toString(unaBusqueda.getFecha().obtenerMes())).concat(Integer.toString(unaBusqueda.getFecha().obtenerDia())), null, null, null);
+				unaBusqueda.getDestino(),this.fechaToAAAAMMDD(unaBusqueda.getFecha()) , null, null, null);
 		
 		List<Asiento> listaDeAsientos = new ArrayList<Asiento>();
 		listaDeAsientos = convertirArrayDeStringEnListaDeAsientos(datosAsientos);
@@ -57,7 +58,7 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 		return listaDeAsientos;
 	}
 
-	
+
 	/**
 	 * <h1>Dado un codigo de Asiento compra efectivamente el asiento 
 	 */
