@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.aterrizar.fecha.modelo.Fecha;
+import com.aterrizar.fecha.modelo.FormatoSimple;
 import com.oceanic.*;
 
 
@@ -39,13 +40,14 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		for(AsientoDTO unAsientoDTO : datosAsientos){
 			char clase = unAsientoDTO.getClase().charAt(0);
 			if(clase == 'T') clase = 'C';
-			Asiento unAsiento = new Asiento(Integer.toString(unAsientoDTO.getNumeroDeAsiento()),
+			//codigo de asiento dado por su codigo de vuelo y numero de asiento concatenados
+			Asiento unAsiento = new Asiento(unAsientoDTO.getCodigoDeVuelo().concat(Integer.toString(unAsientoDTO.getNumeroDeAsiento())),
 					unAsientoDTO.getPrecio().multiply(new BigDecimal(porcentajePorCompania)),
 					unAsientoDTO.getUbicacion().charAt(0),
 					clase,
 					!unAsientoDTO.getReservado(),
 					this);
-			
+			unAsiento.setNumeroDeAsiento(unAsientoDTO.getNumeroDeAsiento());
 			boolean elVueloEstaEnLaLista = false;
 			for(Vuelo unVuelo:vuelos){
 			   
@@ -55,7 +57,13 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 			}
 			
 			if(!elVueloEstaEnLaLista){
-				Vuelo nuevoVuelo = new Vuelo(unAsientoDTO.getCodigoDeVuelo(),null,null,null,null);
+				Fecha fechaOrigen = new Fecha(unAsientoDTO.getFechaDeSalida(),new FormatoSimple("dd/MM/yyyy"));
+				Fecha fechaDestino = new Fecha(unAsientoDTO.getFechaDeLlegada(),new FormatoSimple("dd/MM/yyyy"));
+				fechaOrigen = new Fecha(this.fechaToAAAAMMDD(fechaOrigen),new FormatoSimple("yyyyMMdd"));
+				fechaDestino = new Fecha(this.fechaToAAAAMMDD(fechaDestino),new FormatoSimple("yyyyMMdd"));
+				Vuelo nuevoVuelo = new Vuelo(unAsientoDTO.getCodigoDeVuelo(),
+						unAsientoDTO.getOrigen(),unAsientoDTO.getDestino(),
+						fechaOrigen,fechaDestino);
 				vuelos.add(nuevoVuelo);
 				unAsiento.setVuelo(nuevoVuelo);
 			}
@@ -64,6 +72,11 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		}
 		
 		return listaDeAsientos;
+	}
+	
+	private String fechaToAAAAMMDD(Fecha unaFecha){
+		int fecha = unaFecha.obtenerAnio()*10000+unaFecha.obtenerMes()*100+unaFecha.obtenerDia();
+		return Integer.toString(fecha);
 	}
 	
 	private String evaluarStringYRetornarCorrecto(String lugar){
@@ -90,21 +103,18 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		if(!compraExitosa){
 			throw new NoSeEncuentraDisponibleElAsientoException("El asiento no se pudo comprar");
 		}
+		unAsiento.setDisponibilidad(false);
 	}
 	
-	/**
-	 * @author Nacho
-	 * @param dni
-	 * @param codigoDeVuelo
-	 * @param numeroDeAsiento
-	 */
-	public void reservarAsiento(String dni, String codigoDeVuelo, Integer numeroDeAsiento){
-			if(!(aerolinea.estaReservado(codigoDeVuelo, numeroDeAsiento)).booleanValue()){
-			if(!aerolinea.reservar(dni, codigoDeVuelo, numeroDeAsiento).booleanValue())
-				throw new NoSeEncuentraDisponibleElAsientoException("El asiento no se pudo reservar");
-			}
+	@Override
+	public void reservarAsiento(Usuario unUsuario, Asiento unAsiento) {
+		if(!this.getAerolinea().reservar(unUsuario.getDni(),unAsiento.getVuelo().getCodigo(), unAsiento.numeroDeAsiento)){
+			throw new NoSeEncuentraDisponibleElAsientoException("El asiento no pudo ser reservado");		
 		}
-	
+		unAsiento.setDisponibilidad(false);
+	}
+
+
 	
 	public AerolineaOceanic getAerolinea() {
 		return aerolinea;
@@ -114,9 +124,5 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		this.aerolinea = aerolinea;
 	}
 
-	@Override
-	public void reservarAsiento(Usuario unUsuario, Asiento unAsiento) {
-		if(unAsiento.codigo !=null && unAsiento.codigo.contains("-"))return; //ya que oceanic no tiene codigo de asiento con guion.
-		reservarAsiento(unUsuario.getDni(),unAsiento.codigoDeVuelo, unAsiento.numeroDeAsiento);		
-	}
+	
 }
