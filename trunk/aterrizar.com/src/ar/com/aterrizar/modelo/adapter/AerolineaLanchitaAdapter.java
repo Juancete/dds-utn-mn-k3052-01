@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.com.aterrizar.modelo.*;
+import ar.com.aterrizar.modelo.Asiento;
+import ar.com.aterrizar.modelo.Busqueda;
+import ar.com.aterrizar.modelo.Usuario;
 
 import com.lanchita.AerolineaLanchita;
 import com.lanchita.excepciones.EstadoErroneoException;
@@ -80,7 +82,13 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 
 	@Override
 	public void reservarAsiento(Usuario unUsuario, Asiento unAsiento) {
-		// TODO Auto-generated method stub
+		if (unAsiento.numeroDeAsiento != null)return; // ya que lanchita no tiene este valor es un asiento de otra empresa
+		try{
+			aerolinea.reservar(unAsiento.codigo, unUsuario.getDni());
+		}catch (EstadoErroneoException e){
+			//Asiento de AerolineaLanchita ya reservado
+			throw new NoSeEncuentraDisponibleElAsientoException("Asiento reservado en Lanchita");
+		}
 		
 	}
 
