@@ -59,6 +59,22 @@ public class Asiento {
 		this.aerolinea = unaAerolinea;
 	}
 	
+	public void setNumeroDeAsiento(Integer numero){
+		this.numeroDeAsiento = numero;
+	}
+	
+	public Integer getNumeroDeAsiento(){
+		return this.numeroDeAsiento;
+	}
+	
+	public void setDisponibilidad(boolean bol){
+		this.disponible = bol;
+	}
+	
+	public boolean isDisponible(){
+		return this.disponible;
+	}
+	
 	@Override
 	public int hashCode() {
 		int enteroDisponible= 0;
