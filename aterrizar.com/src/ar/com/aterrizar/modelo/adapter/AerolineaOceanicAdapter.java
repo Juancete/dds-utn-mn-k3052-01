@@ -116,7 +116,7 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 
 	@Override
 	public void reservarAsiento(Usuario unUsuario, Asiento unAsiento) {
-		if(unAsiento.codigo !=null)return; //ya que oceanic no tiene codigo de asiento.
+		if(unAsiento.codigo !=null && unAsiento.codigo.contains("-"))return; //ya que oceanic no tiene codigo de asiento con guion.
 		reservarAsiento(unUsuario.getDni(),unAsiento.codigoDeVuelo, unAsiento.numeroDeAsiento);		
 	}
 }
