@@ -21,5 +21,8 @@ public abstract class Aerolinea {
 	public Double getPorcentajePorCompania(){
 		return this.porcentajePorCompania;
 	}
+	
+	public abstract void reservarAsiento(Usuario unUsuario, Asiento unAsiento);	
+	
 }
 

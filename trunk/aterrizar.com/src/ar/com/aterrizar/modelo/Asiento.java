@@ -6,6 +6,8 @@ import ar.com.aterrizar.modelo.adapter.Aerolinea;
 
 public class Asiento {
 
+	private String codigoDeVuelo;
+	private Integer numeroDeAsiento;
 	public String codigo;
 	public BigDecimal precio;
 	public char ubicacion; //'V' ventanilla, 'C' centro, 'P' pasillo
