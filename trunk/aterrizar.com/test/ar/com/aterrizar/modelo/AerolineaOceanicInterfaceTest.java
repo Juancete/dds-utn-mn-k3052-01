@@ -55,7 +55,13 @@ public class AerolineaOceanicInterfaceTest {
 																								return (List<AsientoDTO>) retornoImpostor;
 																							}
 																				});
-		 
+		
+		when(aerolineaOceanicMock.reservar("23.323.537","0C100",10)).thenAnswer(new Answer<Boolean>() {
+			public Boolean answer(InvocationOnMock invocation) throws Throwable{
+				return (Boolean) true;
+			}
+								});
+		
 		aerolineaOceanicAdapter = new AerolineaOceanicAdapter();
 		aerolineaOceanicAdapter.setAerolinea(aerolineaOceanicMock);
 		aerolineaOceanicAdapter.setPorcentajePorCompania(1.2);
@@ -67,10 +73,10 @@ public class AerolineaOceanicInterfaceTest {
 	@Test
 	public void losAsientosSonGeneradosCorrectamente(){//0C100
 		final List<Asiento> asientosMock = new ArrayList<Asiento>();
-		asientosMock.add(new Asiento("10", (new BigDecimal("3150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'P', 'E', true , aerolineaOceanicAdapter));
-		asientosMock.add(new Asiento("11", (new BigDecimal("3150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'C', 'E', true , aerolineaOceanicAdapter));
-		asientosMock.add(new Asiento("12", (new BigDecimal("3150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'V', 'E', true , aerolineaOceanicAdapter));
-		asientosMock.add(new Asiento("30", (new BigDecimal("6150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'P', 'P', false , aerolineaOceanicAdapter));
+		asientosMock.add(new Asiento("OC10010", (new BigDecimal("3150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'P', 'E', true , aerolineaOceanicAdapter));
+		asientosMock.add(new Asiento("OC10011", (new BigDecimal("3150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'C', 'E', true , aerolineaOceanicAdapter));
+		asientosMock.add(new Asiento("OC10012", (new BigDecimal("3150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'V', 'E', true , aerolineaOceanicAdapter));
+		asientosMock.add(new Asiento("OC10030", (new BigDecimal("6150.98")).multiply(new BigDecimal(aerolineaOceanicAdapter.getPorcentajePorCompania())), 'P', 'P', false , aerolineaOceanicAdapter));
 		List<Asiento> asientosDisponibles = aerolineaOceanicAdapter.buscarAsientosConComision(busquedaBALA20121010);
 		Assert.assertTrue(asientosDisponibles.containsAll(asientosMock));
 	}	
@@ -79,23 +85,18 @@ public class AerolineaOceanicInterfaceTest {
 	
 	@Test
 	public void fechaCorrecta(){
-		Fecha fecha = new Fecha("20121117",new FormatoSimple("yyyyMMdd"));
-		String fechaString = Integer.toString(fecha.obtenerDia()).concat("/").concat(Integer.toString(fecha.obtenerMes()+1)).concat("/").concat(Integer.toString(fecha.obtenerAnio()));
-		System.out.println(fechaString);
+		System.out.println(aerolineaOceanicAdapter.parsearFecha(busquedaBALA20121010.getFecha()));
 	}
 	
 	@Test
 	public void reservarAsientoTest() {
-		String dni = this.tony.getApellido();
-		String codigoDeVuelo = "OC100";
-		Integer numeroDeAsiento = new Integer(10);
-		//primero debo verificar que el asiento a reservar este disponible
+		Asiento unAsiento = new Asiento("1000",new BigDecimal(11),'E','V',true,aerolineaOceanicAdapter);
+		Vuelo unVuelo = new Vuelo("0C100","_BS","SLA",null,null);
+		unAsiento.setVuelo(unVuelo);
+		unAsiento.setNumeroDeAsiento(new Integer(10));
 		
-		Assert.assertFalse(aerolineaOceanic.estaReservado(codigoDeVuelo, numeroDeAsiento).booleanValue());
-		
-		Assert.assertTrue(aerolineaOceanic.reservar(dni, codigoDeVuelo, numeroDeAsiento).booleanValue());
-		Assert.assertFalse(aerolineaOceanic.reservar(dni, codigoDeVuelo, numeroDeAsiento).booleanValue());
-		
+		aerolineaOceanicAdapter.reservarAsiento(tony, unAsiento);
+		Assert.assertFalse(unAsiento.isDisponible());
 		}
 
 
