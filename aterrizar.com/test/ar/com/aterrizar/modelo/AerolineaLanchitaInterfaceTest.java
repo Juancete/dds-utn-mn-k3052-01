@@ -57,10 +57,6 @@ public class AerolineaLanchitaInterfaceTest {
 	}
 	
 	@Test
-	public void fechaCorrecta(){
-		System.out.println(aerolineaLanchitaAdapter.fechaToAAAAMMDD(busquedaBALA20121010.getFecha()));
-	}
-	@Test
 	public void buscoAsientosDisponiblesEnLanchita(){
 		List<Asiento> listaDeAsientos = aerolineaLanchitaAdapter.buscarAsientosConComision(busquedaBALA20121010);
 		for(Asiento unAsiento : listaDeAsientos){
