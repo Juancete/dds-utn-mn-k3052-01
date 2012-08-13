@@ -76,6 +76,12 @@ public class AerolineaOceanicInterfaceTest {
 			}
 								});
 		
+		when(aerolineaOceanicMock.comprarSiHayDisponibilidad("36.398.008","0C100",10)).thenAnswer(new Answer<Boolean>() {
+			public Boolean answer(InvocationOnMock invocation) throws Throwable{
+				return (Boolean) unAsiento.isDisponible();
+			}
+								});
+		
 		aerolineaOceanicAdapter = new AerolineaOceanicAdapter();
 		aerolineaOceanicAdapter.setAerolinea(aerolineaOceanicMock);
 		aerolineaOceanicAdapter.setPorcentajePorCompania(1.2);
@@ -95,7 +101,12 @@ public class AerolineaOceanicInterfaceTest {
 		Assert.assertTrue(asientosDisponibles.containsAll(asientosMock));
 	}	
 	
-	
+	@Test
+	public void comprarUnAsiento(){
+		Assert.assertTrue(unAsiento.isDisponible());
+		aerolineaOceanicAdapter.comprarAsiento(unAsiento, "36.398.008");
+		Assert.assertFalse(unAsiento.isDisponible());
+	}
 	
 	@Test(expected = NoSeEncuentraDisponibleElAsientoException.class)
 	public void noSePuedeReservarUnAsientoYaReservado(){	
