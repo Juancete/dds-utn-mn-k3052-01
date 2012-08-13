@@ -99,7 +99,7 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 	 * @param numeroDeAsiento
 	 */
 	public void reservarAsiento(String dni, String codigoDeVuelo, Integer numeroDeAsiento){
-		if(!(aerolinea.estaReservado(codigoDeVuelo, numeroDeAsiento)).booleanValue()){
+			if(!(aerolinea.estaReservado(codigoDeVuelo, numeroDeAsiento)).booleanValue()){
 			if(!aerolinea.reservar(dni, codigoDeVuelo, numeroDeAsiento).booleanValue())
 				throw new NoSeEncuentraDisponibleElAsientoException("El asiento no se pudo reservar");
 			}
@@ -116,7 +116,7 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 
 	@Override
 	public void reservarAsiento(Usuario unUsuario, Asiento unAsiento) {
-		// TODO Auto-generated method stub
-		
+		if(unAsiento.codigo !=null)return; //ya que oceanic no tiene codigo de asiento.
+		reservarAsiento(unUsuario.getDni(),unAsiento.codigoDeVuelo, unAsiento.numeroDeAsiento);		
 	}
 }
