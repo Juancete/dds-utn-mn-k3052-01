@@ -78,4 +78,10 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 		this.aerolinea = aerolinea;
 	}
 
+	@Override
+	public void reservarAsiento(Usuario unUsuario, Asiento unAsiento) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

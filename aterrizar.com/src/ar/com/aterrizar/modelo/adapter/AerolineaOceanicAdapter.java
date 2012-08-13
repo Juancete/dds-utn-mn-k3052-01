@@ -10,6 +10,7 @@ import com.oceanic.*;
 
 import ar.com.aterrizar.modelo.Asiento;
 import ar.com.aterrizar.modelo.Busqueda;
+import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.Vuelo;
 
 public class AerolineaOceanicAdapter extends Aerolinea {
@@ -111,5 +112,11 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 
 	public void setAerolinea(AerolineaOceanic aerolinea) {
 		this.aerolinea = aerolinea;
+	}
+
+	@Override
+	public void reservarAsiento(Usuario unUsuario, Asiento unAsiento) {
+		// TODO Auto-generated method stub
+		
 	}
 }
