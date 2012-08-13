@@ -70,5 +70,13 @@ public class AterrizarApp {
 			unaSobreReserva = new SobreReserva(unAsiento);
 		}
 		unaSobreReserva.addUsuarioASobreReserva(unUsuario);				
-	}	
+	}
+	
+	public void cancelarSobreReservasDe(Asiento unAsiento){
+		SobreReserva unaReserva = sobreReservas.get(unAsiento);
+		unaReserva.usuarios = null;
+		unaReserva.asiento = null;
+		
+	}
+	
 }
