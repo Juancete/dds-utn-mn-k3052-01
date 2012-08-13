@@ -98,7 +98,7 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 			throws NoSeEncuentraDisponibleElAsientoException {
 		Boolean compraExitosa =  this.getAerolinea().comprarSiHayDisponibilidad(dni, 
 				unAsiento.getVuelo().getCodigo() , //codigo vuelo
-				Integer.parseInt(unAsiento.getCodigo()));
+				unAsiento.getNumeroDeAsiento());
 		if(!compraExitosa){
 			throw new NoSeEncuentraDisponibleElAsientoException("El asiento no se pudo comprar");
 		}
