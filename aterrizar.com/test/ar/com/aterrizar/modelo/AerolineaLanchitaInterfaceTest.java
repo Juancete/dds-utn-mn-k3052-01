@@ -47,7 +47,7 @@ public class AerolineaLanchitaInterfaceTest {
 		aerolineaLanchitaAdapter.setPorcentajePorCompania(1.2);
 		busquedaBALA20121010= new Busqueda("BUE", "LA",new Fecha("20121010",new FormatoSimple("yyyyMMdd")));
 	}
-	
+
 	@Test
 	public void losAsientosSonGeneradosCorrectamente(){
 		final List<Asiento> asientosMock = new ArrayList<Asiento>();
@@ -56,7 +56,10 @@ public class AerolineaLanchitaInterfaceTest {
 		Assert.assertTrue(aerolineaLanchitaAdapter.buscarAsientosConComision(busquedaBALA20121010).containsAll(asientosMock));
 	}
 	
-	
+	@Test
+	public void fechaCorrecta(){
+		System.out.println(aerolineaLanchitaAdapter.fechaToAAAAMMDD(busquedaBALA20121010.getFecha()));
+	}
 	@Test
 	public void buscoAsientosDisponiblesEnLanchita(){
 		List<Asiento> listaDeAsientos = aerolineaLanchitaAdapter.buscarAsientosConComision(busquedaBALA20121010);

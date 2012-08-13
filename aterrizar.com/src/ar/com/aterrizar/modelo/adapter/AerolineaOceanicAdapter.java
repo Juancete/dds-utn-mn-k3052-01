@@ -73,10 +73,6 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		return listaDeAsientos;
 	}
 	
-	private String fechaToAAAAMMDD(Fecha unaFecha){
-		int fecha = unaFecha.obtenerAnio()*10000+unaFecha.obtenerMes()*100+unaFecha.obtenerDia();
-		return Integer.toString(fecha);
-	}
 	
 	private String evaluarStringYRetornarCorrecto(String lugar){
 		if(lugar != null && lugar.length() == 2){
