@@ -57,10 +57,9 @@ public class AterrizarApp {
 	}
 
 	public void reservarAsiento(Usuario unUsuario, Asiento unAsiento) {
-		try {
-			for (Aerolinea aerolinea: this.aerolineas){
-				aerolinea.reservarAsiento(unUsuario, unAsiento);
-			}
+		try{
+			unAsiento.aerolinea.reservarAsiento(unUsuario, unAsiento);
+			
 		} catch (NoSeEncuentraDisponibleElAsientoException e) {
 			crearOagregarSobreReserva(unUsuario,unAsiento);
 		}
