@@ -6,6 +6,10 @@ public class FiltroClase extends Filtro {
 
 	private char clase;
 
+	public FiltroClase (char unaclase){
+		this.clase = unaclase;
+	}
+	
 	@Override
 	protected boolean evaluarLaCondicion(Asiento unAsiento) {
 		return (unAsiento.tipo == this.clase);

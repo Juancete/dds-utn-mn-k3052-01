@@ -78,7 +78,7 @@ public class Usuario {
 		
 		try
 		{
-			instanciaDeAerolinea.comprarAsiento(unAsiento,null);
+			instanciaDeAerolinea.comprarAsiento(unAsiento,this.getDni());
 		}
 		catch (EstadoErroneoException e){
 			//Tiro la exception para arriba  
