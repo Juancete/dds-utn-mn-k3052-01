@@ -9,6 +9,7 @@ import ar.com.aterrizar.modelo.FiltrosDeBusqueda.Filtro;
 
 public class Busqueda {
 
+	private Integer escalas;
 	protected String origen;
 	protected String destino;
 	protected Fecha fecha; //formato: "AAAAMMdd"
@@ -51,5 +52,13 @@ public class Busqueda {
 			listaSinFiltrar = unFiltro.evaluarLista(listaSinFiltrar);
 		}
 		return listaSinFiltrar;
+	}
+
+	public Integer getEscalas() {
+		return escalas;
+	}
+
+	public void setEscalas(Integer escalas) {
+		this.escalas = escalas;
 	}
 }

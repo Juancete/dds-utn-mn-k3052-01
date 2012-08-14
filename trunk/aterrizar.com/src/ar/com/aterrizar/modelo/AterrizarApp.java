@@ -2,6 +2,7 @@ package ar.com.aterrizar.modelo;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import com.oceanic.AerolineaOceanic;
 public class AterrizarApp {
 
 	protected static AterrizarApp instance;
+	protected List<Vuelo> vuelosVendidos = new ArrayList<Vuelo>();
 	protected Collection<Usuario> usuarios;
 	protected List<Aerolinea> aerolineas;
 	protected HashMap<Asiento,SobreReserva> sobreReservas;
@@ -64,6 +66,17 @@ public class AterrizarApp {
 		}
 	}
 
+	public void agregarUnVueloVendido(Asiento unAsiento){
+		if (vuelosVendidos.contains(unAsiento.getVuelo())){
+			vuelosVendidos.get(vuelosVendidos.indexOf(unAsiento)).incrementarPopularidad();
+		}
+		else
+		{
+			unAsiento.getVuelo().incrementarPopularidad();
+			vuelosVendidos.add(unAsiento.getVuelo());
+		}
+	}
+	
 	public void crearOagregarSobreReserva(Usuario unUsuario, Asiento unAsiento) {
 		SobreReserva unaSobreReserva = sobreReservas.get(unAsiento);
 		if(unaSobreReserva == null){
@@ -79,4 +92,14 @@ public class AterrizarApp {
 		
 	}
 	
+	public List<Asiento> buscarVuelosPara(Usuario unUsuario, Busqueda unaBusqueda){
+		List<Asiento> asientosPedidos = new ArrayList<Asiento>();
+		for (Aerolinea unaAerolinea: aerolineas ){
+			asientosPedidos.addAll(unUsuario.buscarAsiento(unaBusqueda, unaAerolinea));
+		}
+		//acá ordeno
+		Collections.sort(asientosPedidos,unUsuario.getCriterio());
+		return asientosPedidos;
+		
+	}
 }

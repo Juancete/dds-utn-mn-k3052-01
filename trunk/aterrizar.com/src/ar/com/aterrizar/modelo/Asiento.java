@@ -1,6 +1,7 @@
 package ar.com.aterrizar.modelo;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
 
@@ -15,7 +16,7 @@ public class Asiento {
 	public boolean disponible;
 	public Aerolinea aerolinea;
 	private Vuelo vuelo;
-
+	private Viaje viaje;
 	
 	public Asiento(String unCodigo, BigDecimal unPrecio,char unaUbicacion, char unTipo, boolean estaDisponible, Aerolinea unaAerolinea){
 		this.codigo = unCodigo;
@@ -96,5 +97,14 @@ public class Asiento {
 
 	public void setVuelo(Vuelo vuelo) {
 		this.vuelo = vuelo;
+	}
+	
+	public long getTiempo() {
+		return viaje.getTiempo(this);
+		
+	}
+	public Long getTiempoEnElAire(){
+		//TODO: está hardcodeado por que deberíamos implementar el manejo de fecha con horario también.
+		return (long) vuelo.fechaOrigen.cantidadDeDiasEntre(vuelo.fechaDestino);
 	}
 }
