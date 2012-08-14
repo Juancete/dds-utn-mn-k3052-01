@@ -5,8 +5,11 @@ import java.util.Collections;
 import java.util.List;
 import java.math.*;
 
+import com.lanchita.excepciones.EstadoErroneoException;
+
 import ar.com.aterrizar.modelo.CriteriosDeOrdenamientoDeBusqueda.CriterioDeOrdenamiento;
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
+import ar.com.aterrizar.modelo.adapter.NoSeEncuentraDisponibleElAsientoException;
 
 public class Usuario {
 
@@ -16,7 +19,7 @@ public class Usuario {
 	protected Nivel nivelDeUsuario;
 	protected BigDecimal montoAcumulado;
 	protected List<Busqueda> busquedas;
-	protected CriterioDeOrdenamiento unCriterio;
+	private CriterioDeOrdenamiento unCriterio;
 	
 	
 	public Usuario(){
@@ -57,21 +60,47 @@ public class Usuario {
 	
 	List <Asiento> buscarAsiento(Busqueda unaBusqueda,Aerolinea unaAerolinea){
 		busquedas.add(unaBusqueda);
-		List <Asiento> unaListaDeAsientos = unaAerolinea.buscarAsientosConComision(unaBusqueda);
-		List <Asiento> unaListaFiltrada = unaBusqueda.filtrarAsientos(nivelDeUsuario.obtenerAsientosListosParaComprar(unaListaDeAsientos)); 
-		Collections.sort(unaListaFiltrada,unCriterio);
-		return unaListaFiltrada;
+		List <Asiento> unaListaDeAsientos = new ArrayList<Asiento>();
+		if (unaBusqueda.getEscalas() == 0){
+			unaListaDeAsientos.addAll(unaAerolinea.buscarAsientosConComision(unaBusqueda));
+		}
+		else
+		{
+			//TODO:El objeto de charly busca escalas
+			return null;
+		}
+		return unaBusqueda.filtrarAsientos(nivelDeUsuario.obtenerAsientosListosParaComprar(unaListaDeAsientos));
 	}
 	
 	void comprarUnAsiento(Asiento unAsiento) {
 		Aerolinea instanciaDeAerolinea = unAsiento.getAerolinea();
 		//Si no puede comprar, la excepción se trata mas afuera.
-		instanciaDeAerolinea.comprarAsiento(unAsiento,null);
+		
+		try
+		{
+			instanciaDeAerolinea.comprarAsiento(unAsiento,null);
+		}
+		catch (EstadoErroneoException e){
+			//Tiro la exception para arriba  
+			throw new NoSeEncuentraDisponibleElAsientoException();
+		}
+		//No tuvo problemas, entonces advierto a los observers y cambio el monto.
+		
+		//TODO:realizar llamados a los observers.
+		
 		aumentarMonto(unAsiento.precio);
 	}
 	
 	void aumentarMonto(BigDecimal unPrecio){
 		 this.montoAcumulado=this.montoAcumulado.add(unPrecio);
+	}
+
+	public CriterioDeOrdenamiento getCriterio() {
+		return unCriterio;
+	}
+
+	public void setCriterio(CriterioDeOrdenamiento unCriterio) {
+		this.unCriterio = unCriterio;
 	}
 	
 
