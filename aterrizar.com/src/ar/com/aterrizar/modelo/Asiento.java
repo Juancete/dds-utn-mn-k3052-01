@@ -1,9 +1,9 @@
 package ar.com.aterrizar.modelo;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
+import ar.com.aterrizar.modelo.state.Estado;
 
 public class Asiento {
 
@@ -16,7 +16,8 @@ public class Asiento {
 	public boolean disponible;
 	public Aerolinea aerolinea;
 	private Vuelo vuelo;
-	private Viaje viaje;
+	private Viaje viaje;	
+	protected Estado state;
 	
 	public Asiento(String unCodigo, BigDecimal unPrecio,char unaUbicacion, char unTipo, boolean estaDisponible, Aerolinea unaAerolinea){
 		this.codigo = unCodigo;
