@@ -44,8 +44,16 @@ public class Busqueda {
 		this.origen = origen;
 		this.destino = destino;
 		this.fecha = unaFecha;
-
+		this.escalas = 0;
 	}
+	
+	public Busqueda(String origen, String destino, Fecha unaFecha, int cantidadDeEscalas) {
+		super();
+		this.origen = origen;
+		this.destino = destino;
+		this.fecha = unaFecha;
+		this.escalas = cantidadDeEscalas;
+	}	
 	
 	public List<Asiento> filtrarAsientos(List<Asiento> listaSinFiltrar){
 		for (Filtro unFiltro: this.filtros){
