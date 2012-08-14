@@ -4,15 +4,18 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.aterrizar.fecha.modelo.Fecha;
-import com.aterrizar.fecha.modelo.FormatoSimple;
-import com.oceanic.*;
-
-
 import ar.com.aterrizar.modelo.Asiento;
 import ar.com.aterrizar.modelo.Busqueda;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.Vuelo;
+import ar.com.aterrizar.modelo.state.Estado;
+import ar.com.aterrizar.modelo.state.EstadoDisponible;
+import ar.com.aterrizar.modelo.state.EstadoReservado;
+
+import com.aterrizar.fecha.modelo.Fecha;
+import com.aterrizar.fecha.modelo.FormatoSimple;
+import com.oceanic.AerolineaOceanic;
+import com.oceanic.AsientoDTO;
 
 public class AerolineaOceanicAdapter extends Aerolinea {
 	protected AerolineaOceanic aerolinea;
@@ -44,7 +47,7 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 					unAsientoDTO.getPrecio().multiply(new BigDecimal(porcentajePorCompania)),
 					unAsientoDTO.getUbicacion().charAt(0),
 					clase,
-					!unAsientoDTO.getReservado(),
+					getEstado(unAsientoDTO.getReservado()),
 					this);
 			unAsiento.setNumeroDeAsiento(unAsientoDTO.getNumeroDeAsiento());
 			boolean elVueloEstaEnLaLista = false;
@@ -109,7 +112,6 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		unAsiento.setDisponibilidad(false);
 	}
 
-
 	
 	public AerolineaOceanic getAerolinea() {
 		return aerolinea;
@@ -118,6 +120,11 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 	public void setAerolinea(AerolineaOceanic aerolinea) {
 		this.aerolinea = aerolinea;
 	}
-
 	
+	private Estado getEstado(boolean reservado){
+		 if(reservado){
+			 return new EstadoReservado();
+		 }		 
+		 return new EstadoDisponible();			
+	}	
 }
