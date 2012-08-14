@@ -10,7 +10,7 @@ public abstract class Filtro {
 	public List<Asiento> evaluarLista(List<Asiento> listaSinFiltrar){
 		List<Asiento> listaFiltrada = new ArrayList<Asiento>();
 		for (Asiento unAsiento: listaSinFiltrar){
-			if (evaluarLaCondicion(unAsiento)){
+			if (!evaluarLaCondicion(unAsiento)){
 				listaFiltrada.add(unAsiento);
 			}
 		}

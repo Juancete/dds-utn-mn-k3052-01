@@ -7,6 +7,11 @@ public class FiltroOr extends Filtro {
 	Filtro unFiltro;
 	Filtro otroFiltro;
 
+	public FiltroOr(Filtro unFiltro, Filtro otroFiltro){
+		this.unFiltro = unFiltro;
+		this.otroFiltro = otroFiltro;
+	}
+	
 	@Override
 	protected boolean evaluarLaCondicion(Asiento unAsiento) {
 		return (this.unFiltro.evaluarLaCondicion(unAsiento) || this.otroFiltro.evaluarLaCondicion(unAsiento));

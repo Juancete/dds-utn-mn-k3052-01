@@ -6,7 +6,7 @@ public class FiltroReservados extends Filtro {
 
 	@Override
 	protected boolean evaluarLaCondicion(Asiento unAsiento) {
-		return unAsiento.estaReservado();
+		return !unAsiento.isDisponible();
 	}
 
 }

@@ -61,4 +61,8 @@ public class Busqueda {
 	public void setEscalas(Integer escalas) {
 		this.escalas = escalas;
 	}
+	
+	public void agregarFiltro(Filtro unFiltro){
+		filtros.add(unFiltro);
+	}
 }
