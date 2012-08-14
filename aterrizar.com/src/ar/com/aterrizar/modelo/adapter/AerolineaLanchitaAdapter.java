@@ -7,8 +7,11 @@ import java.util.List;
 import ar.com.aterrizar.modelo.Asiento;
 import ar.com.aterrizar.modelo.Busqueda;
 import ar.com.aterrizar.modelo.Usuario;
+import ar.com.aterrizar.modelo.state.Estado;
+import ar.com.aterrizar.modelo.state.EstadoComprado;
+import ar.com.aterrizar.modelo.state.EstadoDisponible;
+import ar.com.aterrizar.modelo.state.EstadoReservado;
 
-import com.aterrizar.fecha.modelo.Fecha;
 import com.lanchita.AerolineaLanchita;
 import com.lanchita.excepciones.EstadoErroneoException;
 
@@ -32,7 +35,7 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 												new BigDecimal(datosAsientos[posicionEnElVector][1]).multiply(new BigDecimal(porcentajePorCompania)),
 												datosAsientos[posicionEnElVector][3].charAt(0),
 												datosAsientos[posicionEnElVector][2].charAt(0),
-												((datosAsientos[posicionEnElVector][4].charAt(0) == 'D') ? true : false),
+												getEstado(datosAsientos[posicionEnElVector][4].charAt(0)),
 												this));
 			}
 		}
@@ -92,5 +95,16 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 		}
 		
 	}
+	
+	private Estado getEstado(char estadoAsiento){
+	 if(estadoAsiento == 'R'){
+		 return new EstadoReservado();
+	 }
+	 if(estadoAsiento == 'C'){
+		 return new EstadoComprado();		 
+	 }
+	 return new EstadoDisponible();
+		
+	} 
 
 }

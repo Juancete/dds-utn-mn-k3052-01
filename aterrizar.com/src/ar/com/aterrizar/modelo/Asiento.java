@@ -17,14 +17,14 @@ public class Asiento {
 	public Aerolinea aerolinea;
 	private Vuelo vuelo;
 	private Viaje viaje;	
-	protected Estado state;
+	protected Estado estado;
 	
-	public Asiento(String unCodigo, BigDecimal unPrecio,char unaUbicacion, char unTipo, boolean estaDisponible, Aerolinea unaAerolinea){
+	public Asiento(String unCodigo, BigDecimal unPrecio,char unaUbicacion, char unTipo, Estado estado, Aerolinea unaAerolinea){
 		this.codigo = unCodigo;
 		this.precio = unPrecio;
 		this.ubicacion = unaUbicacion;
 		this.tipo = unTipo;
-		this.disponible = estaDisponible;
+		this.estado = estado;
 		this.aerolinea = unaAerolinea;
 	}
 	
