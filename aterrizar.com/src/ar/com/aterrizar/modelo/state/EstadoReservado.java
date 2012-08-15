@@ -14,12 +14,14 @@ public class EstadoReservado extends Estado {
 		}
 		unAsiento.aerolinea.comprarAsiento(unAsiento, unUsuario.getDni());
 		unAsiento.setEstado(new EstadoComprado());
+		unAsiento.eliminarReservas();
 		this.aplication.quitarReserva(unAsiento);
 	}
 
 	@Override
 	public void reservar(Asiento unAsiento, Usuario unUsuario) {
 		try{
+			if(unAsiento.estadoReservado()) throw new NoSeEncuentraDisponibleElAsientoException(); 
 			unAsiento.aerolinea.reservarAsiento(unUsuario, unAsiento);		
 			unAsiento.setEstado(new EstadoReservado());
 		}
@@ -27,7 +29,7 @@ public class EstadoReservado extends Estado {
 			//simplemente esta para que no salga del metodo ya que es una excepcion valida.
 		}finally
 		{
-			this.aplication.agregarReservaOSobreReserva(unAsiento);
+			unAsiento.setReservante(unUsuario);
 		}
 		}
 	}

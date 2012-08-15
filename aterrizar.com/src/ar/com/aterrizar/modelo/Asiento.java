@@ -152,4 +152,8 @@ public class Asiento {
 	public Boolean tieneSobreReserva(){
 		return new Boolean(this.usuariosQueReservan.size()>1);
 	}
+	
+	public void eliminarReservas(){
+		this.usuariosQueReservan= new LinkedList<Usuario>();
+	}
 }
