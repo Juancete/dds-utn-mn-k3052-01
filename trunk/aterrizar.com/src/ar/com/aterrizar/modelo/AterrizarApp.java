@@ -19,7 +19,7 @@ public class AterrizarApp {
 	protected List<Vuelo> vuelosVendidos = new ArrayList<Vuelo>();
 	protected Collection<Usuario> usuarios;
 	protected List<Aerolinea> aerolineas;
-	protected ArrayList<Asiento> reservas;
+	protected ArrayList<Asiento> reservas = new ArrayList<Asiento>();
 
 	private AterrizarApp() {
 		super();
