@@ -1,6 +1,7 @@
 package ar.com.aterrizar.modelo;
 
 import java.math.BigDecimal;
+import java.util.LinkedList;
 
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
 import ar.com.aterrizar.modelo.state.Estado;
@@ -20,6 +21,7 @@ public class Asiento {
 	private Vuelo vuelo;
 	private Viaje viaje;	
 	protected Estado estado;
+	protected LinkedList<Usuario> usuariosQueReservan;
 	
 	public Asiento(String unCodigo, BigDecimal unPrecio,char unaUbicacion, char unTipo, Estado estado, Aerolinea unaAerolinea){
 		this.codigo = unCodigo;
@@ -28,6 +30,7 @@ public class Asiento {
 		this.tipo = unTipo;
 		this.estado = estado;
 		this.aerolinea = unaAerolinea;
+		this.usuariosQueReservan = new LinkedList<Usuario>();
 	}
 	
 	public boolean soySuperOferta(){
@@ -40,14 +43,8 @@ public class Asiento {
 	}
 	public void setCodigo(String unCodigo){
 		this.codigo = unCodigo;
-	}
-	
-	//TODO esta es una implementacion falsa que aleatoriamente toma asientos reservados segun si 
-	//la cantidad de segundos epox es par o no.
-	public boolean estaReservado(){
-		return ((System.currentTimeMillis() %2)==0);
-	}
-	
+	}	
+
 	public String getCodigo(){
 		return this.codigo;
 	}
@@ -133,5 +130,13 @@ public class Asiento {
 	
 	public Boolean estadoReservado(){
 		return (this.getEstado() instanceof EstadoReservado);
+	}
+
+	public Usuario getReservante() {
+		return (Usuario)((this.usuariosQueReservan.get(0)!=null)?this.usuariosQueReservan.get(0): new RuntimeException("no hay reservante"))	;
+	}
+
+	public void setReservante(Usuario reservante) {
+		this.usuariosQueReservan.addLast(reservante);
 	}
 }
