@@ -4,7 +4,6 @@ package ar.com.aterrizar.modelo.CriteriosDeOrdenamientoDeBusqueda;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,15 +12,8 @@ import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
-
-import com.lanchita.AerolineaLanchita;
-
 import ar.com.aterrizar.modelo.Asiento;
 import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
-import ar.com.aterrizar.modelo.state.EstadoDisponible;
-import ar.com.aterrizar.modelo.state.EstadoReservado;
 
 public class TestCriterioDeOrdenamientoTiempo {
 	protected List<Asiento>retornoImpostor = new ArrayList<Asiento>();
