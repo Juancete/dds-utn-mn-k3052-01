@@ -71,11 +71,15 @@ public class ConstructorDeEscalas {
 				continue;
 			}
 			Iterator<Asiento> iteartor = asientosFinales.iterator();
-			viaje.addAsientoAlFinal(iteartor.next());
+			Asiento asiento = iteartor.next();
+			asiento.setViaje(viaje);
+			viaje.addAsientoAlFinal(asiento);
 			while(iteartor.hasNext())
 			{
 				Viaje nuevoViaje = new Viaje(asientosSinModificar);
-				nuevoViaje.addAsientoAlFinal(iteartor.next());
+				Asiento asientoNuevo = iteartor.next();
+				asientoNuevo.setViaje(nuevoViaje);
+				nuevoViaje.addAsientoAlFinal(asientoNuevo);
 				this.viajes.add(nuevoViaje);
 			}
 		}

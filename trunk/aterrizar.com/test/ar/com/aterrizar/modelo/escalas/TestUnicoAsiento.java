@@ -46,7 +46,7 @@ public class TestUnicoAsiento {
 			}
 		});
 		
-		when(aerolineaOceanicMock.asientosDisponiblesParaOrigenYDestino("BUE", "MIM", "11/11/2012")).thenAnswer(new Answer<List<AsientoDTO>>() {
+		when(aerolineaOceanicMock.asientosDisponiblesParaOrigenYDestino("MIM", "MIM", "11/11/2012")).thenAnswer(new Answer<List<AsientoDTO>>() {
 			public List<AsientoDTO> answer(InvocationOnMock invocation) throws Throwable{
 				return (List<AsientoDTO>) new ArrayList<AsientoDTO>();
 			}
