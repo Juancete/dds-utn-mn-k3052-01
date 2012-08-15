@@ -59,7 +59,7 @@ public class FechaTest {
 
 		Fecha unaFecha = new Fecha(fecha_ISO8601, formatoIso8601);
 
-		Assert.assertEquals(unaFecha.obtenerDia(), elCalendario.get(GregorianCalendar.DAY_OF_WEEK));
+		Assert.assertEquals(unaFecha.obtenerDia(), elCalendario.get(GregorianCalendar.DAY_OF_MONTH));
 		Assert.assertEquals(unaFecha.obtenerMes(), elCalendario.get(GregorianCalendar.MONTH));
 	}
 
@@ -68,7 +68,7 @@ public class FechaTest {
 	public void unStringDeFormatoLatinoamericanoSeConvierteEnUnaFechaValida() {
 
 		Fecha unaFecha = new Fecha(fecha_Latinoamericano,formatoLatinoAmericano);
-		Assert.assertEquals(unaFecha.obtenerDia(), elCalendario.get(GregorianCalendar.DAY_OF_WEEK));
+		Assert.assertEquals(unaFecha.obtenerDia(), elCalendario.get(GregorianCalendar.DAY_OF_MONTH));
 		Assert.assertEquals(unaFecha.obtenerMes(), elCalendario.get(GregorianCalendar.MONTH));
 	}
 	
@@ -80,9 +80,9 @@ public class FechaTest {
 		formatoFlexible.agregarFormato(formatoLatinoAmericano);
 		
 		Fecha unaFecha = new Fecha(fecha_Latinoamericano,formatoFlexible);
-		Assert.assertEquals(unaFecha.obtenerDia(), elCalendario.get(GregorianCalendar.DAY_OF_WEEK));
+		Assert.assertEquals(unaFecha.obtenerDia(), elCalendario.get(GregorianCalendar.DAY_OF_MONTH));
 		unaFecha = new Fecha(fecha_ISO8601,formatoFlexible);
-		Assert.assertEquals(unaFecha.obtenerDia(), elCalendario.get(GregorianCalendar.DAY_OF_WEEK));
+		Assert.assertEquals(unaFecha.obtenerDia(), elCalendario.get(GregorianCalendar.DAY_OF_MONTH));
 	}	
 
 	
@@ -92,16 +92,16 @@ public class FechaTest {
 		formatoFlexible.agregarFormato(formatoIso8601);
 
 		Fecha unaFecha = new Fecha(fecha_Latinoamericano,formatoFlexible);
-		Assert.assertEquals(unaFecha.obtenerDia(), elCalendario.get(GregorianCalendar.DAY_OF_WEEK));		
+		Assert.assertEquals(unaFecha.obtenerDia(), elCalendario.get(GregorianCalendar.DAY_OF_MONTH));		
 		unaFecha = new Fecha(fecha_ISO8601,formatoFlexible);
-		Assert.assertEquals(unaFecha.obtenerDia(), elCalendario.get(GregorianCalendar.DAY_OF_WEEK));
+		Assert.assertEquals(unaFecha.obtenerDia(), elCalendario.get(GregorianCalendar.DAY_OF_MONTH));
 	}
 	
 	@Test
 	public void unStringDeFormatoCompactoSeConvierteEnUnaFechaValida() {
 
 		Fecha unaFecha = new Fecha(fecha_compacta,formatoCompacto);
-		Assert.assertEquals(unaFecha.obtenerDia(), elCalendario.get(GregorianCalendar.DAY_OF_WEEK));
+		Assert.assertEquals(unaFecha.obtenerDia(), elCalendario.get(GregorianCalendar.DAY_OF_MONTH));
 		Assert.assertEquals(unaFecha.obtenerMes(), elCalendario.get(GregorianCalendar.MONTH));
 	}
 
