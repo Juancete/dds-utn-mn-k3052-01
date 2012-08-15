@@ -7,13 +7,14 @@ public class EstadoReservado extends Estado {
 
 	@Override
 	public void comprar(Asiento unAsiento, Usuario unUsuario) {
-		// TODO Auto-generated method stub
+		unAsiento.aerolinea.comprarAsiento(unAsiento, unUsuario.getDni());
+		unAsiento.setEstado(new EstadoComprado());
 
 	}
 
 	@Override
 	public void reservar(Asiento unAsiento, Usuario unUsuario) {
-		// TODO Auto-generated method stub
+		//que hacemos aca??
 
 	}
 
