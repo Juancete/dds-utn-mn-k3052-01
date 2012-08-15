@@ -68,13 +68,7 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 	public void comprarAsiento(Asiento unAsiento,String dni) {
 		try
 		{
-			if(unAsiento.estadoReservado().booleanValue()){
-				if (!unAsiento.getReservante().getDni().equalsIgnoreCase(dni)){
-					throw new NoSeEncuentraDisponibleElAsientoException("Reservado a otra persona");
-				}
-			}
-		//El asiento esta reservado al usuario o disponible para cualquier usuario	
-		getAerolinea().comprar(unAsiento.getCodigo());
+			getAerolinea().comprar(unAsiento.getCodigo());
 		}
 		catch (EstadoErroneoException e){
 			throw new NoSeEncuentraDisponibleElAsientoException();
@@ -91,15 +85,7 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 
 	@Override
 	public void reservarAsiento(Usuario unUsuario, Asiento unAsiento) {
-		if (unAsiento.numeroDeAsiento != null)return; // ya que lanchita no tiene este valor es un asiento de otra empresa
 		try{
-			if(unAsiento.estadoReservado()){
-				//se agrega sobre reserva
-				unAsiento.setReservante(unUsuario);				
-			} 
-			if(unAsiento.getReservante() == null){				
-				unAsiento.setReservante(unUsuario);
-			}
 			aerolinea.reservar(unAsiento.codigo, unUsuario.getDni());
 		}catch (EstadoErroneoException e){//Exception que lanza lanchita
 			//Asiento de AerolineaLanchita ya reservado
