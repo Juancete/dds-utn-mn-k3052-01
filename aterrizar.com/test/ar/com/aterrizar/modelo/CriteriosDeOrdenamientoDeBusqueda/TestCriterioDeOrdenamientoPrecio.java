@@ -10,8 +10,10 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.com.aterrizar.modelo.*;
+import ar.com.aterrizar.modelo.Asiento;
 import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
+import ar.com.aterrizar.modelo.state.EstadoDisponible;
+import ar.com.aterrizar.modelo.state.EstadoReservado;
 
 public class TestCriterioDeOrdenamientoPrecio {
 
@@ -21,10 +23,10 @@ public class TestCriterioDeOrdenamientoPrecio {
 	@Before
 	public void setUp(){
 		
-		retornoImpostor.add(new Asiento("345", new BigDecimal("125.30"),'P', 'D', true, aerolineaLancita));
-		retornoImpostor.add(new Asiento("234", new BigDecimal("300.50"),'V', 'D', true, aerolineaLancita));
-		retornoImpostor.add(new Asiento("1130", new BigDecimal("2.4"),'P', 'D', false, aerolineaLancita));
-		retornoImpostor.add(new Asiento("200", new BigDecimal("1000"),'V', 'D', true, aerolineaLancita));
+		retornoImpostor.add(new Asiento("345", new BigDecimal("125.30"),'P', 'D', new EstadoDisponible(), aerolineaLancita));
+		retornoImpostor.add(new Asiento("234", new BigDecimal("300.50"),'V', 'D', new EstadoDisponible(), aerolineaLancita));
+		retornoImpostor.add(new Asiento("1130", new BigDecimal("2.4"),'P', 'D', new EstadoReservado(), aerolineaLancita));
+		retornoImpostor.add(new Asiento("200", new BigDecimal("1000"),'V', 'D', new EstadoDisponible(), aerolineaLancita));
 	}
 	
 	@Test
