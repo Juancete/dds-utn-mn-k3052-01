@@ -9,6 +9,7 @@ import ar.com.aterrizar.modelo.Busqueda;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.Vuelo;
 import ar.com.aterrizar.modelo.state.Estado;
+import ar.com.aterrizar.modelo.state.EstadoComprado;
 import ar.com.aterrizar.modelo.state.EstadoDisponible;
 import ar.com.aterrizar.modelo.state.EstadoReservado;
 
@@ -101,7 +102,8 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		if(!compraExitosa){
 			throw new NoSeEncuentraDisponibleElAsientoException("El asiento no se pudo comprar");
 		}
-		unAsiento.setDisponibilidad(false);
+		unAsiento.setEstado(new EstadoComprado());
+		//unAsiento.setDisponibilidad(false);
 	}
 	
 	@Override
@@ -109,7 +111,8 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		if(!this.getAerolinea().reservar(unUsuario.getDni(),unAsiento.getVuelo().getCodigo(), unAsiento.numeroDeAsiento)){
 			throw new NoSeEncuentraDisponibleElAsientoException("El asiento no pudo ser reservado");		
 		}
-		unAsiento.setDisponibilidad(false);
+		unAsiento.setEstado(new EstadoReservado());
+		//unAsiento.setDisponibilidad(false);
 	}
 
 	
