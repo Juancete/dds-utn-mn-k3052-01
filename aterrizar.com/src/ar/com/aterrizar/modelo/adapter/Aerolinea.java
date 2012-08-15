@@ -1,12 +1,12 @@
 package ar.com.aterrizar.modelo.adapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.aterrizar.fecha.modelo.Fecha;
+import ar.com.aterrizar.modelo.Asiento;
+import ar.com.aterrizar.modelo.Busqueda;
+import ar.com.aterrizar.modelo.Usuario;
 
-import ar.com.aterrizar.modelo.*;
-import ar.com.aterrizar.modelo.adapter.NoSeEncuentraDisponibleElAsientoException;
+import com.aterrizar.fecha.modelo.Fecha;
 
 public abstract class Aerolinea {
 	
