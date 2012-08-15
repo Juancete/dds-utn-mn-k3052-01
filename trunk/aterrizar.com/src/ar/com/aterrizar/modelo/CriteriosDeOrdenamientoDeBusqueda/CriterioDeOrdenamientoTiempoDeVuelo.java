@@ -8,11 +8,11 @@ public class CriterioDeOrdenamientoTiempoDeVuelo extends CriterioDeOrdenamiento 
 	public int compare(Asiento unAsiento, Asiento otroAsiento) {
 		if (this.ascendente)
 		{
-			return unAsiento.precio.compareTo(otroAsiento.precio);
+			return (int) (unAsiento.getTiempo() - otroAsiento.getTiempo());
 		}
 		else
 		{
-			return otroAsiento.precio.compareTo(unAsiento.precio);
+			return (int) (otroAsiento.getTiempo() - unAsiento.getTiempo());
 		}
 	}
 
