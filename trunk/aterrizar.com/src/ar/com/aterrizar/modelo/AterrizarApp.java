@@ -20,7 +20,7 @@ public class AterrizarApp {
 	protected List<Vuelo> vuelosVendidos = new ArrayList<Vuelo>();
 	protected Collection<Usuario> usuarios;
 	protected List<Aerolinea> aerolineas;
-	protected HashMap<Asiento,SobreReserva> sobreReservas;
+	protected ArrayList<Asiento> reservas;
 
 	private AterrizarApp() {
 		super();
@@ -63,7 +63,7 @@ public class AterrizarApp {
 			unAsiento.aerolinea.reservarAsiento(unUsuario, unAsiento);
 			
 		} catch (NoSeEncuentraDisponibleElAsientoException e) {
-			crearOagregarSobreReserva(unUsuario,unAsiento);
+			
 		}
 	}
 
@@ -78,20 +78,23 @@ public class AterrizarApp {
 		}
 	}
 	
-	public void crearOagregarSobreReserva(Usuario unUsuario, Asiento unAsiento) {
-		SobreReserva unaSobreReserva = sobreReservas.get(unAsiento);
-		if(unaSobreReserva == null){
-			unaSobreReserva = new SobreReserva(unAsiento);
-		}
-		unaSobreReserva.addUsuarioASobreReserva(unUsuario);				
-	}
+//	public void crearOagregarSobreReserva(Usuario unUsuario, Asiento unAsiento) {
+//		SobreReserva unaSobreReserva = sobreReservas.get(unAsiento);
+//		if(unaSobreReserva == null){
+//			unaSobreReserva = new SobreReserva(unAsiento);
+//		}
+//		unaSobreReserva.addUsuarioASobreReserva(unUsuario);				
+//	}
+//	
+//	public void cancelarSobreReservasDe(Asiento unAsiento){
+//		SobreReserva unaReserva = sobreReservas.get(unAsiento);
+//		unaReserva.usuarios = null;
+//		unaReserva.asiento = null;
+//		
+//	}
+	public void agregarReservaOSobreReserva(){}
 	
-	public void cancelarSobreReservasDe(Asiento unAsiento){
-		SobreReserva unaReserva = sobreReservas.get(unAsiento);
-		unaReserva.usuarios = null;
-		unaReserva.asiento = null;
-		
-	}
+	
 	
 	public List<Asiento> buscarVuelosPara(Usuario unUsuario, Busqueda unaBusqueda){
 		List<Asiento> asientosPedidos = new ArrayList<Asiento>();
