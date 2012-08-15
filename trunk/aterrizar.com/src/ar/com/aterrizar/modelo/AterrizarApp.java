@@ -3,7 +3,6 @@ package ar.com.aterrizar.modelo;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
@@ -77,24 +76,13 @@ public class AterrizarApp {
 			vuelosVendidos.add(unAsiento.getVuelo());
 		}
 	}
-	
-//	public void crearOagregarSobreReserva(Usuario unUsuario, Asiento unAsiento) {
-//		SobreReserva unaSobreReserva = sobreReservas.get(unAsiento);
-//		if(unaSobreReserva == null){
-//			unaSobreReserva = new SobreReserva(unAsiento);
-//		}
-//		unaSobreReserva.addUsuarioASobreReserva(unUsuario);				
-//	}
-//	
-//	public void cancelarSobreReservasDe(Asiento unAsiento){
-//		SobreReserva unaReserva = sobreReservas.get(unAsiento);
-//		unaReserva.usuarios = null;
-//		unaReserva.asiento = null;
-//		
-//	}
-	public void agregarReservaOSobreReserva(){}
-	
-	
+
+	public void agregarReservaOSobreReserva(Asiento unaReservaOSobreReserva){
+		
+		if(!this.reservas.contains(unaReservaOSobreReserva)){			
+			this.reservas.add(unaReservaOSobreReserva);
+		}
+	}
 	
 	public List<Asiento> buscarVuelosPara(Usuario unUsuario, Busqueda unaBusqueda){
 		List<Asiento> asientosPedidos = new ArrayList<Asiento>();
@@ -106,4 +94,16 @@ public class AterrizarApp {
 		return asientosPedidos;
 		
 	}
+
+	public void quitarReserva(Asiento unAsiento) {	
+		this.reservas.remove(unAsiento);
+		unAsiento = null;
+		
+	}
+	
+	public void reservaExpirada(Asiento unAsiento){
+		unAsiento.reservaVencidaAsignarProximaSobreReserva();
+		
+	};
+	
 }
