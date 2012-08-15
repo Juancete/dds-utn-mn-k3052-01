@@ -1,6 +1,8 @@
 package ar.com.aterrizar.modelo;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -11,10 +13,14 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.com.aterrizar.modelo.adapter.Aerolinea;
+import ar.com.aterrizar.modelo.adapter.NoHayAsientosDisponiblesParaUnaBusquedaException;
+import ar.com.aterrizar.modelo.adapter.NoSeEncuentraDisponibleElAsientoException;
+import ar.com.aterrizar.modelo.state.EstadoDisponible;
+import ar.com.aterrizar.modelo.state.EstadoReservado;
+
 import com.aterrizar.fecha.modelo.Fecha;
 import com.aterrizar.fecha.modelo.FormatoSimple;
-
-import ar.com.aterrizar.modelo.adapter.*;
 
 public class UsuarioTest {
 
@@ -55,9 +61,9 @@ public class UsuarioTest {
 		usuarioNoPago.montoAcumulado = new BigDecimal(0);
 		
 		aerolineaAdapterMock = mock(Aerolinea.class);
-		asientoSuperOferta = new Asiento("Asiento Super Ofertoso", new BigDecimal(1000), 'V', 'P', true, aerolineaAdapterMock);
-		asientoNormal = new Asiento("Asiento comun", new BigDecimal(10000), 'V', 'P', true, aerolineaAdapterMock);
-		asientoNoDisponible = new Asiento("Asiento Super Ofertoso", new BigDecimal(1000), 'V', 'P', false, aerolineaAdapterMock);
+		asientoSuperOferta = new Asiento("Asiento Super Ofertoso", new BigDecimal(1000), 'V', 'P', new EstadoDisponible(), aerolineaAdapterMock);
+		asientoNormal = new Asiento("Asiento comun", new BigDecimal(10000), 'V', 'P', new EstadoDisponible(), aerolineaAdapterMock);
+		asientoNoDisponible = new Asiento("Asiento Super Ofertoso", new BigDecimal(1000), 'V', 'P', new EstadoReservado(), aerolineaAdapterMock);
 		List<Asiento> listaImpostora = new ArrayList<Asiento>();
 		listaImpostora.add(asientoSuperOferta);
 		listaImpostora.add(asientoNormal);

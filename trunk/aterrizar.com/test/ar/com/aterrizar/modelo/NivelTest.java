@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
+import ar.com.aterrizar.modelo.state.EstadoDisponible;
 
 public class NivelTest {
 	
@@ -39,8 +40,8 @@ public class NivelTest {
 		usuarioNoVipPago.aumentarMonto(new BigDecimal(100));
 		nivelNoPago = new NivelNoPago(usuarioNoVipNoPago);
 		nivelPago = new NivelPago(usuarioNoVipPago);
-		unAsiento = new Asiento("asiento1", new BigDecimal(10000), (char) 0, 'P', true,unaAerolinea);
-		otroAsiento = new Asiento("asiento2", new BigDecimal(10), (char) 0, 'E', true, unaAerolinea);
+		unAsiento = new Asiento("asiento1", new BigDecimal(10000), (char) 0, 'P', new EstadoDisponible(),unaAerolinea);
+		otroAsiento = new Asiento("asiento2", new BigDecimal(10), (char) 0, 'E', new EstadoDisponible(), unaAerolinea);
 		listaDeAsientos = new ArrayList<Asiento>();
 		listaDeAsientos.add(unAsiento);
 		listaDeAsientos.add(otroAsiento);

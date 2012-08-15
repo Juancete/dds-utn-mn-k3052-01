@@ -15,6 +15,7 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
+import ar.com.aterrizar.modelo.state.EstadoDisponible;
 
 import com.aterrizar.fecha.modelo.Fecha;
 import com.aterrizar.fecha.modelo.FormatoSimple;
@@ -51,8 +52,8 @@ public class AerolineaLanchitaInterfaceTest {
 	@Test
 	public void losAsientosSonGeneradosCorrectamente(){
 		final List<Asiento> asientosMock = new ArrayList<Asiento>();
-		asientosMock.add(new Asiento("01202022220202-3", (new BigDecimal("159.90")).multiply(new BigDecimal(aerolineaLanchitaAdapter.getPorcentajePorCompania())), 'V', 'P', 'D' == 'D' , aerolineaLanchitaAdapter));
-		asientosMock.add(new Asiento("01202022220123-3", (new BigDecimal("205.10")).multiply(new BigDecimal(aerolineaLanchitaAdapter.getPorcentajePorCompania())), 'P', 'E', 'D' == 'D' , aerolineaLanchitaAdapter));
+		asientosMock.add(new Asiento("01202022220202-3", (new BigDecimal("159.90")).multiply(new BigDecimal(aerolineaLanchitaAdapter.getPorcentajePorCompania())), 'V', 'P', new EstadoDisponible() , aerolineaLanchitaAdapter));
+		asientosMock.add(new Asiento("01202022220123-3", (new BigDecimal("205.10")).multiply(new BigDecimal(aerolineaLanchitaAdapter.getPorcentajePorCompania())), 'P', 'E', new EstadoDisponible() , aerolineaLanchitaAdapter));
 		Assert.assertTrue(aerolineaLanchitaAdapter.buscarAsientosConComision(busquedaBALA20121010).containsAll(asientosMock));
 	}
 	
@@ -81,7 +82,7 @@ public class AerolineaLanchitaInterfaceTest {
 	
 	@Test
 	public void probarUnAsientoSuperOferta(){
-		Asiento unAsiento = new Asiento("ABCD", new BigDecimal(1000), 'V', 'E', true,aerolineaLanchitaAdapter);
+		Asiento unAsiento = new Asiento("ABCD", new BigDecimal(1000), 'V', 'E', new EstadoDisponible(),aerolineaLanchitaAdapter);
 		Assert.assertEquals(unAsiento.soySuperOferta(), true);
 	}
 	

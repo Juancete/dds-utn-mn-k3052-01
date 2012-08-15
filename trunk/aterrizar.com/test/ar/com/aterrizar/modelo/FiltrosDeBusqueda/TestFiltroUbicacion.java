@@ -9,20 +9,22 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.aterrizar.fecha.modelo.Fecha;
-
 import ar.com.aterrizar.modelo.Asiento;
 import ar.com.aterrizar.modelo.Busqueda;
 import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
+import ar.com.aterrizar.modelo.state.EstadoDisponible;
+import ar.com.aterrizar.modelo.state.EstadoReservado;
+
+import com.aterrizar.fecha.modelo.Fecha;
 
 public class TestFiltroUbicacion {
 
 	protected AerolineaLanchitaAdapter aerolineaLancita = new AerolineaLanchitaAdapter();
 	
-	protected Asiento asientoPasillo = new Asiento("345", new BigDecimal("125.30"),'P', 'D', true, aerolineaLancita);
-	protected Asiento asientoCentro = new Asiento("1130", new BigDecimal("2.4"),'C', 'D', false, aerolineaLancita);
-	protected Asiento asientoVentanaBarato = new Asiento("234", new BigDecimal("300.50"),'V', 'R', true, aerolineaLancita);
-	protected Asiento asientoVentanaCaro = new Asiento("200", new BigDecimal("1000"),'V', 'R', true, aerolineaLancita);
+	protected Asiento asientoPasillo = new Asiento("345", new BigDecimal("125.30"),'P', 'D', new EstadoDisponible(), aerolineaLancita);
+	protected Asiento asientoCentro = new Asiento("1130", new BigDecimal("2.4"),'C', 'D', new EstadoReservado(), aerolineaLancita);
+	protected Asiento asientoVentanaBarato = new Asiento("234", new BigDecimal("300.50"),'V', 'R', new EstadoDisponible(), aerolineaLancita);
+	protected Asiento asientoVentanaCaro = new Asiento("200", new BigDecimal("1000"),'V', 'R', new EstadoDisponible(), aerolineaLancita);
 	
 	protected List<Asiento>retornoImpostor = new ArrayList<Asiento>();
 	protected Busqueda unaBusqueda;
