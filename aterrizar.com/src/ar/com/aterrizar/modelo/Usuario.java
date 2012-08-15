@@ -1,15 +1,14 @@
 package ar.com.aterrizar.modelo;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.math.*;
-
-import com.lanchita.excepciones.EstadoErroneoException;
 
 import ar.com.aterrizar.modelo.CriteriosDeOrdenamientoDeBusqueda.CriterioDeOrdenamiento;
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
 import ar.com.aterrizar.modelo.adapter.NoSeEncuentraDisponibleElAsientoException;
+
+import com.lanchita.excepciones.EstadoErroneoException;
 
 public class Usuario {
 
@@ -85,7 +84,8 @@ public class Usuario {
 			throw new NoSeEncuentraDisponibleElAsientoException();
 		}
 		//No tuvo problemas, entonces advierto a los observers y cambio el monto.
-		
+		//llamar al observer para que actualice la sobre reserva! le paso el asiento y el observer con el asiento conoce la sobre
+		//en la sobre reserva llamara a aterrizarApp.cancelarSobreReservasDe(asiento);
 		//TODO:realizar llamados a los observers.
 		
 		aumentarMonto(unAsiento.precio);
@@ -101,8 +101,5 @@ public class Usuario {
 
 	public void setCriterio(CriterioDeOrdenamiento unCriterio) {
 		this.unCriterio = unCriterio;
-	}
-	
-
-	
+	}	
 }
