@@ -14,7 +14,7 @@ import ar.com.aterrizar.modelo.adapter.Aerolinea;
 public class BuscadorDeEscala {
 	List<Vuelo> escalas;
 	
-	public Vuelo buscarEscala(Ciudad origen, Ciudad destino, Aerolinea aerolinea){
+	public Vuelo buscarEscala(String origen, String destino, Aerolinea aerolinea){
 		for(Vuelo escala : escalas){
 			if( true//TODO la escala es la que busco
 												){
