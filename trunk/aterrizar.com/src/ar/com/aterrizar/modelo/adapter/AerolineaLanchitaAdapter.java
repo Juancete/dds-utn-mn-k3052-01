@@ -68,12 +68,17 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 	public void comprarAsiento(Asiento unAsiento,String dni) {
 		try
 		{
+			if(unAsiento.estadoReservado().booleanValue()){
+				if (!unAsiento.getReservante().getDni().equalsIgnoreCase(dni)){
+					throw new NoSeEncuentraDisponibleElAsientoException("Reservado a otra persona");
+				}
+			}
+		//El asiento esta reservado al usuario o disponible para cualquier usuario	
 		getAerolinea().comprar(unAsiento.getCodigo());
 		}
 		catch (EstadoErroneoException e){
 			throw new NoSeEncuentraDisponibleElAsientoException();
-		}
-		
+		}		
 	}
 
 	public AerolineaLanchita getAerolinea() {
@@ -89,7 +94,8 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 		if (unAsiento.numeroDeAsiento != null)return; // ya que lanchita no tiene este valor es un asiento de otra empresa
 		try{
 			if(unAsiento.estadoReservado()){
-				throw new NoSeEncuentraDisponibleElAsientoException("Asiento no disponible para reservar en Lanchita");
+				//se agrega sobre reserva
+				unAsiento.setReservante(unUsuario);				
 			} 
 			if(unAsiento.getReservante() == null){				
 				unAsiento.setReservante(unUsuario);
@@ -112,5 +118,4 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 	 return new EstadoDisponible();
 		
 	}
-
 }
