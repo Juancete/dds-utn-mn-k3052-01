@@ -108,4 +108,12 @@ public class Asiento {
 		//TODO: está hardcodeado por que deberíamos implementar el manejo de fecha con horario también.
 		return (long) vuelo.fechaOrigen.cantidadDeDiasEntre(vuelo.fechaDestino);
 	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
 }
