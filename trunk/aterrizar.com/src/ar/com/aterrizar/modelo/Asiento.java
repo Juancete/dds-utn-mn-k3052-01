@@ -139,4 +139,8 @@ public class Asiento {
 	public void setReservante(Usuario reservante) {
 		this.usuariosQueReservan.addLast(reservante);
 	}
+	
+	public Boolean tieneSobreReserva(){
+		return new Boolean(this.usuariosQueReservan.size()>1);
+	}
 }
