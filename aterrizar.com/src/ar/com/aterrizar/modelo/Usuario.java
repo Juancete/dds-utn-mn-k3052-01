@@ -7,6 +7,7 @@ import java.util.List;
 import ar.com.aterrizar.modelo.CriteriosDeOrdenamientoDeBusqueda.CriterioDeOrdenamiento;
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
 import ar.com.aterrizar.modelo.adapter.NoSeEncuentraDisponibleElAsientoException;
+import ar.com.aterrizar.modelo.escalas.ConstructorDeEscalas;
 
 import com.lanchita.excepciones.EstadoErroneoException;
 
@@ -65,8 +66,11 @@ public class Usuario {
 		}
 		else
 		{
-			//TODO:El objeto de charly busca escalas
-			return null;
+			ConstructorDeEscalas constructor = new ConstructorDeEscalas(unaBusqueda, unaAerolinea);
+			constructor.construirPrimeraEscala();
+			constructor.construirTodasLasEscalasPosibles();
+			constructor.construirEscalaFinal();
+			unaListaDeAsientos.addAll(constructor.construir());
 		}
 		return unaBusqueda.filtrarAsientos(nivelDeUsuario.obtenerAsientosListosParaComprar(unaListaDeAsientos));
 	}
