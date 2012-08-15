@@ -11,6 +11,11 @@ public class Viaje {
 		asientos = new ArrayList<Asiento>();
 	}
 	
+	public Viaje(ArrayList<Asiento> asientosIniciales){
+		super();
+		this.asientos = new ArrayList<Asiento>(asientosIniciales);
+	}
+	
 	public long getTiempo(Asiento asiento) {
 		try{
 			Asiento siguienteAsiento = asientos.get(asientos.indexOf(asiento) +1);
@@ -18,10 +23,21 @@ public class Viaje {
 		}
 		catch (IndexOutOfBoundsException e)
 		{
-			//era el último, por lo tanto retorna el tiempo del asiento y ya
+			//era el ï¿½ltimo, por lo tanto retorna el tiempo del asiento y ya
 			return asiento.getTiempoEnElAire();
 		}
 		return 1;
 	}
 
+	public void addAsientoAlFinal(Asiento asiento){
+		asientos.add(asiento);
+	}
+	
+	public Asiento getUltimoAsiento(){
+		return this.asientos.get(this.asientos.size() - 1);
+	}
+	
+	public ArrayList<Asiento> getAsientos(){
+		return this.asientos;
+	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import com.aterrizar.fecha.modelo.Fecha;
 
 public class Vuelo {
+	
 	protected String origen;
 	protected String destino;
 	protected Fecha fechaOrigen;
@@ -52,5 +53,18 @@ public class Vuelo {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
+
+	public String getDestino() {
+		return this.destino;
+	}
+	
+	public Fecha getFechaOrigen() {
+		return fechaOrigen;
+	}
+
+	public Fecha getFechaDestino() {
+		return fechaDestino;
+	}
+
 }
 
