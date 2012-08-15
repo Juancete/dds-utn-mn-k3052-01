@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
 import ar.com.aterrizar.modelo.state.Estado;
+import ar.com.aterrizar.modelo.state.EstadoDisponible;
 import ar.com.aterrizar.modelo.state.EstadoReservado;
 
 public class Asiento {
@@ -75,7 +76,7 @@ public class Asiento {
 	}
 	
 	public boolean isDisponible(){
-		return this.disponible;
+		return (this.getEstado() instanceof EstadoDisponible);
 	}
 	
 	@Override
