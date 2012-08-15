@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
 import ar.com.aterrizar.modelo.state.Estado;
+import ar.com.aterrizar.modelo.state.EstadoReservado;
 
 public class Asiento {
 
@@ -115,5 +116,9 @@ public class Asiento {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+	
+	public Boolean estadoReservado(){
+		return (this.getEstado() instanceof EstadoReservado);
 	}
 }
