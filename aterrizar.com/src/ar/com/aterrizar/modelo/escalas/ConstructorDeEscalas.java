@@ -86,7 +86,7 @@ public class ConstructorDeEscalas {
 		List<Viaje> viajesFiltrados = new ArrayList<Viaje>();
 		for(Viaje viaje : this.viajes){
 			try{
-				CriterioDeAceptación.getInstance().esAceptado(viaje, this.busquedaDeUsuario.getDestino());
+				CriterioDeAceptacion.getInstance().esAceptado(viaje, this.busquedaDeUsuario.getDestino());
 				viajesFiltrados.add(viaje);
 			}
 			catch (NoCumpleCriterioDeEscalaExeption e){
