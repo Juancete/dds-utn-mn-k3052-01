@@ -7,13 +7,13 @@ public class EstadoComprado extends Estado {
 
 	@Override
 	public void comprar(Asiento unAsiento, Usuario unUsuario) {
-		// TODO Auto-generated method stub
+		throw new RuntimeException("El asiento ya fue comprado, no se puede Comprar nuevamente.");
 
 	}
 
 	@Override
 	public void reservar(Asiento unAsiento, Usuario unUsuario) {
-		// TODO Auto-generated method stub
+		throw new RuntimeException("El asiento ya fue comprado, no se puede Reservar nuevamente.");
 
 	}
 
