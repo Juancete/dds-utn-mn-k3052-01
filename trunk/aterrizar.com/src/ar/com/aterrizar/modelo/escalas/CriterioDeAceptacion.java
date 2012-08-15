@@ -5,16 +5,16 @@ import java.util.Iterator;
 import ar.com.aterrizar.modelo.Asiento;
 import ar.com.aterrizar.modelo.Viaje;
 
-public class CriterioDeAceptación {
+public class CriterioDeAceptacion {
 
-	private static CriterioDeAceptación instance;
+	private static CriterioDeAceptacion instance;
 	
-	private CriterioDeAceptación(){
+	private CriterioDeAceptacion(){
 		super();
 	}
-	public static CriterioDeAceptación getInstance(){
+	public static CriterioDeAceptacion getInstance(){
 		if(instance == null){
-			instance = new CriterioDeAceptación();
+			instance = new CriterioDeAceptacion();
 		}
 		return instance;
 	}
