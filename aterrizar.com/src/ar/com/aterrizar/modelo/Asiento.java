@@ -114,10 +114,12 @@ public class Asiento {
 
 	public boolean llegaAntesDe(Asiento asiento) {
 		//TODO Mejorar la forma en que se calcula el tiempo teniendo en cuenta las horas de ambos asientos
-		if(!this.vuelo.getFechaDestino().esAnteriorA(asiento.getVuelo().getFechaOrigen())){
-			return false;
-		}
+		//por el momento este metodo retornara verdadero
 		return true;
+//		if(!this.vuelo.getFechaDestino().esAnteriorA(asiento.getVuelo().getFechaOrigen())){
+//			return false;
+//		}
+//		return true;
 	}
 
 	public Estado getEstado() {
