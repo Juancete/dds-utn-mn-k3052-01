@@ -13,8 +13,10 @@ public class EstadoDisponible extends Estado {
 
 	@Override
 	public void reservar(Asiento unAsiento, Usuario unUsuario) {
-		unAsiento.aerolinea.reservarAsiento(unUsuario, unAsiento);
+		unAsiento.aerolinea.reservarAsiento(unUsuario, unAsiento);		
 		unAsiento.setEstado(new EstadoReservado());
+		unAsiento.setReservante(unUsuario);
+		this.aplication.agregarReservaOSobreReserva(unAsiento);
 	}
 
 }

@@ -140,6 +140,15 @@ public class Asiento {
 		this.usuariosQueReservan.addLast(reservante);
 	}
 	
+	public void reservaVencidaAsignarProximaSobreReserva(){
+		this.usuariosQueReservan.remove(0);
+		if(tieneSobreReserva().booleanValue()){
+			this.estado.reservar(this, this.usuariosQueReservan.get(0));			
+		}else {
+			this.setEstado(new EstadoDisponible());
+		}
+	}
+	
 	public Boolean tieneSobreReserva(){
 		return new Boolean(this.usuariosQueReservan.size()>1);
 	}
