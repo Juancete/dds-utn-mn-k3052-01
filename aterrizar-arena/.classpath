@@ -1,0 +1,57 @@
+<classpath>
+  <classpathentry kind="src" path="src/test/java" output="target/testClasses" including="**/*.java"/>
+  <classpathentry kind="src" path="src/test/resources" output="target/testClasses" excluding="**/*.java"/>
+  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+  <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.3/servlet-api-2.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/uqbar/aerolinea-lanchita/4.0-SNAPSHOT/aerolinea-lanchita-4.0-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/uqbar/aerolinea-oceanic/4.1-SNAPSHOT/aerolinea-oceanic-4.1-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/uqbar/apo-core/3.0.1-SNAPSHOT/apo-core-3.0.1-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/uqbar/arena/3.0.1-SNAPSHOT/arena-3.0.1-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/asm/asm/3.1/asm-3.1.jar"/>
+  <classpathentry kind="src" path="/aterrizar.com"/>
+  <classpathentry kind="var" path="M2_REPO/cglib/cglib/2.2/cglib-2.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/net/sourceforge/collections/collections-generic/4.01/collections-generic-4.01.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/ibm/com.ibm.icu/3.8.1.v20080530/com.ibm.icu-3.8.1.v20080530.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.2/commons-lang-2.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/db4o/db4o-full-java5/7.13-SNAPSHOT/db4o-full-java5-7.13-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/fechas/fecha-model/1.2/fecha-model-1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/javassist/javassist/3.8.0.GA/javassist-3.8.0.GA.jar"/>
+  <classpathentry kind="var" path="M2_REPO/junit/junit/4.10/junit-4.10.jar" sourcepath="M2_REPO/junit/junit/4.10/junit-4.10-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/C:/Users/Nacho/.m2/repository/junit/junit/4.10/junit-4.10-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.16/log4j-1.2.16.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/eclipse/core/org.eclipse.core.commands/3.4.0.I20080509-2000/org.eclipse.core.commands-3.4.0.I20080509-2000.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/eclipse/core/org.eclipse.core.databinding/1.1.1.M20080827-0800b/org.eclipse.core.databinding-1.1.1.M20080827-0800b.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/eclipse/core/databinding/org.eclipse.core.databinding.beans/1.1.1.M20080827-0800a/org.eclipse.core.databinding.beans-1.1.1.M20080827-0800a.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/eclipse/equinox/org.eclipse.equinox.common/3.4.0.v20080421-2006/org.eclipse.equinox.common-3.4.0.v20080421-2006.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/eclipse/org.eclipse.jface/3.4.2.M20090107-0800/org.eclipse.jface-3.4.2.M20090107-0800.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/eclipse/jface/org.eclipse.jface.databinding/1.2.1.M20080827-0800a/org.eclipse.jface.databinding-1.2.1.M20080827-0800a.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/eclipse/org.eclipse.osgi/3.4.3.R34x_v20081215-1030/org.eclipse.osgi-3.4.3.R34x_v20081215-1030.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/eclipse/org.eclipse.swt/3.4.2.v3452b/org.eclipse.swt-3.4.2.v3452b.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/eclipse/swt/win32/org.eclipse.swt.win32.win32.x86/3.4.1.v3452b/org.eclipse.swt.win32.win32.x86-3.4.1.v3452b.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/eclipse/ui/org.eclipse.ui.workbench/3.4.2.M20090127-1700/org.eclipse.ui.workbench-3.4.2.M20090127-1700.jar"/>
+  <classpathentry kind="var" path="M2_REPO/net/sf/oval/oval/1.70/oval-1.70.jar"/>
+  <classpathentry kind="var" path="M2_REPO/uqbar/poo/3.0.1-SNAPSHOT/poo-3.0.1-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/uqbar/pot/3.0.1-SNAPSHOT/pot-3.0.1-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/scala-lang/scala-compiler/2.9.1/scala-compiler-2.9.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/scala-lang/scala-library/2.9.1/scala-library-2.9.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/scalatest/scalatest_2.9.1/1.6.1/scalatest_2.9.1-1.6.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/scala-tools/testing/specs_2.9.1/1.6.9/specs_2.9.1-1.6.9.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/spring/2.5.6/spring-2.5.6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/uqbar/uqbar-bttf/2.3-SNAPSHOT/uqbar-bttf-2.3-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/uqbar/uqbar-class-descriptor/1.1-SNAPSHOT/uqbar-class-descriptor-1.1-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/uqbar/uqbar-commons/1.1-SNAPSHOT/uqbar-commons-1.1-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/uqbar/uqbar-commons-collections/1.0-SNAPSHOT/uqbar-commons-collections-1.0-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/uqbar/uqbar-commons-exceptions/1.5-SNAPSHOT/uqbar-commons-exceptions-1.5-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/uqbar/util-commons/3.0.1-SNAPSHOT/util-commons-3.0.1-SNAPSHOT.jar"/>
+  <classpathentry kind="src" path="/videoclub-domain"/>
+  <classpathentry kind="var" path="M2_REPO/uqbar-examples/videoclub-persistence-db4o/1.1-SNAPSHOT/videoclub-persistence-db4o-1.1-SNAPSHOT.jar"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+</classpath>
