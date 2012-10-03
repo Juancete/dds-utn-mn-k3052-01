@@ -106,4 +106,18 @@ public class AterrizarApp {
 		
 	};
 	
+	/**
+	 * 
+	 * @param unUsuario
+	 * @return Lista de Asientos reservados para un cliente
+	 */
+	public List<Asiento> getAsientosDe(Usuario unUsuario){
+		List<Asiento> asientosReservados = new ArrayList<Asiento>();
+		for (Asiento asiento: this.reservas){
+			if(asiento.getReservante().equals(unUsuario)){
+				asientosReservados.add(asiento);
+			}
+		}
+		return asientosReservados;
+	}
 }
