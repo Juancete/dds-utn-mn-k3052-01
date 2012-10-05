@@ -28,7 +28,9 @@ public class InicioWindow extends MainWindow<Usuario>{
 		usuario.setNombre("Nacho");
 	}
 
-
+	public Usuario getUsuario(){
+		return usuario;
+	}
 
 	@Override
 	public void createContents(Panel mainPanel) {
@@ -53,14 +55,14 @@ public class InicioWindow extends MainWindow<Usuario>{
 	}
 	
 	public void verCompras(){
-		   new verComprasWindow(this, this.getModelObject()).open();
+		   new comprasWindow(this, this.getModelObject()).open();
 		}
 
 	public void verReservas(){
-		   new verComprasWindow(this, this.getModelObject()).open();
+		   new reservasWindow(this, this.getModelObject()).open();
 	}
 	
 	public void buscarAsientos(){
-		   new verComprasWindow(this, this.getModelObject()).open();
+		  // new vistaWindow(this, this.getModelObject()).open();
 	}
 }
