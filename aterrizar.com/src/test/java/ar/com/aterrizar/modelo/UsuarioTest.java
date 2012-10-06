@@ -13,6 +13,7 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
 import ar.com.aterrizar.modelo.adapter.NoHayAsientosDisponiblesParaUnaBusquedaException;
 import ar.com.aterrizar.modelo.adapter.NoSeEncuentraDisponibleElAsientoException;

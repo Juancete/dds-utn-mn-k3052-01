@@ -3,7 +3,7 @@ package ar.com.aterrizar.modelo.escalas;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.com.aterrizar.modelo.Asiento;
+import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Viaje;
 
 public class ExplotadorDeViajes {

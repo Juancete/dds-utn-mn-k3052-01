@@ -3,9 +3,10 @@ package ar.com.aterrizar.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.aterrizar.fecha.modelo.Fecha;
-
+import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.FiltrosDeBusqueda.Filtro;
+
+import com.aterrizar.fecha.modelo.Fecha;
 
 public class Busqueda {
 

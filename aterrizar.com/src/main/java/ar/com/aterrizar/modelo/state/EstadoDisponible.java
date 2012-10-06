@@ -1,6 +1,6 @@
 package ar.com.aterrizar.modelo.state;
 
-import ar.com.aterrizar.modelo.Asiento;
+import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
 
 public class EstadoDisponible extends Estado {

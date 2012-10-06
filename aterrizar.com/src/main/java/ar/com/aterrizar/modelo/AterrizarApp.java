@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
 import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
 import ar.com.aterrizar.modelo.adapter.AerolineaOceanicAdapter;

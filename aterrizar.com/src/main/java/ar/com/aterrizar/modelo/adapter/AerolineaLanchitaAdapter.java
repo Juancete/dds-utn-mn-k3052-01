@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.com.aterrizar.modelo.Asiento;
+import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Busqueda;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.state.Estado;

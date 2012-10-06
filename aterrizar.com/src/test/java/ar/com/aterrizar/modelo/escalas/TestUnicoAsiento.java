@@ -1,5 +1,8 @@
 package ar.com.aterrizar.modelo.escalas;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,22 +10,19 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
-import ar.com.aterrizar.modelo.Asiento;
+import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Busqueda;
 import ar.com.aterrizar.modelo.Vuelo;
 import ar.com.aterrizar.modelo.adapter.AerolineaOceanicAdapter;
 import ar.com.aterrizar.modelo.state.EstadoDisponible;
 
-import org.mockito.invocation.*;
-import org.mockito.stubbing.*;
-
 import com.aterrizar.fecha.modelo.Fecha;
 import com.aterrizar.fecha.modelo.FormatoSimple;
 import com.oceanic.AerolineaOceanic;
 import com.oceanic.AsientoDTO;
-
-import static org.mockito.Mockito.*;
 
 public class TestUnicoAsiento {
 

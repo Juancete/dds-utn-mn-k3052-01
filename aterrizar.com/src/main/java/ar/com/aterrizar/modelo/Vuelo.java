@@ -3,14 +3,16 @@ package ar.com.aterrizar.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.com.aterrizar.entidades.Asiento;
+
 import com.aterrizar.fecha.modelo.Fecha;
 
 public class Vuelo {
 	
 	protected String origen;
 	protected String destino;
-	protected Fecha fechaOrigen;
-	protected Fecha fechaDestino;
+	public Fecha fechaOrigen;
+	public Fecha fechaDestino;
 	protected List<Asiento> asientos = new ArrayList<Asiento>();
 	private String codigo;
 	private int popularidad;

@@ -2,7 +2,7 @@ package ar.com.aterrizar.modelo.FiltrosDeBusqueda;
 
 import java.math.BigDecimal;
 
-import ar.com.aterrizar.modelo.Asiento;
+import ar.com.aterrizar.entidades.Asiento;
 
 public class FiltroPrecio extends Filtro {
 

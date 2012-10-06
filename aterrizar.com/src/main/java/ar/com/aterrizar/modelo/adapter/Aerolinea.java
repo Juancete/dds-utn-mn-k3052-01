@@ -2,7 +2,7 @@ package ar.com.aterrizar.modelo.adapter;
 
 import java.util.List;
 
-import ar.com.aterrizar.modelo.Asiento;
+import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Busqueda;
 import ar.com.aterrizar.modelo.Usuario;
 

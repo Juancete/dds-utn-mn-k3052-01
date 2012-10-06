@@ -9,7 +9,7 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.com.aterrizar.modelo.Asiento;
+import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Busqueda;
 import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
 import ar.com.aterrizar.modelo.state.EstadoDisponible;

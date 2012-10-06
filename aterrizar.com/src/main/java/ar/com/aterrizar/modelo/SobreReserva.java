@@ -2,6 +2,8 @@ package ar.com.aterrizar.modelo;
 
 import java.util.LinkedList;
 
+import ar.com.aterrizar.entidades.Asiento;
+
 public class SobreReserva {
 	
 	protected Asiento asiento;

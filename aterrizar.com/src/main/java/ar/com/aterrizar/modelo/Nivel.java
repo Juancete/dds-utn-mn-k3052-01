@@ -4,6 +4,8 @@ package ar.com.aterrizar.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.com.aterrizar.entidades.Asiento;
+
 public abstract class Nivel {
 
 	Usuario unUsuario;
