@@ -1,6 +1,7 @@
 package ar.com.aterrizar.modelo;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
 import ar.com.aterrizar.modelo.state.EstadoDisponible;
 

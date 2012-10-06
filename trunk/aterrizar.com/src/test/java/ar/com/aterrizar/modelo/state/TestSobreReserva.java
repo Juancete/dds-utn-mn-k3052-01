@@ -2,14 +2,15 @@ package ar.com.aterrizar.modelo.state;
 
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+
 import java.math.BigDecimal;
 
 import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
-import ar.com.aterrizar.modelo.Asiento;
+
+import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
 

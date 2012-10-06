@@ -2,6 +2,8 @@ package ar.com.aterrizar.modelo;
 
 import java.util.ArrayList;
 
+import ar.com.aterrizar.entidades.Asiento;
+
 public class Viaje {
 
 	private ArrayList<Asiento> asientos;

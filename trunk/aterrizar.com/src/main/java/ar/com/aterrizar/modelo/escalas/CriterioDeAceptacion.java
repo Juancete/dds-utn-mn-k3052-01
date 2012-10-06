@@ -2,7 +2,7 @@ package ar.com.aterrizar.modelo.escalas;
 
 import java.util.Iterator;
 
-import ar.com.aterrizar.modelo.Asiento;
+import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Viaje;
 
 public class CriterioDeAceptacion {

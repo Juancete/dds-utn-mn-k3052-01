@@ -1,6 +1,6 @@
 package ar.com.aterrizar.modelo.FiltrosDeBusqueda;
 
-import ar.com.aterrizar.modelo.Asiento;
+import ar.com.aterrizar.entidades.Asiento;
 
 public class FiltroReservados extends Filtro {
 

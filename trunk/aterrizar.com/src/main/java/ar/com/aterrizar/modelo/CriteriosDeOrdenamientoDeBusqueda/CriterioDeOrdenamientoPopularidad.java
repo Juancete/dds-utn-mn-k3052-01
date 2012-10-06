@@ -1,6 +1,6 @@
 package ar.com.aterrizar.modelo.CriteriosDeOrdenamientoDeBusqueda;
 
-import ar.com.aterrizar.modelo.Asiento;
+import ar.com.aterrizar.entidades.Asiento;
 
 public class CriterioDeOrdenamientoPopularidad extends CriterioDeOrdenamiento {
 

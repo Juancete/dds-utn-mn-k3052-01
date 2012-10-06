@@ -3,6 +3,8 @@ package ar.com.aterrizar.modelo;
 import java.math.BigDecimal;
 import java.util.List;
 
+import ar.com.aterrizar.entidades.Asiento;
+
 public class NivelNoPago extends Nivel{
 	
 	BigDecimal recargo;

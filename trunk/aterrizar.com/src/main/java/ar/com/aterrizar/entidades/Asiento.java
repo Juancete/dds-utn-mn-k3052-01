@@ -1,18 +1,24 @@
-package ar.com.aterrizar.modelo;
+package ar.com.aterrizar.entidades;
 
 import java.math.BigDecimal;
 import java.util.LinkedList;
 
+import org.uqbar.commons.model.Entity;
 import org.uqbar.commons.utils.TransactionalAndObservable;
 
+import ar.com.aterrizar.modelo.Usuario;
+import ar.com.aterrizar.modelo.Viaje;
+import ar.com.aterrizar.modelo.Vuelo;
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
 import ar.com.aterrizar.modelo.state.Estado;
 import ar.com.aterrizar.modelo.state.EstadoDisponible;
 import ar.com.aterrizar.modelo.state.EstadoReservado;
 
 @TransactionalAndObservable
-public class Asiento {
+public class Asiento extends Entity {
 
+		private static final long serialVersionUID = 2365011956533498906L;
+	
 	public String codigoDeVuelo;
 	public Integer numeroDeAsiento;
 	public String codigo;
@@ -21,8 +27,8 @@ public class Asiento {
 	public char tipo;	//clase: 'P' primera, 'E' ejecutivo, 'T' turista
 	public boolean disponible;
 	public Aerolinea aerolinea;
-	private Vuelo vuelo;
-	private Viaje viaje;	
+	public Vuelo vuelo;
+	public Viaje viaje;	
 	protected Estado estado;
 	protected LinkedList<Usuario> usuariosQueReservan;
 	
@@ -35,6 +41,8 @@ public class Asiento {
 		this.aerolinea = unaAerolinea;
 		this.usuariosQueReservan = new LinkedList<Usuario>();
 	}
+	
+	public Asiento(){}
 	
 	public boolean soySuperOferta(){
 //		Implementación la condición de super-oferta		
