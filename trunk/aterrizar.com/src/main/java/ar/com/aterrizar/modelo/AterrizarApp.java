@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import ar.com.aterrizar.daos.AsientoDaoCollectionImpl;
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
 import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
@@ -20,6 +21,7 @@ public class AterrizarApp {
 	protected List<Vuelo> vuelosVendidos = new ArrayList<Vuelo>();
 	protected Collection<Usuario> usuarios;
 	protected List<Aerolinea> aerolineas;
+	protected AsientoDaoCollectionImpl dao;
 	protected ArrayList<Asiento> reservas = new ArrayList<Asiento>();
 
 	private AterrizarApp() {
@@ -38,7 +40,7 @@ public class AterrizarApp {
 	
 	}
 
-	public static AterrizarApp getInstance() {
+	public static synchronized AterrizarApp getInstance() {
 		if (instance == null)
 			instance = new AterrizarApp();
 		return instance;
@@ -79,10 +81,7 @@ public class AterrizarApp {
 	}
 
 	public void agregarReservaOSobreReserva(Asiento unaReservaOSobreReserva){
-		
-		if(!this.reservas.contains(unaReservaOSobreReserva)){			
-			this.reservas.add(unaReservaOSobreReserva);
-		}
+		this.dao.agregarReservaOSobreReserva(unaReservaOSobreReserva);		
 	}
 	
 	public List<Asiento> buscarVuelosPara(Usuario unUsuario, Busqueda unaBusqueda){
@@ -96,10 +95,8 @@ public class AterrizarApp {
 		
 	}
 
-	public void quitarReserva(Asiento unAsiento) {	
-		this.reservas.remove(unAsiento);
-		unAsiento = null;
-		
+	public void quitarReserva(Asiento unAsiento) {
+		this.dao.quitarReserva(unAsiento);		
 	}
 	
 	public void reservaExpirada(Asiento unAsiento){

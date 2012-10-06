@@ -1,16 +1,20 @@
 package ar.com.aterrizar.daos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.collections15.Predicate;
-import org.apache.commons.collections15.functors.AndPredicate;
 import org.uqbar.commons.model.CollectionBasedHome;
 
 import ar.com.aterrizar.entidades.Asiento;
-import ar.com.aterrizar.modelo.state.Estado;
 
 
 public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 
 
+	protected List<Asiento> reservas = new ArrayList<Asiento>();
+	protected List<Asiento> compras = new ArrayList<Asiento>();
+	protected List<Asiento> sobreReservas = new ArrayList<Asiento>();
 		// ********************************************************
 		// ** Constructor
 		// ********************************************************
@@ -66,6 +70,19 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 			*/
 
 			return resultPredicate;
+		}
+
+		public void agregarReservaOSobreReserva(Asiento unaReservaOSobreReserva) {
+			if(!this.reservas.contains(unaReservaOSobreReserva)){			
+				this.reservas.add(unaReservaOSobreReserva);
+			}
+			
+		}
+
+		public void quitarReserva(Asiento unAsiento) {
+			this.reservas.remove(unAsiento);
+			unAsiento = null;
+			
 		}
 
 		
