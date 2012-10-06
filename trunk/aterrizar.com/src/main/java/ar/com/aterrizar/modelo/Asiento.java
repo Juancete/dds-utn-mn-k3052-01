@@ -3,11 +3,14 @@ package ar.com.aterrizar.modelo;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 
+import org.uqbar.commons.utils.TransactionalAndObservable;
+
 import ar.com.aterrizar.modelo.adapter.Aerolinea;
 import ar.com.aterrizar.modelo.state.Estado;
 import ar.com.aterrizar.modelo.state.EstadoDisponible;
 import ar.com.aterrizar.modelo.state.EstadoReservado;
 
+@TransactionalAndObservable
 public class Asiento {
 
 	public String codigoDeVuelo;
