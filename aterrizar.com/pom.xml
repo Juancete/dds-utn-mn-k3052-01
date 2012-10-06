@@ -28,6 +28,12 @@
 			<artifactId>fecha-model</artifactId>
 			<version>1.2</version>
 		</dependency>
+		<dependency>
+			<groupId>uqbar</groupId>
+			<artifactId>util-commons</artifactId>
+			<version>3.0.1-SNAPSHOT</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>
