@@ -9,7 +9,7 @@ import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Window;
 
-import ar.com.aterrizar.modelo.Asiento;
+import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
 
 public abstract class vistaWindow extends Window<Usuario> {
@@ -37,7 +37,7 @@ public void setSecondTitle(Panel mainPanel){
 	Column<Asiento> salidaColumn = new Column<Asiento>(table);
 	salidaColumn.setTitle("Salida");
 	salidaColumn.setFixedSize(100);
-	salidaColumn.bindContentsToProperty(Asiento.TIPO);
+	salidaColumn.bindContentsToProperty(null);//Asiento.TIPO);
 	
 	Column<Asiento> aerolineaColumn = new Column<Asiento>(table);
 	aerolineaColumn.setTitle("Aerolinea");
