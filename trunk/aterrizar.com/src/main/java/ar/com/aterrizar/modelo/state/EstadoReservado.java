@@ -1,5 +1,6 @@
 package ar.com.aterrizar.modelo.state;
 
+import ar.com.aterrizar.daos.AsientoDaoCollectionImpl;
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.adapter.NoSeEncuentraDisponibleElAsientoException;
@@ -15,7 +16,7 @@ public class EstadoReservado extends Estado {
 		unAsiento.aerolinea.comprarAsiento(unAsiento, unUsuario.getDni());
 		unAsiento.setEstado(new EstadoComprado());
 		unAsiento.eliminarReservas();
-		this.aplication.quitarReserva(unAsiento);
+		((AsientoDaoCollectionImpl) this.aplication).quitarReserva(unAsiento);
 	}
 
 	@Override

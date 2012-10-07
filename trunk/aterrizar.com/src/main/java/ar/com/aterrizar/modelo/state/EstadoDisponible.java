@@ -1,5 +1,6 @@
 package ar.com.aterrizar.modelo.state;
 
+import ar.com.aterrizar.daos.AsientoDaoCollectionImpl;
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
 
@@ -16,7 +17,7 @@ public class EstadoDisponible extends Estado {
 		unAsiento.aerolinea.reservarAsiento(unUsuario, unAsiento);		
 		unAsiento.setEstado(new EstadoReservado());
 		unAsiento.setReservante(unUsuario);
-		this.aplication.agregarReservaOSobreReserva(unAsiento);
+		((AsientoDaoCollectionImpl) this.aplication).agregarReservaOSobreReserva(unAsiento);
 	}
 
 }
