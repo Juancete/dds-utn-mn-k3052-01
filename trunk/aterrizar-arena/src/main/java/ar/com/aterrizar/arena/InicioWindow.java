@@ -62,11 +62,11 @@ public class InicioWindow extends MainWindow<Usuario>{
 	}
 	
 	public void verCompras(){
-		   new comprasWindow(this, new ShowModel<EstadoComprado>(AterrizarCom.getInstance().getHome(EstadoComprado.class))).open();
+		   new vistaWindow("Compras de ",this, new ShowModel<EstadoComprado>(AterrizarCom.getInstance().getHome(EstadoComprado.class))).open();
 		}
 
 	public void verReservas(){
-		   new reservasWindow(this, new ShowModel<EstadoReservado>(AterrizarCom.getInstance().getHome(EstadoReservado.class))).open();
+		   new vistaWindow("Reservas de ",this, new ShowModel<EstadoReservado>(AterrizarCom.getInstance().getHome(EstadoReservado.class))).open();
 	}
 	
 	public void buscarAsientos(){
