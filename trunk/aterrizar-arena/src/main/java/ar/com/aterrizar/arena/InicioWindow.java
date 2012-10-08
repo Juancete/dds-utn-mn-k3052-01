@@ -32,6 +32,7 @@ public class InicioWindow extends MainWindow<Usuario>{
 		this.usuario = new Usuario();
 		usuario.setNombre("Nacho");
 		usuario.setNivel(new NivelPago(usuario));
+		usuario.setDNI("28999189");
 	}
 
 	public Usuario getUsuario(){
