@@ -24,6 +24,7 @@ public class Usuario {
 	
 	
 	public Usuario(){
+		this.montoAcumulado = new BigDecimal(0);
 		this.busquedas = new ArrayList<Busqueda>();
 	}
 	

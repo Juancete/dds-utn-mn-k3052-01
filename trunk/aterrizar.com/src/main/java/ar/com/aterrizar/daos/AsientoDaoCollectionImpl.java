@@ -1,6 +1,7 @@
 package ar.com.aterrizar.daos;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections15.Predicate;
@@ -10,11 +11,16 @@ import org.uqbar.commons.model.CollectionBasedHome;
 import com.aterrizar.fecha.modelo.Fecha;
 
 import ar.com.aterrizar.entidades.Asiento;
+import ar.com.aterrizar.modelo.AterrizarApp;
+import ar.com.aterrizar.modelo.Busqueda;
+import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.Vuelo;
 
 
 public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 
+	private Usuario usuario;
+	
 	@Override
 	public Class<Asiento> getEntityType() {
 		return Asiento.class;
@@ -77,16 +83,19 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 			}
 		};
 	}
-
-	@Override
-	public List<Asiento> searchByExample(Asiento example){
-		this.actualizarLista();
-		return super.searchByExample(example);
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario unUsuario) {
+		this.usuario = unUsuario;
+		List<Asiento> listaDeAsientos = new ArrayList<Asiento>();
+		Busqueda unaBusqueda = new Busqueda();
+		unaBusqueda.setEscalas(0);
+		listaDeAsientos = AterrizarApp.getInstance().buscarVuelosPara(this.usuario, unaBusqueda);
+		for (Asiento unAsiento : listaDeAsientos){
+			this.create(unAsiento);
+		}		
 	}
 
-	private void actualizarLista() {
-		// TODO Auto-generated method stub
-		
-	}
 	}
 

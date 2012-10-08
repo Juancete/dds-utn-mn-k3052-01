@@ -90,7 +90,7 @@ public class AterrizarApp {
 			asientosPedidos.addAll(unUsuario.buscarAsiento(unaBusqueda, unaAerolinea));
 		}
 		//aca ordeno
-		Collections.sort(asientosPedidos,unUsuario.getCriterio());
+		//Collections.sort(asientosPedidos,unUsuario.getCriterio());
 		return asientosPedidos;
 		
 	}

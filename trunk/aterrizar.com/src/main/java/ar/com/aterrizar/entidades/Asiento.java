@@ -240,4 +240,5 @@ public class Asiento extends Entity {
 	public void setFecha(String unaFecha){
 		this.getVuelo().setFechaOrigen(new Fecha(new Date(unaFecha)));
 	}
+
 }
