@@ -12,10 +12,14 @@ import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.MainWindow;
 
+import ar.com.aterrizar.commons.model.ShowModel;
+import ar.com.aterrizar.daos.AterrizarCom;
 import ar.com.aterrizar.modelo.Usuario;
+import ar.com.aterrizar.modelo.state.EstadoComprado;
+import ar.com.aterrizar.modelo.state.EstadoReservado;
 
 public class InicioWindow extends MainWindow<Usuario>{
-	Usuario usuario;
+	public Usuario usuario;
 	
 	public static void main(String[] args) {
 		new InicioWindow().startApplication();
@@ -55,14 +59,15 @@ public class InicioWindow extends MainWindow<Usuario>{
 	}
 	
 	public void verCompras(){
-		   new comprasWindow(this, this.getModelObject()).open();
+		   new comprasWindow(this, new ShowModel<EstadoComprado>(AterrizarCom.getInstance().getHome(EstadoComprado.class))).open();
 		}
 
 	public void verReservas(){
-		   new reservasWindow(this, this.getModelObject()).open();
+		   new reservasWindow(this, new ShowModel<EstadoReservado>(AterrizarCom.getInstance().getHome(EstadoReservado.class))).open();
 	}
 	
 	public void buscarAsientos(){
 		  // new vistaWindow(this, this.getModelObject()).open();
+			new BuscarAsientoWindow(this).open();
 	}
 }
