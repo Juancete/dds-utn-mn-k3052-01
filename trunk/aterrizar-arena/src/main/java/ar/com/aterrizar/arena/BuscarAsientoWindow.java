@@ -1,5 +1,7 @@
 package ar.com.aterrizar.arena;
 
+import java.text.SimpleDateFormat;
+
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.Control;
 import org.uqbar.arena.widgets.Label;
@@ -11,7 +13,6 @@ import org.uqbar.commons.model.SearchByExample;
 
 import ar.com.aterrizar.arena.SearchAsientoWindow;
 
-import ar.com.aterrizar.daos.AterrizarCom;
 import ar.com.aterrizar.daos.*;
 import ar.com.aterrizar.entidades.Asiento;
 
@@ -79,7 +80,37 @@ public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsie
 				return asiento.getAerolinea().getNombre();
 			}			
 		});
+		
+		Column<Asiento> origenColumn = new Column<Asiento>(table);
+		origenColumn.setTitle("Origen");
+		origenColumn.setFixedSize(150);
+		origenColumn.bindContentsToTransformer(new Transformer<Asiento, String>() {
+			@Override
+			public String transform(Asiento asiento) {
+				return asiento.getVuelo().getOrigen();
+			}
+		});
 
+		Column<Asiento> destinoColumn = new Column<Asiento>(table);
+		destinoColumn.setTitle("Destino");
+		destinoColumn.setFixedSize(150);
+		destinoColumn.bindContentsToTransformer(new Transformer<Asiento, String>() {
+			@Override
+			public String transform(Asiento asiento) {
+				return asiento.getVuelo().getDestino();
+			}
+		});
+		
+		Column<Asiento> fechaColumn = new Column<Asiento>(table);
+		fechaColumn.setTitle("Fecha");
+		fechaColumn.setFixedSize(150);
+		fechaColumn.bindContentsToTransformer(new Transformer<Asiento, String>() {
+			@Override
+			public String transform(Asiento asiento) {
+				return new SimpleDateFormat("dd/MM/yyyy").format(asiento.getVuelo().getFechaOrigen().obtenerFecha());
+			}
+		});
+		
 		Column<Asiento> vueloColumn = new Column<Asiento>(table);
 		vueloColumn.setTitle("Vuelo");
 		vueloColumn.setFixedSize(150);
@@ -111,7 +142,7 @@ public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsie
 			
 		
 		table.setHeigth(300);
-		table.setWidth(600);
+		table.setWidth(1050);
 	}
 
 //	@Override
