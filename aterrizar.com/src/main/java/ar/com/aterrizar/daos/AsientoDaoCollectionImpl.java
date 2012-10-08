@@ -29,7 +29,7 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 	@Override
 	public Asiento createExample() {
 		Asiento unAsiento = new Asiento();
-		unAsiento.setVuelo(new Vuelo("", "", "", new Fecha(), new Fecha()));
+		unAsiento.setVuelo(new Vuelo(null, null, null, null, null));
 		return unAsiento;
 	}
 

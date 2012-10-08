@@ -7,11 +7,14 @@ import java.util.List;
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Busqueda;
 import ar.com.aterrizar.modelo.Usuario;
+import ar.com.aterrizar.modelo.Vuelo;
 import ar.com.aterrizar.modelo.state.Estado;
 import ar.com.aterrizar.modelo.state.EstadoComprado;
 import ar.com.aterrizar.modelo.state.EstadoDisponible;
 import ar.com.aterrizar.modelo.state.EstadoReservado;
 
+import com.aterrizar.fecha.modelo.Fecha;
+import com.aterrizar.fecha.modelo.FormatoSimple;
 import com.lanchita.AerolineaLanchita;
 import com.lanchita.excepciones.EstadoErroneoException;
 
@@ -31,12 +34,19 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 		{
 			for (int posicionEnElVector = 0; posicionEnElVector < datosAsientos.length; posicionEnElVector++) {
 				//instanciar un asiento y sumarlo a la nueva lista 
-				listaDeAsientos.add(new Asiento(datosAsientos[posicionEnElVector][0], 
-												new BigDecimal(datosAsientos[posicionEnElVector][1]).multiply(new BigDecimal(porcentajePorCompania)),
-												datosAsientos[posicionEnElVector][3].charAt(0),
-												datosAsientos[posicionEnElVector][2].charAt(0),
-												getEstado(datosAsientos[posicionEnElVector][4].charAt(0)),
-												this));
+				Asiento unAsiento = new Asiento(datosAsientos[posicionEnElVector][0], 
+						new BigDecimal(datosAsientos[posicionEnElVector][1]).multiply(new BigDecimal(porcentajePorCompania)),
+						datosAsientos[posicionEnElVector][3].charAt(0),
+						datosAsientos[posicionEnElVector][2].charAt(0),
+						getEstado(datosAsientos[posicionEnElVector][4].charAt(0)),
+						this);
+				unAsiento.setVuelo(new Vuelo(datosAsientos[posicionEnElVector][0], 
+						datosAsientos[posicionEnElVector][9], 
+						datosAsientos[posicionEnElVector][8], 
+						new Fecha(datosAsientos[posicionEnElVector][10],new FormatoSimple("dd/MM/yyyy")),
+						new Fecha(datosAsientos[posicionEnElVector][11],new FormatoSimple("dd/MM/yyyy"))));
+				
+				listaDeAsientos.add(unAsiento);
 			}
 		}
 		return listaDeAsientos;
