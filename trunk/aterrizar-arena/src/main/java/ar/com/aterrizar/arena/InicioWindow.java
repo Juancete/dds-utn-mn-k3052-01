@@ -14,6 +14,7 @@ import org.uqbar.arena.windows.MainWindow;
 
 import ar.com.aterrizar.commons.model.ShowModel;
 import ar.com.aterrizar.daos.AterrizarCom;
+import ar.com.aterrizar.modelo.NivelPago;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.state.EstadoComprado;
 import ar.com.aterrizar.modelo.state.EstadoReservado;
@@ -30,6 +31,7 @@ public class InicioWindow extends MainWindow<Usuario>{
 		super(new Usuario());
 		this.usuario = new Usuario();
 		usuario.setNombre("Nacho");
+		usuario.setNivel(new NivelPago(usuario));
 	}
 
 	public Usuario getUsuario(){

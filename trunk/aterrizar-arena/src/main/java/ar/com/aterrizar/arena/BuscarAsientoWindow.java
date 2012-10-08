@@ -12,6 +12,7 @@ import org.uqbar.commons.model.SearchByExample;
 import ar.com.aterrizar.arena.SearchAsientoWindow;
 
 import ar.com.aterrizar.daos.AterrizarCom;
+import ar.com.aterrizar.daos.*;
 import ar.com.aterrizar.entidades.Asiento;
 
 import com.uqbar.commons.collections.Transformer;
@@ -30,6 +31,7 @@ public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsie
 
 	public BuscarAsientoWindow(InicioWindow owner) {
 		super(owner, new SearchAsientoByExample<Asiento>(AterrizarCom.getInstance().getHome(Asiento.class), owner.getUsuario()));
+		((AsientoDaoCollectionImpl) AterrizarCom.getInstance().getHome(Asiento.class)).setUsuario(owner.getUsuario());
 	}
 
 	@Override
@@ -70,7 +72,7 @@ public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsie
 	protected void describeResultsGrid(Table<Asiento> table) {
 		Column<Asiento> aerolineaColumn = new Column<Asiento>(table);
 		aerolineaColumn.setTitle("Aerolinea");
-		aerolineaColumn.setFixedSize(200);
+		aerolineaColumn.setFixedSize(150);
 		aerolineaColumn.bindContentsToTransformer(new Transformer<Asiento, String>() {
 			@Override
 			public String transform(Asiento asiento) {
@@ -80,7 +82,7 @@ public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsie
 
 		Column<Asiento> vueloColumn = new Column<Asiento>(table);
 		vueloColumn.setTitle("Vuelo");
-		vueloColumn.setFixedSize(200);
+		vueloColumn.setFixedSize(150);
 		vueloColumn.bindContentsToTransformer(new Transformer<Asiento, String>() {
 			@Override
 			public String transform(Asiento asiento) {
@@ -90,7 +92,7 @@ public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsie
 
 		Column<Asiento> asientoColumn = new Column<Asiento>(table);
 		asientoColumn.setTitle("asiento");
-		asientoColumn.setFixedSize(200);
+		asientoColumn.setFixedSize(150);
 		asientoColumn.bindContentsToTransformer(new Transformer<Asiento, String>() {
 			@Override
 			public String transform(Asiento asiento) {
@@ -99,11 +101,11 @@ public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsie
 		});
 		Column<Asiento> precioColumn = new Column<Asiento>(table);
 		precioColumn.setTitle("precio");
-		precioColumn.setFixedSize(200);
+		precioColumn.setFixedSize(150);
 		precioColumn.bindContentsToTransformer(new Transformer<Asiento, String>() {
 			@Override
 			public String transform(Asiento asiento) {
-				return asiento.getPrecio().toString() ;
+				return asiento.getPrecio().toString();
 			}
 		});	
 			
