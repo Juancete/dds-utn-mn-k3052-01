@@ -1,5 +1,7 @@
 package ar.com.aterrizar.arena;
 
+import java.text.SimpleDateFormat;
+
 import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -8,21 +10,26 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Window;
+import org.uqbar.commons.model.Entity;
 
+import com.uqbar.commons.collections.Transformer;
+
+import ar.com.aterrizar.commons.model.ShowModel;
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
+import ar.com.aterrizar.modelo.state.Estado;
+import ar.com.aterrizar.modelo.state.EstadoComprado;
 
-public abstract class vistaWindow extends Window<Usuario> {
+public abstract class vistaWindow extends Window<ShowModel<? extends Entity>> {
 	
-	public vistaWindow(InicioWindow owner, Usuario modelUsuario) {
-		super(owner, modelUsuario);
+	public vistaWindow(InicioWindow owner, ShowModel<? extends Entity> modelo) {
+		super(owner, modelo);
 	}
 
 
 
 @Override
 public void createContents(Panel mainPanel) {
-	// TODO Auto-generated method stub
 	this.setTitle("Aterrizar.com");
 	mainPanel.setLayout(new VerticalLayout());
 	this.setSecondTitle(mainPanel);
@@ -32,29 +39,61 @@ public void setSecondTitle(Panel mainPanel){
 	InicioWindow owner = (InicioWindow)this.getOwner();
 	new Label(mainPanel).setText(this.setAction() + owner.getUsuario().getNombre());
 	
-	Table<Asiento> table = new Table<Asiento>(this, null);
+	Table<Estado> table = new Table<Estado>(mainPanel, Estado.class);
 	
-	Column<Asiento> salidaColumn = new Column<Asiento>(table);
+	table.bindItemsToProperty(ShowModel.RESULTS);
+	
+	Column<Estado> salidaColumn = new Column<Estado>(table);
 	salidaColumn.setTitle("Salida");
 	salidaColumn.setFixedSize(100);
-	salidaColumn.bindContentsToProperty(null);//Asiento.TIPO);
+	salidaColumn.bindContentsToTransformer(new Transformer<Estado, String>(){
+		@Override
+		public String transform(Estado estado){
+			return new SimpleDateFormat("dd/MM/yyyy").format(estado.getMiAsiento().getVuelo().getFechaOrigen().obtenerFecha());
+		}
+	});
 	
-	Column<Asiento> aerolineaColumn = new Column<Asiento>(table);
+	Column<Estado> aerolineaColumn = new Column<Estado>(table);
 	aerolineaColumn.setTitle("Aerolinea");
 	aerolineaColumn.setFixedSize(100);
-	
-	Column<Asiento> vueloColumn = new Column<Asiento>(table);
+	aerolineaColumn.bindContentsToTransformer(new Transformer<Estado, String>(){
+		@Override
+		public String transform(Estado estado){
+			return estado.getMiAsiento().getAerolinea().getNombre();
+		}
+	});	
+	Column<Estado> vueloColumn = new Column<Estado>(table);
 	vueloColumn.setTitle("Vuelo");
 	vueloColumn.setFixedSize(100);
-
-	Column<Asiento> asientoColumn = new Column<Asiento>(table);
+	vueloColumn.bindContentsToTransformer(new Transformer<Estado, String>(){
+		@Override
+		public String transform(Estado estado){
+			if (estado.getMiAsiento().getVuelo() == null){
+				return "Sin especificar";
+			}
+			
+			return estado.getMiAsiento().getVuelo().getCodigo();
+			
+		}
+	});
+	Column<Estado> asientoColumn = new Column<Estado>(table);
 	asientoColumn.setTitle("Asiento");
 	asientoColumn.setFixedSize(100);
-	
-	Column<Asiento> precioColumn = new Column<Asiento>(table);
+	asientoColumn.bindContentsToTransformer(new Transformer<Estado, String>(){
+		@Override
+		public String transform(Estado estado){
+			return estado.getMiAsiento().getCodigo();
+		}
+	});	
+	Column<Estado> precioColumn = new Column<Estado>(table);
 	precioColumn.setTitle("Precio");
 	precioColumn.setFixedSize(100);
-	
+	precioColumn.bindContentsToTransformer(new Transformer<Estado, String>(){
+		@Override
+		public String transform(Estado estado){
+			return estado.getMiAsiento().getPrecio().toString();
+		}
+	});	
 	table.setHeigth(300);
 	table.setWidth(600);
 	
