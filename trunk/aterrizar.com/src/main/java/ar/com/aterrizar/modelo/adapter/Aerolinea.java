@@ -29,6 +29,8 @@ public abstract class Aerolinea {
 		return Integer.toString(fecha);
 	}
 	
+	public abstract String getNombre();
+	
 	public abstract void reservarAsiento(Usuario unUsuario, Asiento unAsiento);	
 	
 }

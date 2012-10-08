@@ -17,7 +17,7 @@ public class EstadoDisponible extends Estado {
 		unAsiento.aerolinea.reservarAsiento(unUsuario, unAsiento);		
 		unAsiento.setEstado(new EstadoReservado());
 		unAsiento.setReservante(unUsuario);
-		((AsientoDaoCollectionImpl) this.aplication).agregarReservaOSobreReserva(unAsiento);
+		//((AsientoDaoCollectionImpl) this.aplication).agregarReservaOSobreReserva(unAsiento); TODO agregarReservaOSobreReserva en la home
 	}
 
 }

@@ -1,10 +1,16 @@
 package ar.com.aterrizar.entidades;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.uqbar.commons.model.Entity;
 import org.uqbar.commons.utils.TransactionalAndObservable;
+
+import com.aterrizar.fecha.modelo.Fecha;
 
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.Viaje;
@@ -18,28 +24,33 @@ import ar.com.aterrizar.modelo.state.EstadoReservado;
 public class Asiento extends Entity {
 
 		private static final long serialVersionUID = 2365011956533498906L;
+		
+		public static String ORIGEN = "origen";
+		public static String DESTINO = "destino";
+		public static String FECHA = "fecha";
 	
-	public String codigoDeVuelo;
+	private String codigoDeVuelo;
 	public Integer numeroDeAsiento;
 	public String codigo;
 	public BigDecimal precio;
-	public char ubicacion; //'V' ventanilla, 'C' centro, 'P' pasillo
-	public char tipo;	//clase: 'P' primera, 'E' ejecutivo, 'T' turista
-	public boolean disponible;
+	private char ubicacion; //'V' ventanilla, 'C' centro, 'P' pasillo
+	private char tipo;	//clase: 'P' primera, 'E' ejecutivo, 'T' turista
+	//private boolean disponible;
 	public Aerolinea aerolinea;
 	public Vuelo vuelo;
 	public Viaje viaje;	
 	protected Estado estado;
-	protected LinkedList<Usuario> usuariosQueReservan;
+	private List<Usuario> usuariosQueReservan;
 	
 	public Asiento(String unCodigo, BigDecimal unPrecio,char unaUbicacion, char unTipo, Estado estado, Aerolinea unaAerolinea){
 		this.codigo = unCodigo;
 		this.precio = unPrecio;
-		this.ubicacion = unaUbicacion;
-		this.tipo = unTipo;
+		this.setUbicacion(unaUbicacion);
+		this.setTipo(unTipo);
 		this.estado = estado;
 		this.aerolinea = unaAerolinea;
-		this.usuariosQueReservan = new LinkedList<Usuario>();
+		this.setUsuariosQueReservan(new ArrayList<Usuario>());
+		this.estado.setMiAsiento(this);
 	}
 	
 	public Asiento(){}
@@ -50,7 +61,7 @@ public class Asiento extends Entity {
 //		cumplen con alguna de las siguientes condiciones
 //		* son de primera clase y su precio total es menor a $8000
 //		* son de clase ejecutiva y su precio total es menor a $4000s
-		return (this.precio.compareTo(new BigDecimal(8000))<0 && this.tipo == 'P')||(this.precio.compareTo(new BigDecimal(4000))<0 && this.tipo == 'E');
+		return (this.precio.compareTo(new BigDecimal(8000))<0 && this.getTipo() == 'P')||(this.precio.compareTo(new BigDecimal(4000))<0 && this.getTipo() == 'E');
 	}
 	public void setCodigo(String unCodigo){
 		this.codigo = unCodigo;
@@ -64,6 +75,9 @@ public class Asiento extends Entity {
 		this.precio = unPrecio;
 	}
 	
+	public BigDecimal getPrecio(){
+		return this.precio;
+	}
 	public Aerolinea getAerolinea(){
 		return this.aerolinea; 
 	}
@@ -79,9 +93,9 @@ public class Asiento extends Entity {
 		return this.numeroDeAsiento;
 	}
 	
-	public void setDisponibilidad(boolean bol){
-		this.disponible = bol;
-	}
+//	public void setDisponibilidad(boolean bol){
+//		this.disponible = bol;
+//	}
 	
 	public boolean isDisponible(){
 		return (this.getEstado() instanceof EstadoDisponible);
@@ -90,8 +104,8 @@ public class Asiento extends Entity {
 	@Override
 	public int hashCode() {
 		int enteroDisponible= 0;
-		if(this.disponible) enteroDisponible = 1;
-		return (int)this.tipo + (int)this.ubicacion + this.aerolinea.hashCode() + this.precio.hashCode() + this.codigo.hashCode()+ enteroDisponible ;
+//		if(this.disponible) enteroDisponible = 1;
+		return (int)this.getTipo() + (int)this.getUbicacion() + this.aerolinea.hashCode() + this.precio.hashCode() + this.codigo.hashCode()+ enteroDisponible ;
 	}
 	
 	@Override
@@ -99,7 +113,7 @@ public class Asiento extends Entity {
 		if (!(obj instanceof Asiento))
 			return false;
 		Asiento otroAsiento = (Asiento) obj;
-		return codigo.equals(otroAsiento.getCodigo()) && precio.equals(otroAsiento.precio) && ubicacion == otroAsiento.ubicacion && tipo == otroAsiento.tipo && disponible == otroAsiento.disponible && aerolinea.equals(otroAsiento.getAerolinea());
+		return codigo.equals(otroAsiento.getCodigo()) && precio.equals(otroAsiento.precio) && getUbicacion() == otroAsiento.getUbicacion() && getTipo() == otroAsiento.getTipo() && aerolinea.equals(otroAsiento.getAerolinea());
 	}
 
 	public Vuelo getVuelo() {
@@ -116,11 +130,14 @@ public class Asiento extends Entity {
 	}
 	public Long getTiempoEnElAire(){
 		//TODO: está hardcodeado por que deberíamos implementar el manejo de fecha con horario también.
-		return (long) vuelo.fechaOrigen.cantidadDeDiasEntre(vuelo.fechaDestino);
+		return (long) vuelo.getFechaOrigen().cantidadDeDiasEntre(vuelo.fechaDestino);
 	}
 	
 	public void setViaje(Viaje viaje) {
 		this.viaje = viaje;
+	}
+	public Viaje getViaje(){
+		return this.viaje;
 	}
 
 	public boolean llegaAntesDe(Asiento asiento) {
@@ -146,27 +163,81 @@ public class Asiento extends Entity {
 	}
 
 	public Usuario getReservante() {
-		return (Usuario)((this.usuariosQueReservan.get(0)!=null)?this.usuariosQueReservan.get(0): new RuntimeException("no hay reservante"))	;
+		return (Usuario)((this.getUsuariosQueReservan().get(0)!=null)?this.getUsuariosQueReservan().get(0): new RuntimeException("no hay reservante"))	;
 	}
 
 	public void setReservante(Usuario reservante) {
-		this.usuariosQueReservan.addLast(reservante);
+		this.getUsuariosQueReservan().add(reservante); //antes addLast por que era LinkedList :O
 	}
 	
 	public void reservaVencidaAsignarProximaSobreReserva(){
-		this.usuariosQueReservan.remove(0);
+		this.getUsuariosQueReservan().remove(0);
 		if(tieneSobreReserva().booleanValue()){
-			this.estado.reservar(this, this.usuariosQueReservan.get(0));			
+			this.estado.reservar(this, this.getUsuariosQueReservan().get(0));			
 		}else {
 			this.setEstado(new EstadoDisponible());
 		}
 	}
 	
 	public Boolean tieneSobreReserva(){
-		return new Boolean(this.usuariosQueReservan.size()>1);
+		return new Boolean(this.getUsuariosQueReservan().size()>1);
 	}
 	
 	public void eliminarReservas(){
-		this.usuariosQueReservan= new LinkedList<Usuario>();
+		this.setUsuariosQueReservan(new LinkedList<Usuario>());
+	}
+
+	public List<Usuario> getUsuariosQueReservan() {
+		return usuariosQueReservan;
+	}
+
+	public void setUsuariosQueReservan(List<Usuario> usuariosQueReservan) {
+		this.usuariosQueReservan = usuariosQueReservan;
+	}
+
+	public String getCodigoDeVuelo() {
+		return codigoDeVuelo;
+	}
+
+	public void setCodigoDeVuelo(String codigoDeVuelo) {
+		this.codigoDeVuelo = codigoDeVuelo;
+	}
+
+	public char getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(char ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+	public char getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(char tipo) {
+		this.tipo = tipo;
+	}
+	
+	public String getOrigen(){
+		return this.getVuelo().getOrigen();
+	}
+	
+	public void setOrigen(String unOrigen){
+		this.getVuelo().setOrigen(unOrigen);
+	}
+	
+	public String getDestino(){
+		return this.getVuelo().getDestino();
+	}
+	public void setDestino(String unDestino){
+		this.getVuelo().setDestino(unDestino);
+	}
+	
+	public String getFecha(){
+		return new SimpleDateFormat("dd/MM/yyyy").format(this.getVuelo().getFechaOrigen().obtenerFecha());
+	}
+	public void setFecha(String unaFecha){
+		this.getVuelo().setFechaOrigen(new Fecha(new Date(unaFecha)));
 	}
 }

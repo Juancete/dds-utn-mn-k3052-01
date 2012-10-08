@@ -81,7 +81,7 @@ public class AterrizarApp {
 	}
 
 	public void agregarReservaOSobreReserva(Asiento unaReservaOSobreReserva){
-		this.dao.agregarReservaOSobreReserva(unaReservaOSobreReserva);		
+		//this.dao.agregarReservaOSobreReserva(unaReservaOSobreReserva);		TODO agregarReservaOSobreReserva a la home
 	}
 	
 	public List<Asiento> buscarVuelosPara(Usuario unUsuario, Busqueda unaBusqueda){
@@ -89,14 +89,14 @@ public class AterrizarApp {
 		for (Aerolinea unaAerolinea: aerolineas ){
 			asientosPedidos.addAll(unUsuario.buscarAsiento(unaBusqueda, unaAerolinea));
 		}
-		//acá ordeno
+		//aca ordeno
 		Collections.sort(asientosPedidos,unUsuario.getCriterio());
 		return asientosPedidos;
 		
 	}
 
 	public void quitarReserva(Asiento unAsiento) {
-		this.dao.quitarReserva(unAsiento);		
+		//this.dao.quitarReserva(unAsiento);	TODO quitarReserva a la home	
 	}
 	
 	public void reservaExpirada(Asiento unAsiento){

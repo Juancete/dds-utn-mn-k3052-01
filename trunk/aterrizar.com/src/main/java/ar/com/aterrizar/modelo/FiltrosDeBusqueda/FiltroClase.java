@@ -12,7 +12,7 @@ public class FiltroClase extends Filtro {
 	
 	@Override
 	protected boolean evaluarLaCondicion(Asiento unAsiento) {
-		return (unAsiento.tipo == this.clase);
+		return (unAsiento.getTipo() == this.clase);
 	}
 
 	public void setClase(char unaclase){

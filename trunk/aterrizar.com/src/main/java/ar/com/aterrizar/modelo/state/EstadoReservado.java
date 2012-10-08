@@ -16,7 +16,7 @@ public class EstadoReservado extends Estado {
 		unAsiento.aerolinea.comprarAsiento(unAsiento, unUsuario.getDni());
 		unAsiento.setEstado(new EstadoComprado());
 		unAsiento.eliminarReservas();
-		((AsientoDaoCollectionImpl) this.aplication).quitarReserva(unAsiento);
+		//((AsientoDaoCollectionImpl) this.aplication).quitarReserva(unAsiento); TODO sacar la reserva de la home
 	}
 
 	@Override
