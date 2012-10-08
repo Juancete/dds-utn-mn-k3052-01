@@ -27,7 +27,16 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 		List<AsientoDTO> datosAsientos = new ArrayList<AsientoDTO>();
 		String destino = this.evaluarStringYRetornarCorrecto(unaBusqueda.getDestino());
 		String origen = this.evaluarStringYRetornarCorrecto(unaBusqueda.getOrigen());
-		if(destino == null){
+		if(destino == null && origen == null){
+			List<AsientoDTO> datosAsientosTemp = new ArrayList<AsientoDTO>();
+			datosAsientosTemp = this.getAerolinea().getAsientos();
+			for(AsientoDTO asiento : datosAsientosTemp){
+				if(! this.getAerolinea().estaComprado(asiento.getCodigoDeVuelo(),asiento.getNumeroDeAsiento()) ){
+					datosAsientos.add(asiento);
+				}
+			}
+		}
+		else if(destino == null){
 			 datosAsientos = this.getAerolinea().asientosDisponiblesParaOrigen(origen, this.parsearFecha(unaBusqueda.getFecha()));
 			}else{
 				datosAsientos = this.getAerolinea().asientosDisponiblesParaOrigenYDestino(origen, destino,this.parsearFecha(unaBusqueda.getFecha()));

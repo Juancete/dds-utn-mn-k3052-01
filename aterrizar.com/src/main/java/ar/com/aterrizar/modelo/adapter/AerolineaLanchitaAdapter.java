@@ -44,16 +44,16 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 	
 	public List<Asiento> buscarAsientosConComision(Busqueda unaBusqueda) {
 
-		String[][] datosAsientos = this.getAerolinea().asientosDisponibles(unaBusqueda.getOrigen(),
+		String[][] datosAsientos = this.getAerolinea().asientos(unaBusqueda.getOrigen(),
 				unaBusqueda.getDestino(),this.fechaToAAAAMMDD(unaBusqueda.getFecha()) , null, null, null);
 		
 		List<Asiento> listaDeAsientos = new ArrayList<Asiento>();
 		listaDeAsientos = convertirArrayDeStringEnListaDeAsientos(datosAsientos);
 		
-		datosAsientos = this.getAerolinea().asientosDisponibles(unaBusqueda.getOrigen(),
-				unaBusqueda.getDestino(), null, null,Integer.toString(unaBusqueda.getFecha().obtenerAnio()).concat(Integer.toString(unaBusqueda.getFecha().obtenerMes())).concat(Integer.toString(unaBusqueda.getFecha().obtenerDia())), null);
-		
-		listaDeAsientos.addAll(convertirArrayDeStringEnListaDeAsientos(datosAsientos));
+//		datosAsientos = this.getAerolinea().asientos(unaBusqueda.getOrigen(),
+//				unaBusqueda.getDestino(), null, null,Integer.toString(unaBusqueda.getFecha().obtenerAnio()).concat(Integer.toString(unaBusqueda.getFecha().obtenerMes())).concat(Integer.toString(unaBusqueda.getFecha().obtenerDia())), null);
+//		
+//		listaDeAsientos.addAll(convertirArrayDeStringEnListaDeAsientos(datosAsientos));
 		
 		if (listaDeAsientos.isEmpty())
 			throw new NoHayAsientosDisponiblesParaUnaBusquedaException();	

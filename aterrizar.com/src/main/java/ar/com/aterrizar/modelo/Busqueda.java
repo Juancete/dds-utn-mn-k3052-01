@@ -40,6 +40,10 @@ public class Busqueda {
 		this.fecha = unaFecha;
 	}
 
+	public Busqueda(){
+		
+	}
+	
 	public Busqueda(String origen, String destino, Fecha unaFecha) {
 		super();
 		this.origen = origen;

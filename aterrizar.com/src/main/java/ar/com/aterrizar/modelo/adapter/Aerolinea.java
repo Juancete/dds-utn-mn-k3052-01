@@ -25,6 +25,7 @@ public abstract class Aerolinea {
 	}
 	
 	public String fechaToAAAAMMDD(Fecha unaFecha){
+		if (unaFecha == null){ return null;};
 		int fecha = unaFecha.obtenerAnio()*10000+(unaFecha.obtenerMes()+1)*100+unaFecha.obtenerDia();
 		return Integer.toString(fecha);
 	}
