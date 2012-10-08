@@ -11,6 +11,7 @@ import org.uqbar.commons.model.Entity;
 import org.uqbar.commons.utils.TransactionalAndObservable;
 
 import com.aterrizar.fecha.modelo.Fecha;
+import com.aterrizar.fecha.modelo.FormatoSimple;
 
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.Viaje;
@@ -103,9 +104,11 @@ public class Asiento extends Entity {
 	
 	@Override
 	public int hashCode() {
-		int enteroDisponible= 0;
-//		if(this.disponible) enteroDisponible = 1;
-		return (int)this.getTipo() + (int)this.getUbicacion() + this.aerolinea.hashCode() + this.precio.hashCode() + this.codigo.hashCode()+ enteroDisponible ;
+		int tipo =(this.getTipo() == '\u0000') ? 0 : (int)this.getTipo() ;
+		int ubicacion =(this.getUbicacion() == '\u0000') ? 0 : (int)this.getUbicacion() ;
+		return  tipo + ubicacion + ((this.aerolinea == null) ? 0: this.aerolinea.hashCode()) + 
+				((this.precio == null) ? 0: this.precio.hashCode()) + 
+				((this.codigo == null) ? 0: this.codigo.hashCode()) ;
 	}
 	
 	@Override
@@ -235,10 +238,11 @@ public class Asiento extends Entity {
 	}
 	
 	public String getFecha(){
+		if (this.getVuelo().getFechaOrigen() == null) {return "";}
 		return new SimpleDateFormat("dd/MM/yyyy").format(this.getVuelo().getFechaOrigen().obtenerFecha());
 	}
 	public void setFecha(String unaFecha){
-		this.getVuelo().setFechaOrigen(new Fecha(new Date(unaFecha)));
+		this.getVuelo().setFechaOrigen(new Fecha("20/12/2012", new FormatoSimple("dd/MM/yyyy")));
 	}
 
 }

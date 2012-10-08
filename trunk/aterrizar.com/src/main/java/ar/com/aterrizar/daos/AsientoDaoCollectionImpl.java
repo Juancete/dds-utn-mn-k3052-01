@@ -29,7 +29,7 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 	@Override
 	public Asiento createExample() {
 		Asiento unAsiento = new Asiento();
-		unAsiento.setVuelo(new Vuelo(null, null, null, null, null));
+		unAsiento.setVuelo(new Vuelo(null, null, null, null,null));//new Fecha(), new Fecha()));
 		return unAsiento;
 	}
 
@@ -59,7 +59,7 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 			@Override
 			public boolean evaluate(Object arg){
 				Asiento unAsiento = (Asiento) arg;
-				return (unAsiento.getVuelo().getFechaOrigen().cantidadDeDiasEntre(fecha)==0);
+				return (unAsiento.getVuelo().getFechaOrigen().obtenerFecha().compareTo(fecha.obtenerFecha())==0);
 			}
 		};
 	}
@@ -69,7 +69,7 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 			@Override
 			public boolean evaluate(Object arg){
 				Asiento unAsiento = (Asiento) arg;
-				return (unAsiento.getVuelo().getDestino().contains(destino));
+				return (unAsiento.getVuelo().getDestino().toLowerCase().contains(destino.toLowerCase()));
 			}
 		};
 	}
@@ -79,7 +79,7 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 			@Override
 			public boolean evaluate(Object arg){
 				Asiento unAsiento = (Asiento) arg;
-				return (unAsiento.getVuelo().getOrigen().contains(origen));
+				return (unAsiento.getVuelo().getOrigen().toLowerCase().contains(origen.toLowerCase()));
 			}
 		};
 	}
