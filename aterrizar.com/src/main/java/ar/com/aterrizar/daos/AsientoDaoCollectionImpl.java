@@ -69,7 +69,7 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 			@Override
 			public boolean evaluate(Object arg){
 				Asiento unAsiento = (Asiento) arg;
-				return (unAsiento.getVuelo().getDestino().equalsIgnoreCase(destino));
+				return (unAsiento.getVuelo().getDestino().contains(destino));
 			}
 		};
 	}
@@ -79,7 +79,7 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 			@Override
 			public boolean evaluate(Object arg){
 				Asiento unAsiento = (Asiento) arg;
-				return (unAsiento.getVuelo().getOrigen().equalsIgnoreCase(origen));
+				return (unAsiento.getVuelo().getOrigen().contains(origen));
 			}
 		};
 	}
@@ -87,14 +87,16 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 		return usuario;
 	}
 	public void setUsuario(Usuario unUsuario) {
-		this.usuario = unUsuario;
-		List<Asiento> listaDeAsientos = new ArrayList<Asiento>();
-		Busqueda unaBusqueda = new Busqueda();
-		unaBusqueda.setEscalas(0);
-		listaDeAsientos = AterrizarApp.getInstance().buscarVuelosPara(this.usuario, unaBusqueda);
-		for (Asiento unAsiento : listaDeAsientos){
-			this.create(unAsiento);
-		}		
+		if (this.getUsuario() == null){ 
+			this.usuario = unUsuario;
+			List<Asiento> listaDeAsientos = new ArrayList<Asiento>();
+			Busqueda unaBusqueda = new Busqueda();
+			unaBusqueda.setEscalas(0);
+			listaDeAsientos = AterrizarApp.getInstance().buscarVuelosPara(this.usuario, unaBusqueda);
+			for (Asiento unAsiento : listaDeAsientos){
+				this.create(unAsiento);
+			}		
+		}
 	}
 
 	}
