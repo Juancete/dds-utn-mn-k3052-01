@@ -14,32 +14,46 @@ import org.uqbar.commons.model.Entity;
 
 import com.uqbar.commons.collections.Transformer;
 
+import com.aterrizar.fecha.modelo.Fecha;
 import ar.com.aterrizar.commons.model.ShowModel;
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.state.Estado;
 import ar.com.aterrizar.modelo.state.EstadoComprado;
 
-public abstract class vistaWindow extends Window<ShowModel<? extends Entity>> {
+public class vistaWindow extends Window<ShowModel<? extends Entity>> {
 	
-	public vistaWindow(InicioWindow owner, ShowModel<? extends Entity> modelo) {
+	private String action;
+	
+	public vistaWindow(String unaAccion,InicioWindow owner, ShowModel<? extends Entity> modelo) {
 		super(owner, modelo);
+		action = unaAccion;
 	}
 
-
+public String getAction(){
+	return action;
+}
 
 @Override
 public void createContents(Panel mainPanel) {
 	this.setTitle("Aterrizar.com");
 	mainPanel.setLayout(new VerticalLayout());
 	this.setSecondTitle(mainPanel);
+	this.createGrid(mainPanel);
+	this.addActions(mainPanel);
 }
+
 
 public void setSecondTitle(Panel mainPanel){
 	InicioWindow owner = (InicioWindow)this.getOwner();
-	new Label(mainPanel).setText(this.setAction() + owner.getUsuario().getNombre());
+	new Label(mainPanel).setText(this.getAction() + owner.getUsuario().getNombre());
 	
-	Table<Estado> table = new Table<Estado>(mainPanel, Estado.class);
+	
+
+}
+
+public void createGrid(Panel mainPanel){
+Table<Estado> table = new Table<Estado>(mainPanel, Estado.class);
 	
 	table.bindItemsToProperty(ShowModel.RESULTS);
 	
@@ -96,14 +110,14 @@ public void setSecondTitle(Panel mainPanel){
 	});	
 	table.setHeigth(300);
 	table.setWidth(600);
+}
+
+private void addActions(Panel mainPanel) {
 	
 	Button cerrar = new Button(mainPanel).setCaption("Cerrar");
 	cerrar.onClick(new MessageSend(this, "close"));
+	
 }
-
-public abstract String setAction();
-
-
 }
 
 
