@@ -20,7 +20,6 @@ import com.oceanic.AsientoDTO;
 
 public class AerolineaOceanicAdapter extends Aerolinea {
 	protected AerolineaOceanic aerolinea;
-
 	
 	@Override
 	public List<Asiento> buscarAsientosConComision(Busqueda unaBusqueda) {
@@ -129,5 +128,11 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 			 return new EstadoReservado();
 		 }		 
 		 return new EstadoDisponible();			
+	}
+
+
+	@Override
+	public String getNombre() {
+		return "Oceanic";
 	}	
 }

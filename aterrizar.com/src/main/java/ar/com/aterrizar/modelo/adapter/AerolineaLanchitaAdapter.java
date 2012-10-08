@@ -104,4 +104,9 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 	 return new EstadoDisponible();
 		
 	}
+
+	@Override
+	public String getNombre() {
+		return "Lanchita";
+	}
 }

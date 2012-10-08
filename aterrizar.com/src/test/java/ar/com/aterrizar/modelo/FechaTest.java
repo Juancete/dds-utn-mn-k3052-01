@@ -1,6 +1,6 @@
 /**UTN FRBA - Tp #1 Manejo de Fechas
  * 
- * Diseño de sistemas - Curso k3052
+ * Diseno de sistemas - Curso k3052
  * Profesores: fdodino, fscarpa 
  */
 package ar.com.aterrizar.modelo;

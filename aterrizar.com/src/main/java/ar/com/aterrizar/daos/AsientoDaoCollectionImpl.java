@@ -1,122 +1,92 @@
 package ar.com.aterrizar.daos;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.apache.commons.collections15.Predicate;
+import org.apache.commons.collections15.functors.AndPredicate;
 import org.uqbar.commons.model.CollectionBasedHome;
 
+import com.aterrizar.fecha.modelo.Fecha;
+
 import ar.com.aterrizar.entidades.Asiento;
+import ar.com.aterrizar.modelo.Vuelo;
 
 
 public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 
+	@Override
+	public Class<Asiento> getEntityType() {
+		return Asiento.class;
+	}
 
-	protected List<Asiento> reservas = new ArrayList<Asiento>();
-	protected List<Asiento> compras = new ArrayList<Asiento>();
-	protected List<Asiento> sobreReservas = new ArrayList<Asiento>();
-		// ********************************************************
-		// ** Constructor
-		// ********************************************************
+	@Override
+	public Asiento createExample() {
+		Asiento unAsiento = new Asiento();
+		unAsiento.setVuelo(new Vuelo("", "", "", new Fecha(), new Fecha()));
+		return unAsiento;
+	}
 
-		public AsientoDaoCollectionImpl() {
-//			this.create(new Socio("Fernando Dodino", "Nazca 333", "fer", "fer"));
-//			this.create(new Socio("Nicolas Passerini", "Urquiza 444", "nico", "nico"));
-//			this.create(new Socio("Debora Fortini", "Medrano 555", "deby", "deby"));
-//			Socio sergio = new Socio("Sergio Magnacco", "urquiza 553", "ser", "ser");
-//			sergio.setEstado(Estado.INACTIVO);
-//			this.create(sergio);
-		}
-
-		@Override
-		public Class<Asiento> getEntityType() {
-			return Asiento.class;
-		}
-
-		@Override
-		public Asiento createExample() {
-			return new Asiento();
-		}
-
-		// ********************************************************
-		// ** Criterios de búsqueda específicos
-		// ********************************************************
-
-		@Override
-		public Predicate<Asiento> getCriterio(final Asiento asientoBuscado) {
-			Predicate<Asiento> resultPredicate = this.getCriterioTodas();
-			
-//			String nombre = socioBuscado.getNombre();
-//			String direccion = socioBuscado.getDireccion();
-//			Integer id = socioBuscado.getId();
-//			Estado estado = socioBuscado.getEstado();
-			
-			/*
-			if (id != null) {
-				resultPredicate = new AndPredicate<Socio>(resultPredicate, this.getCriterioPorId(id));
-			}
-			
-			if (nombre != null) {
-				resultPredicate = new AndPredicate<Socio>(resultPredicate, this.getCriterioSocioPorNombre(socioBuscado));
-			}
-
-			if (direccion != null) {
-				resultPredicate = new AndPredicate<Socio>(resultPredicate, this.getCriterioSocioPorDireccion(socioBuscado));
-			}
-			
-			if (estado != null) {
-				resultPredicate = new AndPredicate<Socio>(resultPredicate, this.getCriterioSocioPorEstado(socioBuscado));
-			}
-			*/
-
-			return resultPredicate;
-		}
-
-		public void agregarReservaOSobreReserva(Asiento unaReservaOSobreReserva) {
-			if(!this.reservas.contains(unaReservaOSobreReserva)){			
-				this.reservas.add(unaReservaOSobreReserva);
-			}
-			
-		}
-
-		public void quitarReserva(Asiento unAsiento) {
-			this.reservas.remove(unAsiento);
-			unAsiento = null;
-			
-		}
-
+	@Override
+	protected Predicate getCriterio(Asiento example) {
+		Predicate<Asiento> resultPredicate = this.getCriterioTodas();
 		
-		/*
-		protected Predicate<Socio> getCriterioSocioPorDireccion(final Socio socioBuscado) {
-			return new Predicate() {
-				@Override
-				public boolean evaluate(Object arg) {
-					Socio unSocio = (Socio) arg;
-					return unSocio.getDireccion().toLowerCase().contains(socioBuscado.getDireccion().toLowerCase());
-				}
-			};
+		String origen = example.getVuelo().getOrigen();
+		String destino = example.getVuelo().getDestino();
+		Fecha fecha = example.getVuelo().getFechaOrigen();
+		
+		if (origen != null){
+			resultPredicate = new AndPredicate<Asiento>(resultPredicate, this.getCriterioByOrigen(origen));
 		}
+		if (destino != null){
+			resultPredicate = new AndPredicate<Asiento>(resultPredicate, this.getCriterioByDestino(destino));
+		}
+		if (fecha != null){
+			resultPredicate = new AndPredicate<Asiento>(resultPredicate, this.getCriterioByFecha(fecha));
+		}		
 
-		protected Predicate<Socio> getCriterioSocioPorNombre(final Socio socioBuscado) {
-			return new Predicate() {
-				@Override
-				public boolean evaluate(Object arg) {
-					Socio unSocio = (Socio) arg;
-					return unSocio.getNombre().toLowerCase().contains(socioBuscado.getNombre().toLowerCase());
-				}
-			};
-		}
+		return resultPredicate;
+	}
+
+	private Predicate<? super Asiento> getCriterioByFecha(final Fecha fecha) {
+		return new Predicate(){
+			@Override
+			public boolean evaluate(Object arg){
+				Asiento unAsiento = (Asiento) arg;
+				return (unAsiento.getVuelo().getFechaOrigen().cantidadDeDiasEntre(fecha)==0);
+			}
+		};
+	}
+
+	private Predicate<? super Asiento> getCriterioByDestino(final String destino) {
+		return new Predicate(){
+			@Override
+			public boolean evaluate(Object arg){
+				Asiento unAsiento = (Asiento) arg;
+				return (unAsiento.getVuelo().getDestino().equalsIgnoreCase(destino));
+			}
+		};
+	}
+
+	private Predicate<Asiento> getCriterioByOrigen(final String origen) {
+		return new Predicate(){
+			@Override
+			public boolean evaluate(Object arg){
+				Asiento unAsiento = (Asiento) arg;
+				return (unAsiento.getVuelo().getOrigen().equalsIgnoreCase(origen));
+			}
+		};
+	}
+
+	@Override
+	public List<Asiento> searchByExample(Asiento example){
+		this.actualizarLista();
+		return super.searchByExample(example);
+	}
+
+	private void actualizarLista() {
+		// TODO Auto-generated method stub
 		
-		private Predicate<Socio> getCriterioSocioPorEstado(final Socio socioBuscado) {
-			return new Predicate() {
-				@Override
-				public boolean evaluate(Object arg) {
-					Socio unSocio = (Socio) arg;
-					return unSocio.getEstado() == null || unSocio.getEstado().equals(socioBuscado.getEstado());
-				}
-			};
-		}
-		*/
-		
+	}
 	}
 

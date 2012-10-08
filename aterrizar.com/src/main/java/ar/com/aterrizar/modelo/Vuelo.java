@@ -9,9 +9,9 @@ import com.aterrizar.fecha.modelo.Fecha;
 
 public class Vuelo {
 	
-	protected String origen;
-	protected String destino;
-	public Fecha fechaOrigen;
+	private String origen;
+	private String destino;
+	private Fecha fechaOrigen;
 	public Fecha fechaDestino;
 	protected List<Asiento> asientos = new ArrayList<Asiento>();
 	private String codigo;
@@ -19,9 +19,9 @@ public class Vuelo {
 
 	public Vuelo(String codigoDeVuelo, String unOrigen, String unDestino, Fecha fechaOrigen, Fecha fechaDestino){
 		this.setCodigo(codigoDeVuelo);
-		this.origen = unOrigen;
-		this.destino = unDestino;
-		this.fechaOrigen = fechaOrigen;
+		this.setOrigen(unOrigen);
+		this.setDestino(unDestino);
+		this.setFechaOrigen(fechaOrigen);
 		this.fechaDestino = fechaDestino;
 		this.popularidad = 0;
 	}
@@ -66,6 +66,22 @@ public class Vuelo {
 
 	public Fecha getFechaDestino() {
 		return fechaDestino;
+	}
+
+	public String getOrigen() {
+		return origen;
+	}
+
+	public void setOrigen(String origen) {
+		this.origen = origen;
+	}
+
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
+
+	public void setFechaOrigen(Fecha fechaOrigen) {
+		this.fechaOrigen = fechaOrigen;
 	}
 
 }

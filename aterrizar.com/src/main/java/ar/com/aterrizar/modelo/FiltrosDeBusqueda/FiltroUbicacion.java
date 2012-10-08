@@ -11,7 +11,7 @@ public class FiltroUbicacion extends Filtro {
 	}
 	@Override
 	protected boolean evaluarLaCondicion(Asiento unAsiento) {
-		return unAsiento.ubicacion == this.ubicacion;
+		return unAsiento.getUbicacion() == this.ubicacion;
 	}
 
 	public void setUbicacion(char unaUbicacion){
