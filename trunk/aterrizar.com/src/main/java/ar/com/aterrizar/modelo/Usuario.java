@@ -74,7 +74,8 @@ public class Usuario {
 			constructor.construirEscalaFinal();
 			unaListaDeAsientos.addAll(constructor.construir());
 		}
-		return unaBusqueda.filtrarAsientos(nivelDeUsuario.obtenerAsientosListosParaComprar(unaListaDeAsientos));
+		//return unaBusqueda.filtrarAsientos(nivelDeUsuario.obtenerAsientosListosParaComprar(unaListaDeAsientos));
+		return unaListaDeAsientos;
 	}
 	
 	void comprarUnAsiento(Asiento unAsiento) {
