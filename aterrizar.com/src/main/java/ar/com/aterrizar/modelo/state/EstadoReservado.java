@@ -15,6 +15,7 @@ public class EstadoReservado extends Estado {
 		}
 		unAsiento.aerolinea.comprarAsiento(unAsiento, unUsuario.getDni());
 		unAsiento.setEstado(new EstadoComprado());
+		unAsiento.getEstado().setMiAsiento(unAsiento);
 		unAsiento.eliminarReservas();
 		//((AsientoDaoCollectionImpl) this.aplication).quitarReserva(unAsiento); TODO sacar la reserva de la home
 	}
@@ -25,6 +26,7 @@ public class EstadoReservado extends Estado {
 			if(unAsiento.estadoReservado()) throw new NoSeEncuentraDisponibleElAsientoException(); 
 			unAsiento.aerolinea.reservarAsiento(unUsuario, unAsiento);		
 			unAsiento.setEstado(new EstadoReservado());
+			unAsiento.getEstado().setMiAsiento(unAsiento);
 		}
 		catch(NoSeEncuentraDisponibleElAsientoException e){
 			//simplemente esta para que no salga del metodo ya que es una excepcion valida.

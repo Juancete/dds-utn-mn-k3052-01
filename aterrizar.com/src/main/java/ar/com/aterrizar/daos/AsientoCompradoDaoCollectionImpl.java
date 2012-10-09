@@ -17,12 +17,12 @@ import ar.com.aterrizar.modelo.state.EstadoComprado;
 public class AsientoCompradoDaoCollectionImpl extends
 		CollectionBasedHome<EstadoComprado> {
 
-	public AsientoCompradoDaoCollectionImpl(){
-		EstadoComprado unEstado = new EstadoComprado();
-		Asiento unAsiento = new Asiento("codigo", new BigDecimal(10),'V', 'P', unEstado, new AerolineaLanchitaAdapter());
-		unAsiento.setVuelo(new Vuelo("V815", "BAIRES", "Congo", new Fecha(), new Fecha()));
-		this.create(unEstado);
-	}
+//	public AsientoCompradoDaoCollectionImpl(){
+//		EstadoComprado unEstado = new EstadoComprado();
+//		Asiento unAsiento = new Asiento("codigo", new BigDecimal(10),'V', 'P', unEstado, new AerolineaLanchitaAdapter());
+//		unAsiento.setVuelo(new Vuelo("V815", "BAIRES", "Congo", new Fecha(), new Fecha()));
+//		this.create(unEstado);
+//	}
 	@Override
 	public Class<EstadoComprado> getEntityType() {
 		return EstadoComprado.class;

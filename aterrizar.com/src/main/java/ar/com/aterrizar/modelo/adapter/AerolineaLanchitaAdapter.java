@@ -81,7 +81,7 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 			getAerolinea().comprar(unAsiento.getCodigo());
 		}
 		catch (EstadoErroneoException e){
-			throw new NoSeEncuentraDisponibleElAsientoException();
+			throw new NoSeEncuentraDisponibleElAsientoException("La aerolinea no permite comprar este asiento. Se encuentra reservado o comprado.");
 		}		
 	}
 
