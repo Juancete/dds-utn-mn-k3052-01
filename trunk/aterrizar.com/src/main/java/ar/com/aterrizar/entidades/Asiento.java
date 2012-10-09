@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.uqbar.commons.model.Entity;
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.TransactionalAndObservable;
 
 import com.aterrizar.fecha.modelo.Fecha;
@@ -241,8 +242,16 @@ public class Asiento extends Entity {
 		if (this.getVuelo().getFechaOrigen() == null) {return "";}
 		return new SimpleDateFormat("dd/MM/yyyy").format(this.getVuelo().getFechaOrigen().obtenerFecha());
 	}
+	
 	public void setFecha(String unaFecha){
-		this.getVuelo().setFechaOrigen(new Fecha("20/12/2012", new FormatoSimple("dd/MM/yyyy")));
+		try{
+			this.getVuelo().setFechaOrigen(new Fecha(unaFecha, new FormatoSimple("dd/MM/yyyy")));
+		}
+		catch (Exception e)
+		{
+			throw new UserException("La fecha no tiene el formato dd/MM/yyyy");
+		}
+		
 	}
 
 }
