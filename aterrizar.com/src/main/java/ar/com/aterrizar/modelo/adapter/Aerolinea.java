@@ -15,6 +15,10 @@ public abstract class Aerolinea {
 	public abstract List<Asiento> buscarAsientosConComision(Busqueda unaBusqueda) ;
 	public abstract void comprarAsiento(Asiento unAsiento,String dni) throws NoSeEncuentraDisponibleElAsientoException;
 	
+	public Aerolinea(){
+		this.setPorcentajePorCompania(1);
+	}
+	
 	public void setPorcentajePorCompania(double unPorcentaje) {
 		this.porcentajePorCompania = unPorcentaje;
 		
