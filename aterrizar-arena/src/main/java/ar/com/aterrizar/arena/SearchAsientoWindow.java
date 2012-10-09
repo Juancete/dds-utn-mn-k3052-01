@@ -49,7 +49,7 @@ public abstract class SearchAsientoWindow<E, T extends Search<E>> extends Simple
 		buscar.setCaption("Buscar");
 		buscar.onClick(new MessageSend(this.getModelObject(), Search.SEARCH));
 		buscar.setAsDefault();
-
+		
 		// TODO Ver si agregamos la acción de limpiar:
 		// new Button(actions).setCaption("Limpiar").onClick(new MessageSend(this.getModel(), "clear"));
 	}
@@ -64,12 +64,17 @@ public abstract class SearchAsientoWindow<E, T extends Search<E>> extends Simple
 		comprar.setCaption("Comprar");
 		comprar.bindEnabled(elementSelected);
 		comprar.onClick(new MessageSend(this.getModelObject(), "comprar"));
-
+	
+		
+		//TODO agregar manejo de errores !
+		
 		Button reservar = new Button(actionsPanel);
 		reservar.setCaption("Reservar");
 		reservar.bindEnabled(new NotNullObservable(Search.SELECTED));
 		reservar.onClick(new MessageSend(this.getModelObject(), "reservar"));
 	}
+	
+	
 
 }
 

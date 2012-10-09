@@ -31,7 +31,7 @@ public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsie
 	private static final long serialVersionUID = 1L;
 
 	public BuscarAsientoWindow(InicioWindow owner) {
-		super(owner, new SearchAsientoByExample<Asiento>(AterrizarCom.getInstance().getHome(Asiento.class), owner.getUsuario()));
+		super(owner, new SearchAsientoByExample<Asiento>(AterrizarCom.getInstance().getHome(Asiento.class), owner.getUsuario(),owner));
 		((AsientoDaoCollectionImpl) AterrizarCom.getInstance().getHome(Asiento.class)).setUsuario(owner.getUsuario());
 	}
 
