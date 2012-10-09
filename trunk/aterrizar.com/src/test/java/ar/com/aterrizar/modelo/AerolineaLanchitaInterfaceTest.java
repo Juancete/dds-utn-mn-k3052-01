@@ -34,11 +34,11 @@ public class AerolineaLanchitaInterfaceTest {
 	public void setUp(){
 		aerolineaLancita = AerolineaLanchita.getInstance();
 		
-		retornoImpostor = new String[][] {{ "01202022220202-3", "159.90", "P", "V", "D", "" },{ "01202022220123-3", "205.10", "E", "P", "D", "" }};
+		retornoImpostor = new String[][] {{ "01202022220202-3", "159.90", "P", "V", "D", "", "14:00","02:25","EZE","USA","20/12/2012","21/12/2012"  },{ "01202022220123-3", "205.10", "E", "P", "D", "", "14:00","02:25","EZE","USA","20/12/2012","21/12/2012" }};
 		
 		aerolineaLancitaMock = mock(AerolineaLanchita.class);
 		
-		when(aerolineaLancitaMock.asientosDisponibles("BUE", "LA", "20121010", null, null, null)).thenAnswer(new Answer<String[][]>() {
+		when(aerolineaLancitaMock.asientos("BUE", "LA", "20121010", null, null, null)).thenAnswer(new Answer<String[][]>() {
 																							public String[][] answer(InvocationOnMock invocation) throws Throwable{
 																								return (String[][]) retornoImpostor;
 																							}
@@ -58,18 +58,6 @@ public class AerolineaLanchitaInterfaceTest {
 		Assert.assertTrue(aerolineaLanchitaAdapter.buscarAsientosConComision(busquedaBALA20121010).containsAll(asientosMock));
 	}
 	
-	@Test
-	public void buscoAsientosDisponiblesEnLanchita(){
-		List<Asiento> listaDeAsientos = aerolineaLanchitaAdapter.buscarAsientosConComision(busquedaBALA20121010);
-		for(Asiento unAsiento : listaDeAsientos){
-			//System.out.println(unAsiento);
-//			for(String asiento: unAsiento){
-//				System.out.println(asiento);
-//			}
-		}
-		
-		//System.out.println(aerolineaLanchita.buscarAsientosConComision(busquedaBALA20121010);
-	}
 	
 	@Test
 	public void obtenerAsientoApartirDeUnaBusquedaConBue20121010La(){
