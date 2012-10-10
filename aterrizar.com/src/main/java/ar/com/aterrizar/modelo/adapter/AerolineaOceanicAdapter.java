@@ -116,11 +116,11 @@ public class AerolineaOceanicAdapter extends Aerolinea {
 	
 	@Override
 	public void reservarAsiento(Usuario unUsuario, Asiento unAsiento) {
-		if(!this.getAerolinea().reservar(unUsuario.getDni(),unAsiento.getVuelo().getCodigo(), unAsiento.numeroDeAsiento)){
-			throw new NoSeEncuentraDisponibleElAsientoException("El asiento no pudo ser reservado");		
-		}
-		unAsiento.setEstado(new EstadoReservado());
-		//unAsiento.setDisponibilidad(false);
+//		if(!this.getAerolinea().reservar(unUsuario.getDni(),unAsiento.getVuelo().getCodigo(), unAsiento.numeroDeAsiento)){
+//			throw new NoSeEncuentraDisponibleElAsientoException("El asiento no pudo ser reservado");		
+//		}
+//		unAsiento.setEstado(new EstadoReservado());
+//		//unAsiento.setDisponibilidad(false);
 	}
 
 	

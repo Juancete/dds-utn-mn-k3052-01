@@ -1,6 +1,7 @@
 package ar.com.aterrizar.modelo.state;
 
-import ar.com.aterrizar.daos.AsientoDaoCollectionImpl;
+import ar.com.aterrizar.daos.AsientoReservadoDaoCollectionImpl;
+import ar.com.aterrizar.daos.AterrizarCom;
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.adapter.NoSeEncuentraDisponibleElAsientoException;
@@ -14,9 +15,11 @@ public class EstadoReservado extends Estado {
 			throw new NoSeEncuentraDisponibleElAsientoException("El asiento esta reservado a otro Usuario");
 		}
 		unAsiento.aerolinea.comprarAsiento(unAsiento, unUsuario.getDni());
+		((AsientoReservadoDaoCollectionImpl) AterrizarCom.getInstance().getHome(EstadoReservado.class)).delete((EstadoReservado) unAsiento.getEstado());
 		unAsiento.setEstado(new EstadoComprado());
 		unAsiento.getEstado().setMiAsiento(unAsiento);
 		unAsiento.eliminarReservas();
+		
 		//((AsientoDaoCollectionImpl) this.aplication).quitarReserva(unAsiento); TODO sacar la reserva de la home
 	}
 
@@ -30,11 +33,18 @@ public class EstadoReservado extends Estado {
 		}
 		catch(NoSeEncuentraDisponibleElAsientoException e){
 			//simplemente esta para que no salga del metodo ya que es una excepcion valida.
-		}finally
-		{
-			unAsiento.setReservante(unUsuario);
+			throw new AsientoYaReservadoException();
 		}
+//		finally
+//		{
+//			unAsiento.setReservante(unUsuario);
+//		}
 		}
+	
+	public void sobreReservar(Asiento unAsiento, Usuario unUsuario){
+		unAsiento.aerolinea.reservarAsiento(unUsuario, unAsiento);
+		unAsiento.setReservante(unUsuario);
+	}
 	}
 
 

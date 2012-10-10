@@ -10,6 +10,9 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.Search;
 
+import ar.com.aterrizar.entidades.Asiento;
+import ar.com.aterrizar.modelo.state.AsientoYaReservadoException;
+
 public abstract class SearchAsientoWindow<E, T extends Search<E>> extends SimpleWindow<T> {
 	private static final long serialVersionUID = 1L;
 
@@ -72,6 +75,7 @@ public abstract class SearchAsientoWindow<E, T extends Search<E>> extends Simple
 		reservar.setCaption("Reservar");
 		reservar.bindEnabled(new NotNullObservable(Search.SELECTED));
 		reservar.onClick(new MessageSend(this.getModelObject(), "reservar"));
+
 	}
 	
 	
