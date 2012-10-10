@@ -95,12 +95,12 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 
 	@Override
 	public void reservarAsiento(Usuario unUsuario, Asiento unAsiento) {
-		try{
-			aerolinea.reservar(unAsiento.codigo, unUsuario.getDni());
-		}catch (EstadoErroneoException e){//Exception que lanza lanchita
-			//Asiento de AerolineaLanchita ya reservado
-			throw new NoSeEncuentraDisponibleElAsientoException("Asiento no disponible para reservar en Lanchita");
-		}
+//		try{
+//			aerolinea.reservar(unAsiento.codigo, unUsuario.getDni());
+//		}catch (EstadoErroneoException e){//Exception que lanza lanchita
+//			//Asiento de AerolineaLanchita ya reservado
+//			throw new NoSeEncuentraDisponibleElAsientoException("Asiento no disponible para reservar en Lanchita");
+//		}
 		
 	}
 	
