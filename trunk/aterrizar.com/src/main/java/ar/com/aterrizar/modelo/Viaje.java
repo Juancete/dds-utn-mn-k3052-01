@@ -20,6 +20,7 @@ public class Viaje {
 	
 	public long getTiempo(Asiento asiento) {
 		try{
+			@SuppressWarnings("unused")
 			Asiento siguienteAsiento = asientos.get(asientos.indexOf(asiento) +1);
 			//TODO: comparar la fecha y hora de asiento con siguienteAsiento
 		}
