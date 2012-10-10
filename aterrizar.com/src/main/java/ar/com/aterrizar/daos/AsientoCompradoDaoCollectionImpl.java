@@ -1,17 +1,8 @@
 package ar.com.aterrizar.daos;
 
-import java.math.BigDecimal;
-
 import org.apache.commons.collections15.Predicate;
 import org.uqbar.commons.model.CollectionBasedHome;
 
-import com.aterrizar.fecha.modelo.Fecha;
-
-import ar.com.aterrizar.entidades.Asiento;
-import ar.com.aterrizar.modelo.Vuelo;
-import ar.com.aterrizar.modelo.adapter.Aerolinea;
-import ar.com.aterrizar.modelo.adapter.AerolineaLanchitaAdapter;
-import ar.com.aterrizar.modelo.state.Estado;
 import ar.com.aterrizar.modelo.state.EstadoComprado;
 
 public class AsientoCompradoDaoCollectionImpl extends
@@ -33,6 +24,7 @@ public class AsientoCompradoDaoCollectionImpl extends
 		return new EstadoComprado();
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	protected Predicate getCriterio(EstadoComprado example) {
 		// TODO Auto-generated method stub

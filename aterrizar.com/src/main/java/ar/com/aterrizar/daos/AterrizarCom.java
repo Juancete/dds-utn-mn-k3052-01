@@ -1,12 +1,7 @@
 package ar.com.aterrizar.daos;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.SortedSet;
-import java.util.TreeSet;
-
 import org.uqbar.commons.model.Application;
 import org.uqbar.commons.model.Entity;
 import org.uqbar.commons.model.Home;
