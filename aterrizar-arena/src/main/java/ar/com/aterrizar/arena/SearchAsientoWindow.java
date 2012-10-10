@@ -10,10 +10,8 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.Search;
 
-import ar.com.aterrizar.entidades.Asiento;
-import ar.com.aterrizar.modelo.state.AsientoYaReservadoException;
-
-public abstract class SearchAsientoWindow<E, T extends Search<E>> extends SimpleWindow<T> {
+public abstract class SearchAsientoWindow<E, T extends Search<E>> extends
+		SimpleWindow<T> {
 	private static final long serialVersionUID = 1L;
 
 	public SearchAsientoWindow(WindowOwner owner, T model) {
@@ -32,7 +30,8 @@ public abstract class SearchAsientoWindow<E, T extends Search<E>> extends Simple
 	// ***********************************************************
 
 	protected void createResultsGrid(Panel mainPanel) {
-		Table<E> table = new Table<E>(mainPanel, this.getModelObject().getEntityType());
+		Table<E> table = new Table<E>(mainPanel, this.getModelObject()
+				.getEntityType());
 
 		table.bindItemsToProperty(Search.RESULTS);
 		table.bindSelection(Search.SELECTED);
@@ -52,33 +51,25 @@ public abstract class SearchAsientoWindow<E, T extends Search<E>> extends Simple
 		buscar.setCaption("Buscar");
 		buscar.onClick(new MessageSend(this.getModelObject(), Search.SEARCH));
 		buscar.setAsDefault();
-		
-		// TODO Ver si agregamos la acción de limpiar:
-		// new Button(actions).setCaption("Limpiar").onClick(new MessageSend(this.getModel(), "clear"));
 	}
 
 	protected void createGridActions(Panel mainPanel) {
 		Panel actionsPanel = new Panel(mainPanel);
 		actionsPanel.setLayout(new HorizontalLayout());
 
-		NotNullObservable elementSelected = new NotNullObservable(Search.SELECTED);
+		NotNullObservable elementSelected = new NotNullObservable(
+				Search.SELECTED);
 
 		Button comprar = new Button(actionsPanel);
 		comprar.setCaption("Comprar");
 		comprar.bindEnabled(elementSelected);
 		comprar.onClick(new MessageSend(this.getModelObject(), "comprar"));
-	
-		
-		//TODO agregar manejo de errores !
-		
+
 		Button reservar = new Button(actionsPanel);
 		reservar.setCaption("Reservar");
 		reservar.bindEnabled(new NotNullObservable(Search.SELECTED));
 		reservar.onClick(new MessageSend(this.getModelObject(), "reservar"));
 
 	}
-	
-	
 
 }
-

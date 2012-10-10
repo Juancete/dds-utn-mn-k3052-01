@@ -5,6 +5,7 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class informationWindow extends SimpleWindow {
 	
 	protected String information;
