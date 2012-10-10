@@ -2,8 +2,6 @@ package ar.com.aterrizar.daos;
 
 import org.apache.commons.collections15.Predicate;
 import org.uqbar.commons.model.CollectionBasedHome;
-import org.uqbar.commons.model.Home;
-
 import ar.com.aterrizar.modelo.state.EstadoReservado;
 
 public class AsientoReservadoDaoCollectionImpl extends CollectionBasedHome<EstadoReservado>  {
@@ -18,6 +16,7 @@ public class AsientoReservadoDaoCollectionImpl extends CollectionBasedHome<Estad
 		return new EstadoReservado();
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	protected Predicate getCriterio(EstadoReservado example) {
 		// TODO Auto-generated method stub

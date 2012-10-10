@@ -33,6 +33,7 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 		return unAsiento;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	protected Predicate getCriterio(Asiento example) {
 		Predicate<Asiento> resultPredicate = this.getCriterioTodas();
@@ -54,6 +55,7 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 		return resultPredicate;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private Predicate<? super Asiento> getCriterioByFecha(final Fecha fecha) {
 		return new Predicate(){
 			@Override
@@ -64,6 +66,7 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 		};
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private Predicate<? super Asiento> getCriterioByDestino(final String destino) {
 		return new Predicate(){
 			@Override
@@ -73,7 +76,8 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 			}
 		};
 	}
-
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private Predicate<Asiento> getCriterioByOrigen(final String origen) {
 		return new Predicate(){
 			@Override
