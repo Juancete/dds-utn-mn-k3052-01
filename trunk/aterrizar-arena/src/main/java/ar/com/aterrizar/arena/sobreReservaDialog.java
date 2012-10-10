@@ -9,7 +9,6 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 
-import ar.com.aterrizar.daos.AterrizarCom;
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.state.EstadoReservado;
@@ -25,7 +24,6 @@ public class sobreReservaDialog extends Window<Asiento> {
 	public sobreReservaDialog(WindowOwner owner, Asiento model, Usuario unUsuario) {
 		super(owner, model);
 		this.miUsuario = unUsuario;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -47,7 +45,6 @@ public class sobreReservaDialog extends Window<Asiento> {
      }
 
 	public void sobreReservar(){
-		//AterrizarCom.getInstance().getHome(EstadoReservado.class).create((EstadoReservado) ((Asiento)this.getModelObject()).getEstado());
 		((EstadoReservado)this.getModelObject().getEstado()).sobreReservar(this.getModelObject(), this.miUsuario);
 		close();
 	}

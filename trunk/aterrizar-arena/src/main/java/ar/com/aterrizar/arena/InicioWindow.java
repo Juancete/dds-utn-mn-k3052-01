@@ -1,9 +1,5 @@
 package ar.com.aterrizar.arena;
 
-
-
-
-
 import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -19,12 +15,13 @@ import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.state.EstadoComprado;
 import ar.com.aterrizar.modelo.state.EstadoReservado;
 
-public class InicioWindow extends MainWindow<Usuario>{
+@SuppressWarnings("serial")
+public class InicioWindow extends MainWindow<Usuario> {
 	public Usuario usuario;
-	
+
 	public static void main(String[] args) {
 		new InicioWindow().startApplication();
-		
+
 	}
 
 	public InicioWindow() {
@@ -35,7 +32,7 @@ public class InicioWindow extends MainWindow<Usuario>{
 		usuario.setDNI("28999189");
 	}
 
-	public Usuario getUsuario(){
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
@@ -43,34 +40,40 @@ public class InicioWindow extends MainWindow<Usuario>{
 	public void createContents(Panel mainPanel) {
 		this.setTitle("aterrizar.com");
 		mainPanel.setLayout(new VerticalLayout());
-		
-		new Label(mainPanel).setText("Hola "+this.usuario.getNombre());
+
+		new Label(mainPanel).setText("Hola " + this.usuario.getNombre());
 		new Label(mainPanel).setText("¿Que desea hacer?");
-		
+
 		Panel actionsPanel = new Panel(mainPanel);
 		actionsPanel.setLayout(new HorizontalLayout());
-		
-		Button verCompras = new Button(actionsPanel).setCaption("Ver compras");
-			verCompras.onClick(new MessageSend(this, "verCompras"));
-		
-		Button verReservas = new Button(actionsPanel).setCaption("Ver reservas");
-			verReservas.onClick(new MessageSend(this,"verReservas"));
-			
-		Button buscarAsientos = new Button(actionsPanel).setCaption("Buscar Asientos");
-			buscarAsientos.onClick(new MessageSend(this, "buscarAsientos"));
-		
-	}
-	
-	public void verCompras(){
-		   new vistaWindow("Compras de ",this, new ShowModel<EstadoComprado>(AterrizarCom.getInstance().getHome(EstadoComprado.class))).open();
-		}
 
-	public void verReservas(){
-		   new vistaWindow("Reservas de ",this, new ShowModel<EstadoReservado>(AterrizarCom.getInstance().getHome(EstadoReservado.class))).open();
+		Button verCompras = new Button(actionsPanel).setCaption("Ver compras");
+		verCompras.onClick(new MessageSend(this, "verCompras"));
+
+		Button verReservas = new Button(actionsPanel)
+				.setCaption("Ver reservas");
+		verReservas.onClick(new MessageSend(this, "verReservas"));
+
+		Button buscarAsientos = new Button(actionsPanel)
+				.setCaption("Buscar Asientos");
+		buscarAsientos.onClick(new MessageSend(this, "buscarAsientos"));
+
 	}
-	
-	public void buscarAsientos(){
-		  // new vistaWindow(this, this.getModelObject()).open();
-			new BuscarAsientoWindow(this).open();
+
+	public void verCompras() {
+		new vistaWindow("Compras de ", this, new ShowModel<EstadoComprado>(
+				AterrizarCom.getInstance().getHome(EstadoComprado.class)))
+				.open();
+	}
+
+	public void verReservas() {
+		new vistaWindow("Reservas de ", this, new ShowModel<EstadoReservado>(
+				AterrizarCom.getInstance().getHome(EstadoReservado.class)))
+				.open();
+	}
+
+	public void buscarAsientos() {
+		// new vistaWindow(this, this.getModelObject()).open();
+		new BuscarAsientoWindow(this).open();
 	}
 }
