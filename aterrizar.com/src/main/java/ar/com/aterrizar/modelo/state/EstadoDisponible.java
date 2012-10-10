@@ -1,10 +1,14 @@
 package ar.com.aterrizar.modelo.state;
 
-import ar.com.aterrizar.daos.AsientoDaoCollectionImpl;
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
 
 public class EstadoDisponible extends Estado {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public void comprar(Asiento unAsiento, Usuario unUsuario) {

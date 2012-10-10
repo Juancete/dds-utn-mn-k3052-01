@@ -2,7 +2,6 @@ package ar.com.aterrizar.modelo;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import ar.com.aterrizar.daos.AsientoDaoCollectionImpl;

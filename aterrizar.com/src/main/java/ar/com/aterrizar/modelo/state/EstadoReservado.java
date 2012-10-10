@@ -8,6 +8,11 @@ import ar.com.aterrizar.modelo.adapter.NoSeEncuentraDisponibleElAsientoException
 
 public class EstadoReservado extends Estado {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void comprar(Asiento unAsiento, Usuario unUsuario) {
 		if(!unAsiento.getReservante().getDni().equalsIgnoreCase(unUsuario.getDni()))
