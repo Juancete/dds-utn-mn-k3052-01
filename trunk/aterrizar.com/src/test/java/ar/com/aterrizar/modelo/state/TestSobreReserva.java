@@ -37,15 +37,18 @@ public class TestSobreReserva {
 		Assert.assertFalse(asientoDisponible.isDisponible());
 	}
 
-	@Test
-	public void cuandoSeReservaUnAsientoDisponibleCambiaAEstadoReservado(){
-		asientoDisponible.getEstado().reservar(asientoDisponible, pepe);
-		asientoDisponible.getEstado().reservar(asientoDisponible, martin);
-		Assert.assertTrue(asientoDisponible.tieneSobreReserva());
-		Assert.assertTrue(asientoDisponible.estadoReservado());
-		asientoDisponible.getEstado().comprar(asientoDisponible, pepe);
-		Assert.assertTrue(!asientoDisponible.tieneSobreReserva());
-	}
+	/*
+	 * no trabajamos mas con la reserva de la interfaz
+	 */
+//	@Test
+//	public void cuandoSeReservaUnAsientoDisponibleCambiaAEstadoReservado(){
+//		asientoDisponible.getEstado().reservar(asientoDisponible, pepe);
+//		asientoDisponible.getEstado().reservar(asientoDisponible, martin);
+//		Assert.assertTrue(asientoDisponible.tieneSobreReserva());
+//		Assert.assertTrue(asientoDisponible.estadoReservado());
+//		asientoDisponible.getEstado().comprar(asientoDisponible, pepe);
+//		Assert.assertTrue(!asientoDisponible.tieneSobreReserva());
+//	}
 	
 	
 	

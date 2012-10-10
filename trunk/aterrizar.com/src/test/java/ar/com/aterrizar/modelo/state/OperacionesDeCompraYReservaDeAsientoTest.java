@@ -42,31 +42,37 @@ public class OperacionesDeCompraYReservaDeAsientoTest {
 		Assert.assertFalse(asientoDisponible.isDisponible());
 	}
 
-	@Test
-	public void cuandoSeReservaUnAsientoDisponibleCambiaAEstadoReservado(){
-		asientoDisponible.getEstado().reservar(asientoDisponible, pepe);
-		asientoDisponible.getEstado().reservar(asientoDisponible, martin);
-		Assert.assertTrue(asientoDisponible.tieneSobreReserva());
-		Assert.assertTrue(asientoDisponible.estadoReservado());
-	}
+	/*
+	 * no trabajamos mas con la reserva de la interfaz
+	 */
+//	@Test
+//	public void cuandoSeReservaUnAsientoDisponibleCambiaAEstadoReservado(){
+//		asientoDisponible.getEstado().reservar(asientoDisponible, pepe);
+//		asientoDisponible.getEstado().reservar(asientoDisponible, martin);
+//		Assert.assertTrue(asientoDisponible.tieneSobreReserva());
+//		Assert.assertTrue(asientoDisponible.estadoReservado());
+//	}
 	
-	@Test
-	public void cuandoUnAsientoReservadoConSobreReservasEsCompradosLasSobreReservasSeCancelan(){
-		asientoDisponible.getEstado().reservar(asientoDisponible, pepe);
-		asientoDisponible.getEstado().reservar(asientoDisponible, martin);
-		//primer Assert el asiento esta reservado
-		Assert.assertTrue(asientoDisponible.estadoReservado());
-		
-		//Segundo Assert el asiento tiene sobreReserva
-		Assert.assertTrue(asientoDisponible.tieneSobreReserva());
-		//se hace efectiva la compra del asiento, debe cambiar el estado y a comprado
-		//y las sobrereservas deben eliminarse.
-		asientoDisponible.getEstado().comprar(asientoDisponible, pepe);		
-		
-		//Asiento no tiene sobre reserva
-		Assert.assertTrue(!asientoDisponible.tieneSobreReserva());
-		
-	}
+	/*
+	 * no trabajamos mas con la reserva de la interfaz
+	 */
+//	@Test
+//	public void cuandoUnAsientoReservadoConSobreReservasEsCompradosLasSobreReservasSeCancelan(){
+//		asientoDisponible.getEstado().reservar(asientoDisponible, pepe);
+//		asientoDisponible.getEstado().reservar(asientoDisponible, martin);
+//		//primer Assert el asiento esta reservado
+//		Assert.assertTrue(asientoDisponible.estadoReservado());
+//		
+//		//Segundo Assert el asiento tiene sobreReserva
+//		Assert.assertTrue(asientoDisponible.tieneSobreReserva());
+//		//se hace efectiva la compra del asiento, debe cambiar el estado y a comprado
+//		//y las sobrereservas deben eliminarse.
+//		asientoDisponible.getEstado().comprar(asientoDisponible, pepe);		
+//		
+//		//Asiento no tiene sobre reserva
+//		Assert.assertTrue(!asientoDisponible.tieneSobreReserva());
+//		
+//	}
 	
 	@Test
 	public void cuandoUnAsientoDisponibleEsCompradosElAsientoQuedaEnEstadoComprado(){
@@ -107,27 +113,27 @@ public class OperacionesDeCompraYReservaDeAsientoTest {
      	asientoDisponible.getEstado().comprar(asientoDisponible, martin);
 	}
 
-	@Test
-	public void cuandoCancelanUnaReservaLaReservaLaEfectivizaelPrimeroDelaLista(){		
-		asientoDisponible.getEstado().reservar(asientoDisponible, pepe);
-		asientoDisponible.getEstado().reservar(asientoDisponible, martin);
-		asientoDisponible.getEstado().reservar(asientoDisponible, tony);
-		//martin es el primero de la lista de sobrereservas
-		//aplication.reservaExpirada(unAsiento)
-				
-		Assert.assertTrue(asientoDisponible.getReservante().getDni().equalsIgnoreCase(pepe.getDni()));
-		//Assert el asiento esta reservado		
-		//El asiento tiene sobreReserva
-		Assert.assertTrue(asientoDisponible.tieneSobreReserva());
-
-		//Se expira la reserva y como hay sobre reservas toma la reserva el primero de la lista que es martin
-		aplication.reservaExpirada(asientoDisponible);		
-		
-		Assert.assertTrue(asientoDisponible.getReservante().getDni().equalsIgnoreCase(martin.getDni()));
-		
-		Assert.assertTrue(asientoDisponible.estadoReservado());
-		
-	}
+//	@Test
+//	public void cuandoCancelanUnaReservaLaReservaLaEfectivizaelPrimeroDelaLista(){		
+//		asientoDisponible.getEstado().reservar(asientoDisponible, pepe);
+//		asientoDisponible.getEstado().reservar(asientoDisponible, martin);
+//		asientoDisponible.getEstado().reservar(asientoDisponible, tony);
+//		//martin es el primero de la lista de sobrereservas
+//		//aplication.reservaExpirada(unAsiento)
+//				
+//		Assert.assertTrue(asientoDisponible.getReservante().getDni().equalsIgnoreCase(pepe.getDni()));
+//		//Assert el asiento esta reservado		
+//		//El asiento tiene sobreReserva
+//		Assert.assertTrue(asientoDisponible.tieneSobreReserva());
+//
+//		//Se expira la reserva y como hay sobre reservas toma la reserva el primero de la lista que es martin
+//		aplication.reservaExpirada(asientoDisponible);		
+//		
+//		Assert.assertTrue(asientoDisponible.getReservante().getDni().equalsIgnoreCase(martin.getDni()));
+//		
+//		Assert.assertTrue(asientoDisponible.estadoReservado());
+//		
+//	}
 	
 	
 	

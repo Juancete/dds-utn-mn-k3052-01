@@ -25,6 +25,7 @@ import com.aterrizar.fecha.modelo.Fecha;
 import com.aterrizar.fecha.modelo.FormatoSimple;
 import com.oceanic.AerolineaOceanic;
 import com.oceanic.AsientoDTO;
+@SuppressWarnings("unused")
 public class AerolineaOceanicInterfaceTest {
 	
 	protected static AerolineaOceanic aerolineaOceanic;
@@ -111,22 +112,27 @@ public class AerolineaOceanicInterfaceTest {
 		Assert.assertFalse(unAsiento.isDisponible());
 	}
 	
-	@Test(expected = NoSeEncuentraDisponibleElAsientoException.class)
-	public void noSePuedeReservarUnAsientoYaReservado(){	
-		Assert.assertTrue(unAsiento.isDisponible());
-		Usuario mary = new Usuario();
-		mary.setDNI("16.656.581");
-		aerolineaOceanicAdapter.reservarAsiento(mary, unAsiento);
-		Assert.assertFalse(unAsiento.isDisponible());
-		aerolineaOceanicAdapter.reservarAsiento(tony, unAsiento);
-	}
-	
-	@Test
-	public void reservarAsientoTest() {
-		Assert.assertTrue(unAsiento.isDisponible());
-		aerolineaOceanicAdapter.reservarAsiento(tony, unAsiento);
-		Assert.assertFalse(unAsiento.isDisponible());
-		}
+	/*
+	 * no trabajamos mas con la reserva de lanchita
+	 */
+//	@Test(expected = NoSeEncuentraDisponibleElAsientoException.class)
+//	public void noSePuedeReservarUnAsientoYaReservado(){	
+//		Assert.assertTrue(unAsiento.isDisponible());
+//		Usuario mary = new Usuario();
+//		mary.setDNI("16.656.581");
+//		aerolineaOceanicAdapter.reservarAsiento(mary, unAsiento);
+//		Assert.assertFalse(unAsiento.isDisponible());
+//		aerolineaOceanicAdapter.reservarAsiento(tony, unAsiento);
+//	}
+	/*
+	 * no trabajamos mas con la reserva de lanchita
+	 */
+//	@Test
+//	public void reservarAsientoTest() {
+//		Assert.assertTrue(unAsiento.isDisponible());
+//		aerolineaOceanicAdapter.reservarAsiento(tony, unAsiento);
+//		Assert.assertFalse(unAsiento.isDisponible());
+//		}
 
 
 }
