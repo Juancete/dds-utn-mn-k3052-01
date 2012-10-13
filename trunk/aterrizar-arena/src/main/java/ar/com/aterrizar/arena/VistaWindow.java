@@ -18,11 +18,11 @@ import ar.com.aterrizar.modelo.state.Estado;
 import com.uqbar.commons.collections.Transformer;
 
 @SuppressWarnings("serial")
-public class vistaWindow extends Window<ShowModel<? extends Entity>> {
+public class VistaWindow extends Window<ShowModel<? extends Entity>> {
 
 	private String action;
 
-	public vistaWindow(String unaAccion, InicioWindow owner,
+	public VistaWindow(String unaAccion, InicioWindow owner,
 			ShowModel<? extends Entity> modelo) {
 		super(owner, modelo);
 		action = unaAccion;

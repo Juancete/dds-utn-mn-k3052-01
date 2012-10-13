@@ -42,7 +42,7 @@ public class SearchAsientoByExample<T extends Entity> extends
 				.getHome(EstadoComprado.class)
 				.create((EstadoComprado) ((Asiento) this.getSelected())
 						.getEstado());
-		(new informationWindow(w, new Usuario(),
+		(new InformationWindow(w, new Usuario(),
 				"Su compra se ha realizado exitosamente.")).open();
 	}
 
@@ -55,12 +55,12 @@ public class SearchAsientoByExample<T extends Entity> extends
 					.getHome(EstadoReservado.class)
 					.create((EstadoReservado) ((Asiento) this.getSelected())
 							.getEstado());
-			(new informationWindow(w, new Usuario(),
+			(new InformationWindow(w, new Usuario(),
 					"Su reserva se ha realizado exitosamente.")).open();
 		} catch (NoSeEncuentraDisponibleElAsientoException e) {
 			throw new UserException(e.getMessage());
 		} catch (AsientoYaReservadoException e) {
-			new sobreReservaDialog(w, (Asiento) this.getSelected(), miUsuario)
+			new SobreReservaDialog(w, (Asiento) this.getSelected(), miUsuario)
 					.open();
 		}
 	}

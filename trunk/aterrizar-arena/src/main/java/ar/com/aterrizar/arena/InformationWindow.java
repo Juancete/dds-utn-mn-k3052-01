@@ -6,11 +6,11 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class informationWindow extends SimpleWindow {
+public class InformationWindow extends SimpleWindow {
 	
 	protected String information;
 	
-	public informationWindow(WindowOwner owner,Object model,String i) {
+	public InformationWindow(WindowOwner owner,Object model,String i) {
 		super(owner, model);
 		information = i;
 		// TODO Auto-generated constructor stub
