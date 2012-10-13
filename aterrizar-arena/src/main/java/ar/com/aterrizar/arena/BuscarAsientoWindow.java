@@ -23,7 +23,7 @@ import com.uqbar.commons.collections.Transformer;
  * 
  * @author anonimo XD
  */
-public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsientoByExample<Asiento>> {
+public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsientoByExample> {
 	
 	/**
 	 * 
@@ -31,7 +31,7 @@ public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsie
 	private static final long serialVersionUID = 1L;
 
 	public BuscarAsientoWindow(InicioWindow owner) {
-		super(owner, new SearchAsientoByExample<Asiento>(AterrizarCom.getInstance().getHome(Asiento.class), owner.getUsuario(),owner));
+		super(owner, new SearchAsientoByExample(AterrizarCom.getInstance().getHome(Asiento.class), owner.getUsuario(),owner));
 		((AsientoDaoCollectionImpl) AterrizarCom.getInstance().getHome(Asiento.class)).setUsuario(owner.getUsuario());
 	}
 
@@ -74,32 +74,17 @@ public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsie
 		Column<Asiento> aerolineaColumn = new Column<Asiento>(table);
 		aerolineaColumn.setTitle("Aerolinea");
 		aerolineaColumn.setFixedSize(150);
-		aerolineaColumn.bindContentsToTransformer(new Transformer<Asiento, String>() {
-			@Override
-			public String transform(Asiento asiento) {
-				return asiento.getAerolinea().getNombre();
-			}			
-		});
+		aerolineaColumn.bindContentsToProperty("nombreDeAerolinea");
 		
 		Column<Asiento> origenColumn = new Column<Asiento>(table);
 		origenColumn.setTitle("Origen");
 		origenColumn.setFixedSize(150);
-		origenColumn.bindContentsToTransformer(new Transformer<Asiento, String>() {
-			@Override
-			public String transform(Asiento asiento) {
-				return asiento.getVuelo().getOrigen();
-			}
-		});
+		origenColumn.bindContentsToProperty("origen");
 
 		Column<Asiento> destinoColumn = new Column<Asiento>(table);
 		destinoColumn.setTitle("Destino");
 		destinoColumn.setFixedSize(150);
-		destinoColumn.bindContentsToTransformer(new Transformer<Asiento, String>() {
-			@Override
-			public String transform(Asiento asiento) {
-				return asiento.getVuelo().getDestino();
-			}
-		});
+		destinoColumn.bindContentsToProperty("destino");
 		
 		Column<Asiento> fechaColumn = new Column<Asiento>(table);
 		fechaColumn.setTitle("Fecha");
@@ -114,75 +99,20 @@ public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsie
 		Column<Asiento> vueloColumn = new Column<Asiento>(table);
 		vueloColumn.setTitle("Vuelo");
 		vueloColumn.setFixedSize(150);
-		vueloColumn.bindContentsToTransformer(new Transformer<Asiento, String>() {
-			@Override
-			public String transform(Asiento asiento) {
-				return asiento.getVuelo().getCodigo();
-			}
-		});
+		vueloColumn.bindContentsToProperty("codigoDeVuelo");
 
 		Column<Asiento> asientoColumn = new Column<Asiento>(table);
 		asientoColumn.setTitle("asiento");
 		asientoColumn.setFixedSize(150);
-		asientoColumn.bindContentsToTransformer(new Transformer<Asiento, String>() {
-			@Override
-			public String transform(Asiento asiento) {
-				return asiento.getCodigo();
-			}
-		});
+		asientoColumn.bindContentsToProperty("codigo");
+
 		Column<Asiento> precioColumn = new Column<Asiento>(table);
 		precioColumn.setTitle("precio");
 		precioColumn.setFixedSize(150);
-		precioColumn.bindContentsToTransformer(new Transformer<Asiento, String>() {
-			@Override
-			public String transform(Asiento asiento) {
-				return asiento.getPrecio().toString();
-			}
-		});	
-			
+		precioColumn.bindContentsToProperty("precio");
 		
 		table.setHeigth(300);
 		table.setWidth(1050);
 	}
-
-//	@Override
-//	protected void addActions(Panel actionsPanel) {
-//		Button nuevoSocio = new Button(actionsPanel);
-//		nuevoSocio.setCaption("Nuevo Socio");
-//		nuevoSocio.onClick(new MessageSend(this, "crearSocio"));
-//		
-//		super.addActions(actionsPanel);
-//	}
-//
-//	// ********************************************************
-//	// ** Acciones
-//	// ********************************************************
-//
-//	public void crearSocio() {
-//		Dialog<?> crearSocio = new CrearSocioDialog(this);
-//		crearSocio.onAccept(new MessageSend(this.getModelObject(), Search.SEARCH));
-//		crearSocio.open();
-//	}
-//
-//	@Override
-//	protected Dialog<?> createEditor(Asiento selected) {
-//		return new ModificarSocioDialog(this, selected);
-//	}
-
-	// @Override
-	// protected void addActions(Panel actions) {
-	// Button buscar= actions.addButton();
-	// buscar.setModelAction("search");
-	// buscar.setAsDefault();
-	//
-	// Button agregar = actions.addButton();
-	// agregar.setPanelAction("agregarSocio");
-	// }
-	//
-	// protected void agregarSocio() {
-	// Dialog agregarSocio = new CrearSocioPanel(...);
-	// agregarSocio.onClose(this, "search");
-	// agregarSocio onCloseSend: #search to: self
-	// }
 
 }
