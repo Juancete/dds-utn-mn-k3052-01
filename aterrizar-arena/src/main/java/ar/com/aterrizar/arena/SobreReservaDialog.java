@@ -13,7 +13,7 @@ import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.state.EstadoReservado;
 
-public class sobreReservaDialog extends Window<Asiento> {
+public class SobreReservaDialog extends Window<Asiento> {
 
 	/**
 	 * 
@@ -21,7 +21,7 @@ public class sobreReservaDialog extends Window<Asiento> {
 	private static final long serialVersionUID = 1L;
 	private Usuario miUsuario;
 
-	public sobreReservaDialog(WindowOwner owner, Asiento model, Usuario unUsuario) {
+	public SobreReservaDialog(WindowOwner owner, Asiento model, Usuario unUsuario) {
 		super(owner, model);
 		this.miUsuario = unUsuario;
 	}
