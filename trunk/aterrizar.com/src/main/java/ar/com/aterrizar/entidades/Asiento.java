@@ -30,7 +30,6 @@ public class Asiento extends Entity {
 		public static String DESTINO = "destino";
 		public static String FECHA = "fecha";
 	
-	private String codigoDeVuelo;
 	public Integer numeroDeAsiento;
 	public String codigo;
 	public BigDecimal precio;
@@ -198,14 +197,6 @@ public class Asiento extends Entity {
 		this.usuariosQueReservan = usuariosQueReservan;
 	}
 
-	public String getCodigoDeVuelo() {
-		return codigoDeVuelo;
-	}
-
-	public void setCodigoDeVuelo(String codigoDeVuelo) {
-		this.codigoDeVuelo = codigoDeVuelo;
-	}
-
 	public char getUbicacion() {
 		return ubicacion;
 	}
@@ -230,6 +221,10 @@ public class Asiento extends Entity {
 		this.getVuelo().setOrigen(unOrigen);
 	}
 	
+	public String getNombreDeAerolinea(){
+		return this.getAerolinea().getNombre();
+	}
+	
 	public String getDestino(){
 		return this.getVuelo().getDestino();
 	}
@@ -242,6 +237,16 @@ public class Asiento extends Entity {
 		return new SimpleDateFormat("dd/MM/yyyy").format(this.getVuelo().getFechaOrigen().obtenerFecha());
 	}
 	
+	public void comprar(Usuario unUsuario){
+		this.getEstado().comprar(this, unUsuario);
+	}
+	public void reservar(Usuario unUsuario){
+		this.getEstado().reservar(this, unUsuario);
+	}	
+	
+	public String getCodigoDeVuelo(){
+		return this.getVuelo().getCodigo();
+	}
 	public void setFecha(String unaFecha){
 		try{
 			this.getVuelo().setFechaOrigen(new Fecha(unaFecha, new FormatoSimple("dd/MM/yyyy")));
