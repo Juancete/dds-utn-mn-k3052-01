@@ -4,7 +4,7 @@ package ar.com.aterrizar.daos;
 public class AterrizarCom  {
 	private static AterrizarCom instance;
 	private AsientoDaoCollectionImpl asientosAterrizar;
-	private AsientoHistorialDaoCollectionImpl  asientosReservados;
+	private AsientoHistorialDaoCollectionImpl asientosReservados;
 	private AsientoHistorialDaoCollectionImpl asientosComprados;
 		
 	public static synchronized AterrizarCom initialize() {
