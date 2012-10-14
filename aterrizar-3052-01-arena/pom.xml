@@ -3,10 +3,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>dds.utn.mn.k3052.01</groupId>
-	<artifactId>aterrizar.com-arena</artifactId>
+	<artifactId>aterrizar-3052-01-arena</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>aterrizar.com-arena</name>
+	<name>aterrizar-3052-01-arena</name>
 	<url>http://maven.apache.org</url>
 
 		<parent>
@@ -24,7 +24,7 @@
 		</dependency>
 		<dependency>
 			<groupId>dds.utn.mn.k3052.01</groupId>
-			<artifactId>aterrizar.com</artifactId>
+			<artifactId>aterrizar-3052-01</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
