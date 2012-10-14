@@ -10,10 +10,9 @@ import org.uqbar.arena.windows.MainWindow;
 
 import ar.com.aterrizar.commons.model.ShowModel;
 import ar.com.aterrizar.daos.AterrizarCom;
+import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.NivelPago;
 import ar.com.aterrizar.modelo.Usuario;
-import ar.com.aterrizar.modelo.state.EstadoComprado;
-import ar.com.aterrizar.modelo.state.EstadoReservado;
 
 @SuppressWarnings("serial")
 public class InicioWindow extends MainWindow<Usuario> {
@@ -61,19 +60,14 @@ public class InicioWindow extends MainWindow<Usuario> {
 	}
 
 	public void verCompras() {
-		new VistaWindow("Compras de ", this, new ShowModel<EstadoComprado>(
-				AterrizarCom.getInstance().getHome(EstadoComprado.class)))
-				.open();
+		new VistaWindow("Compras de ", this, new ShowModel<Asiento>(AterrizarCom.getInstance().getAsientosComprados())).open();
 	}
 
 	public void verReservas() {
-		new VistaWindow("Reservas de ", this, new ShowModel<EstadoReservado>(
-				AterrizarCom.getInstance().getHome(EstadoReservado.class)))
-				.open();
+		new VistaWindow("Reservas de ", this, new ShowModel<Asiento>(AterrizarCom.getInstance().getAsientosReservados())).open();
 	}
 
 	public void buscarAsientos() {
-		// new VistaWindow(this, this.getModelObject()).open();
 		new BuscarAsientoWindow(this).open();
 	}
 }

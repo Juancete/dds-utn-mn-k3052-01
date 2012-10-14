@@ -19,7 +19,7 @@ import ar.com.aterrizar.entidades.Asiento;
 import com.uqbar.commons.collections.Transformer;
 
 /**
- * Representa la ventana de busqueda de socios del videoclub.
+ * Representa la ventana de busqueda de Asientos de aterrizar.com.
  * 
  * @author anonimo XD
  */
@@ -31,8 +31,8 @@ public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsie
 	private static final long serialVersionUID = 1L;
 
 	public BuscarAsientoWindow(InicioWindow owner) {
-		super(owner, new SearchAsientoByExample(AterrizarCom.getInstance().getHome(Asiento.class), owner.getUsuario(),owner));
-		((AsientoDaoCollectionImpl) AterrizarCom.getInstance().getHome(Asiento.class)).setUsuario(owner.getUsuario());
+		super(owner, new SearchAsientoByExample(AterrizarCom.getInstance().getAsientosAterrizar(), owner.getUsuario(),owner));
+		AterrizarCom.getInstance().getAsientosAterrizar().setUsuario(owner.getUsuario());
 	}
 
 	@Override
