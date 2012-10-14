@@ -2,74 +2,62 @@ package ar.com.aterrizar.arena;
 
 import java.text.SimpleDateFormat;
 
+import org.uqbar.arena.actions.MessageSend;
+import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.layout.ColumnLayout;
+import org.uqbar.arena.layout.HorizontalLayout;
+import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Control;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
+import org.uqbar.arena.windows.SimpleWindow;
+import org.uqbar.commons.model.Search;
 import org.uqbar.commons.model.SearchByExample;
-
-import ar.com.aterrizar.arena.SearchAsientoWindow;
-
-import ar.com.aterrizar.daos.*;
-import ar.com.aterrizar.entidades.Asiento;
 
 import com.uqbar.commons.collections.Transformer;
 
-/**
- * Representa la ventana de busqueda de Asientos de aterrizar.com.
- * 
- * @author anonimo XD
- */
-public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsientoByExample> {
+import ar.com.aterrizar.daos.AterrizarCom;
+import ar.com.aterrizar.entidades.Asiento;
+
+public class BuscarAsientoWindow extends SimpleWindow<SearchAsientoByExample> {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	public BuscarAsientoWindow(InicioWindow owner) {
-		super(owner, new SearchAsientoByExample(AterrizarCom.getInstance().getAsientosAterrizar(), owner.getUsuario(),owner));
+	public BuscarAsientoWindow(InicioWindow owner, SearchAsientoByExample model) {
+		super(owner, model);
 		AterrizarCom.getInstance().getAsientosAterrizar().setUsuario(owner.getUsuario());
 	}
 
 	@Override
-	protected void createMainTemplate(Panel formBuilder) {
+	protected void createMainTemplate(Panel mainPanel) {
+		super.createMainTemplate(mainPanel);
 		this.setTitle("Buscador de Asientos");
-		this.setTaskDescription("Ingrese los parámetros de búsqueda");
-		super.createMainTemplate(formBuilder);
+		this.setTaskDescription("Ingrese los parámetros de búsqueda");		
+		this.createResultsGrid(mainPanel);
+		this.createGridActions(mainPanel);
 	}
 
-	@Override
-	protected void createFormPanel(Panel mainPanel) {
-		Panel searchFormPanel = new Panel(mainPanel);
-		searchFormPanel.bindContents(SearchByExample.EXAMPLE);
-		searchFormPanel.setLayout(new ColumnLayout(2));
+	// ***********************************************************
+	// ** Grid
+	// ***********************************************************
 
-		// Field nombre
-		Label nombreLabel = new Label(searchFormPanel);
-		nombreLabel.setText("Origen");
+	protected void createResultsGrid(Panel mainPanel) {
+		Table<Asiento> table = new Table<Asiento>(mainPanel, this.getModelObject()
+				.getEntityType());
 
-		Control nombre = new TextBox(searchFormPanel);
-		nombre.bindValueToProperty(Asiento.ORIGEN);
+		table.bindItemsToProperty(Search.RESULTS);
+		table.bindSelection(Search.SELECTED);
 
-		// Field direccion
-		Label direccionLabel = new Label(searchFormPanel);
-		direccionLabel.setText("Destino");
-
-		Control direccion = new TextBox(searchFormPanel);
-		direccion.bindValueToProperty(Asiento.DESTINO);
-
-		Label fechaLabel = new Label(searchFormPanel);
-		fechaLabel.setText("Fecha");
-		
-		Control fecha = new TextBox(searchFormPanel);
-		fecha.bindValueToProperty(Asiento.FECHA);
+		this.describeResultsGrid(table);
 	}
 
-	@Override
+
+	// ***********************************************************
+	// ** Actions
+	// ***********************************************************
 	protected void describeResultsGrid(Table<Asiento> table) {
 		Column<Asiento> aerolineaColumn = new Column<Asiento>(table);
 		aerolineaColumn.setTitle("Aerolinea");
@@ -114,5 +102,60 @@ public class BuscarAsientoWindow extends SearchAsientoWindow<Asiento, SearchAsie
 		table.setHeigth(300);
 		table.setWidth(1050);
 	}
+
+	@Override
+	protected void addActions(Panel actionsPanel) {
+		Button buscar = new Button(actionsPanel);
+		buscar.setCaption("Buscar");
+		buscar.onClick(new MessageSend(this.getModelObject(), Search.SEARCH));
+		buscar.setAsDefault();
+	}
+
+	protected void createGridActions(Panel mainPanel) {
+		Panel actionsPanel = new Panel(mainPanel);
+		actionsPanel.setLayout(new HorizontalLayout());
+
+		NotNullObservable elementSelected = new NotNullObservable(
+				Search.SELECTED);
+
+		Button comprar = new Button(actionsPanel);
+		comprar.setCaption("Comprar");
+		comprar.bindEnabled(elementSelected);
+		comprar.onClick(new MessageSend(this.getModelObject(), "comprar"));
+
+		Button reservar = new Button(actionsPanel);
+		reservar.setCaption("Reservar");
+		reservar.bindEnabled(new NotNullObservable(Search.SELECTED));
+		reservar.onClick(new MessageSend(this.getModelObject(), "reservar"));
+
+	}
+
+	@Override
+	protected void createFormPanel(Panel mainPanel) {
+		Panel searchFormPanel = new Panel(mainPanel);
+		searchFormPanel.bindContents(SearchByExample.EXAMPLE);
+		searchFormPanel.setLayout(new ColumnLayout(2));
+
+		// Field nombre
+		Label nombreLabel = new Label(searchFormPanel);
+		nombreLabel.setText("Origen");
+
+		Control nombre = new TextBox(searchFormPanel);
+		nombre.bindValueToProperty(Asiento.ORIGEN);
+
+		// Field direccion
+		Label direccionLabel = new Label(searchFormPanel);
+		direccionLabel.setText("Destino");
+
+		Control direccion = new TextBox(searchFormPanel);
+		direccion.bindValueToProperty(Asiento.DESTINO);
+
+		Label fechaLabel = new Label(searchFormPanel);
+		fechaLabel.setText("Fecha");
+		
+		Control fecha = new TextBox(searchFormPanel);
+		fecha.bindValueToProperty(Asiento.FECHA);
+	}
+
 
 }

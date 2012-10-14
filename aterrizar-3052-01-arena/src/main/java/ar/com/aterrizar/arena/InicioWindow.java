@@ -41,7 +41,7 @@ public class InicioWindow extends MainWindow<Usuario> {
 		mainPanel.setLayout(new VerticalLayout());
 
 		new Label(mainPanel).setText("Hola " + this.usuario.getNombre());
-		new Label(mainPanel).setText("Â¿Que desea hacer?");
+		new Label(mainPanel).setText("¿Que desea hacer?");
 
 		Panel actionsPanel = new Panel(mainPanel);
 		actionsPanel.setLayout(new HorizontalLayout());
@@ -68,6 +68,6 @@ public class InicioWindow extends MainWindow<Usuario> {
 	}
 
 	public void buscarAsientos() {
-		new BuscarAsientoWindow(this).open();
+		new BuscarAsientoWindow(this, new SearchAsientoByExample(AterrizarCom.getInstance().getAsientosAterrizar(), this.getUsuario(),this)).open();
 	}
 }
