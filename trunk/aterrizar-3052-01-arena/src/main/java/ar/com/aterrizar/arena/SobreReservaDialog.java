@@ -31,7 +31,7 @@ public class SobreReservaDialog extends Window<Asiento> {
 		this.setTitle("Aterrizar.com");
 		mainPanel.setLayout(new VerticalLayout());
 		new Label(mainPanel).setText("El asiento ya se encuentra reservado");
-		new Label(mainPanel).setText("Â¿Que desea hacer?");
+		new Label(mainPanel).setText("¿Que desea hacer?");
 		Panel form = new Panel(mainPanel);
 		form.setLayout(new HorizontalLayout());
 		this.addActions(form);
