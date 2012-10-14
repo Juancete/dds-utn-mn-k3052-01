@@ -19,6 +19,7 @@ import org.uqbar.commons.model.SearchByExample;
 
 import com.uqbar.commons.collections.Transformer;
 
+import ar.com.aterrizar.arena.appmodel.SearchAsientoByExample;
 import ar.com.aterrizar.daos.AterrizarCom;
 import ar.com.aterrizar.entidades.Asiento;
 

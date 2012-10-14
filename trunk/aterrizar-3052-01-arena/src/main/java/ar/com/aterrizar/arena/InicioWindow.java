@@ -8,6 +8,7 @@ import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.MainWindow;
 
+import ar.com.aterrizar.arena.appmodel.SearchAsientoByExample;
 import ar.com.aterrizar.commons.model.ShowModel;
 import ar.com.aterrizar.daos.AterrizarCom;
 import ar.com.aterrizar.entidades.Asiento;

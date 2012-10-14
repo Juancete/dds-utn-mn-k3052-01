@@ -1,9 +1,12 @@
-package ar.com.aterrizar.arena;
+package ar.com.aterrizar.arena.appmodel;
 
 import org.uqbar.commons.model.Home;
 import org.uqbar.commons.model.SearchByExample;
 import org.uqbar.commons.model.UserException;
 
+import ar.com.aterrizar.arena.InformationWindow;
+import ar.com.aterrizar.arena.InicioWindow;
+import ar.com.aterrizar.arena.SobreReservaDialog;
 import ar.com.aterrizar.daos.AterrizarCom;
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
