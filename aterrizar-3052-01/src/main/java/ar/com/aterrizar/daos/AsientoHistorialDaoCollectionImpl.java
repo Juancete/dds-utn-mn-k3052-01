@@ -20,7 +20,6 @@ public class AsientoHistorialDaoCollectionImpl extends CollectionBasedHome<Asien
 	@SuppressWarnings("rawtypes")
 	@Override
 	protected Predicate getCriterio(Asiento example) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
