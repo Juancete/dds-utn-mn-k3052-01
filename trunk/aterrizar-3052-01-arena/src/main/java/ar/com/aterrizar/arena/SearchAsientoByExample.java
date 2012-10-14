@@ -9,8 +9,6 @@ import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.adapter.NoSeEncuentraDisponibleElAsientoException;
 import ar.com.aterrizar.modelo.state.AsientoYaReservadoException;
-import ar.com.aterrizar.modelo.state.EstadoComprado;
-import ar.com.aterrizar.modelo.state.EstadoReservado;
 
 public class SearchAsientoByExample extends SearchByExample<Asiento> {
 
@@ -34,11 +32,7 @@ public class SearchAsientoByExample extends SearchByExample<Asiento> {
 		} catch (NoSeEncuentraDisponibleElAsientoException e) {
 			throw new UserException(e.getMessage());
 		}
-		AterrizarCom
-				.getInstance()
-				.getHome(EstadoComprado.class)
-				.create((EstadoComprado) ( this.getSelected())
-						.getEstado());
+		AterrizarCom.getInstance().getAsientosComprados().create(this.getSelected());
 		(new InformationWindow(w, new Usuario(),
 				"Su compra se ha realizado exitosamente.")).open();
 	}
@@ -46,11 +40,7 @@ public class SearchAsientoByExample extends SearchByExample<Asiento> {
 	public void reservar() {
 		try {
 			this.getSelected().reservar(this.miUsuario);
-			AterrizarCom
-					.getInstance()
-					.getHome(EstadoReservado.class)
-					.create((EstadoReservado) ( this.getSelected())
-							.getEstado());
+			AterrizarCom.getInstance().getAsientosReservados().create(this.getSelected());
 			(new InformationWindow(w, new Usuario(),
 					"Su reserva se ha realizado exitosamente.")).open();
 		} catch (NoSeEncuentraDisponibleElAsientoException e) {
