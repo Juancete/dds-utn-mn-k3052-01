@@ -14,12 +14,14 @@ import ar.com.aterrizar.daos.AterrizarCom;
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.NivelPago;
 import ar.com.aterrizar.modelo.Usuario;
+import uqbar.arena.persistence.Configuration;
 
 @SuppressWarnings("serial")
 public class InicioWindow extends MainWindow<Usuario> {
 	public Usuario usuario;
 
 	public static void main(String[] args) {
+		Configuration.configure();
 		new InicioWindow().startApplication();
 
 	}
@@ -42,7 +44,7 @@ public class InicioWindow extends MainWindow<Usuario> {
 		mainPanel.setLayout(new VerticalLayout());
 
 		new Label(mainPanel).setText("Hola " + this.usuario.getNombre());
-		new Label(mainPanel).setText("¿Que desea hacer?");
+		new Label(mainPanel).setText("ï¿½Que desea hacer?");
 
 		Panel actionsPanel = new Panel(mainPanel);
 		actionsPanel.setLayout(new HorizontalLayout());
