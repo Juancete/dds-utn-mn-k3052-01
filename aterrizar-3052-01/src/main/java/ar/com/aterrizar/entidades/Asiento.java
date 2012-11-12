@@ -11,6 +11,7 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.TransactionalAndObservable;
 
 import uqbar.arena.persistence.annotations.PersistentClass;
+import uqbar.arena.persistence.annotations.PersistentField;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.Viaje;
 import ar.com.aterrizar.modelo.Vuelo;
@@ -68,7 +69,7 @@ public class Asiento extends Entity {
 	public void setCodigo(String unCodigo){
 		this.codigo = unCodigo;
 	}	
-
+	@PersistentField
 	public String getCodigo(){
 		return this.codigo;
 	}
@@ -76,10 +77,11 @@ public class Asiento extends Entity {
 	public void setPrecio(BigDecimal unPrecio){
 		this.precio = unPrecio;
 	}
-	
+	@PersistentField
 	public BigDecimal getPrecio(){
 		return this.precio;
 	}
+
 	public Aerolinea getAerolinea(){
 		return this.aerolinea; 
 	}
@@ -127,12 +129,13 @@ public class Asiento extends Entity {
 	public void setVuelo(Vuelo vuelo) {
 		this.vuelo = vuelo;
 	}
-	
+	@PersistentField
 	public long getTiempo() {
 		return viaje.getTiempo(this);
 		
 	}
-	public Long getTiempoEnElAire(){
+	@PersistentField
+	public long getTiempoEnElAire(){
 		//TODO: está hardcodeado por que deberíamos implementar el manejo de fecha con horario también.
 		return (long) vuelo.getFechaOrigen().cantidadDeDiasEntre(vuelo.fechaDestino);
 	}
@@ -198,7 +201,8 @@ public class Asiento extends Entity {
 	public void setUsuariosQueReservan(List<Usuario> usuariosQueReservan) {
 		this.usuariosQueReservan = usuariosQueReservan;
 	}
-
+	
+	
 	public char getUbicacion() {
 		return ubicacion;
 	}
@@ -214,7 +218,7 @@ public class Asiento extends Entity {
 	public void setTipo(char tipo) {
 		this.tipo = tipo;
 	}
-	
+	@PersistentField
 	public String getOrigen(){
 		return this.getVuelo().getOrigen();
 	}
@@ -222,11 +226,11 @@ public class Asiento extends Entity {
 	public void setOrigen(String unOrigen){
 		this.getVuelo().setOrigen(unOrigen);
 	}
-	
+	@PersistentField
 	public String getNombreDeAerolinea(){
 		return this.getAerolinea().getNombre();
 	}
-	
+	@PersistentField
 	public String getDestino(){
 		return this.getVuelo().getDestino();
 	}
@@ -245,7 +249,7 @@ public class Asiento extends Entity {
 	public void reservar(Usuario unUsuario){
 		this.getEstado().reservar(this, unUsuario);
 	}	
-	
+	@PersistentField
 	public String getCodigoDeVuelo(){
 		return this.getVuelo().getCodigo();
 	}
