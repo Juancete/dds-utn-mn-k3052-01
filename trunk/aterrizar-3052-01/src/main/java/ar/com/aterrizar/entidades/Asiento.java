@@ -10,9 +10,7 @@ import org.uqbar.commons.model.Entity;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.TransactionalAndObservable;
 
-import com.aterrizar.fecha.modelo.Fecha;
-import com.aterrizar.fecha.modelo.FormatoSimple;
-
+import uqbar.arena.persistence.annotations.PersistentClass;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.Viaje;
 import ar.com.aterrizar.modelo.Vuelo;
@@ -21,7 +19,11 @@ import ar.com.aterrizar.modelo.state.Estado;
 import ar.com.aterrizar.modelo.state.EstadoDisponible;
 import ar.com.aterrizar.modelo.state.EstadoReservado;
 
+import com.aterrizar.fecha.modelo.Fecha;
+import com.aterrizar.fecha.modelo.FormatoSimple;
+
 @TransactionalAndObservable
+@PersistentClass
 public class Asiento extends Entity {
 
 		private static final long serialVersionUID = 2365011956533498906L;
