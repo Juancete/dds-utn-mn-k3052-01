@@ -3,9 +3,11 @@ package ar.com.aterrizar.daos;
 import org.apache.commons.collections15.Predicate;
 import org.uqbar.commons.model.CollectionBasedHome;
 
+import uqbar.arena.persistence.PersistentHome;
+
 import ar.com.aterrizar.entidades.Asiento;
 
-public class AsientoHistorialDaoCollectionImpl extends CollectionBasedHome<Asiento>  {
+public class AsientoHistorialDaoCollectionImpl extends PersistentHome<Asiento>  {
 
 	@Override
 	public Class<Asiento> getEntityType() {
@@ -18,7 +20,6 @@ public class AsientoHistorialDaoCollectionImpl extends CollectionBasedHome<Asien
 	}
 
 	@SuppressWarnings("rawtypes")
-	@Override
 	protected Predicate getCriterio(Asiento example) {
 		return null;
 	}
