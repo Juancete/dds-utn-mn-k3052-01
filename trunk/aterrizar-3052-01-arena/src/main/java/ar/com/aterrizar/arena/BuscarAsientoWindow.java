@@ -81,7 +81,7 @@ public class BuscarAsientoWindow extends SimpleWindow<SearchAsientoByExample> {
 		fechaColumn.bindContentsToTransformer(new Transformer<Asiento, String>() {
 			@Override
 			public String transform(Asiento asiento) {
-				return new SimpleDateFormat("dd/MM/yyyy").format(asiento.getVuelo().getFechaOrigen().obtenerFecha());
+				return new SimpleDateFormat("dd/MM/yyyy").format(asiento.getVuelo().getFechaOrigen().getFecha());
 			}
 		});
 		

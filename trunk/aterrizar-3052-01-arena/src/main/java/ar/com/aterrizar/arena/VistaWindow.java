@@ -59,7 +59,7 @@ public class VistaWindow extends Window<ShowModel<? extends Entity>> {
 					public String transform(Asiento unAsiento) {
 						return new SimpleDateFormat("dd/MM/yyyy").format(
 								unAsiento.getVuelo().getFechaOrigen()
-								.obtenerFecha());
+								.getFecha());
 					}
 				});
 
