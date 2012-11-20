@@ -61,7 +61,7 @@ public class AsientoDaoCollectionImpl  extends CollectionBasedHome<Asiento> {
 			@Override
 			public boolean evaluate(Object arg){
 				Asiento unAsiento = (Asiento) arg;
-				return (unAsiento.getVuelo().getFechaOrigen().obtenerFecha().compareTo(fecha.obtenerFecha())==0);
+				return (unAsiento.getVuelo().getFechaOrigen().getFecha().compareTo(fecha.getFecha())==0);
 			}
 		};
 	}

@@ -4,6 +4,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.uqbar.commons.utils.TransactionalAndObservable;
+
+import uqbar.arena.persistence.annotations.PersistentClass;
+import uqbar.arena.persistence.annotations.PersistentField;
+
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Busqueda;
 import ar.com.aterrizar.modelo.Usuario;
@@ -18,8 +23,14 @@ import com.aterrizar.fecha.modelo.FormatoSimple;
 import com.lanchita.AerolineaLanchita;
 import com.lanchita.excepciones.EstadoErroneoException;
 
+@TransactionalAndObservable
+@PersistentClass
 public class AerolineaLanchitaAdapter extends Aerolinea{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected AerolineaLanchita aerolinea;
 	
 	/*
@@ -116,6 +127,7 @@ public class AerolineaLanchitaAdapter extends Aerolinea{
 	}
 
 	@Override
+	@PersistentField
 	public String getNombre() {
 		return "Lanchita";
 	}
