@@ -12,6 +12,7 @@ import org.uqbar.commons.utils.TransactionalAndObservable;
 
 import uqbar.arena.persistence.annotations.PersistentClass;
 import uqbar.arena.persistence.annotations.PersistentField;
+import uqbar.arena.persistence.annotations.Relation;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.Viaje;
 import ar.com.aterrizar.modelo.Vuelo;
@@ -38,7 +39,6 @@ public class Asiento extends Entity {
 	private BigDecimal precio;
 	private char ubicacion; //'V' ventanilla, 'C' centro, 'P' pasillo
 	private char tipo;	//clase: 'P' primera, 'E' ejecutivo, 'T' turista
-	//private boolean disponible;
 	private Aerolinea aerolinea;
 	private Vuelo vuelo;
 	private Viaje viaje;	
@@ -68,13 +68,6 @@ public class Asiento extends Entity {
 	}
 	
 
-	public Aerolinea getAerolinea(){
-		return this.aerolinea; 
-	}
-	public void setAerolinea(Aerolinea unaAerolinea){
-		this.aerolinea = unaAerolinea;
-	}
-	
 	public boolean isDisponible(){
 		return (this.getEstado() instanceof EstadoDisponible);
 	}
@@ -96,14 +89,6 @@ public class Asiento extends Entity {
 		return codigo.equals(otroAsiento.getCodigo()) && precio.equals(otroAsiento.precio) && getUbicacion() == otroAsiento.getUbicacion() && getTipo() == otroAsiento.getTipo() && aerolinea.equals(otroAsiento.getAerolinea());
 	}
 
-	public Vuelo getVuelo() {
-		return vuelo;
-	}
-
-	public void setVuelo(Vuelo vuelo) {
-		this.vuelo = vuelo;
-	}
-	
 	public long getTiempo() {
 		return viaje.getTiempo(this);
 		
@@ -183,18 +168,13 @@ public class Asiento extends Entity {
 	public void setOrigen(String unOrigen){
 		this.getVuelo().setOrigen(unOrigen);
 	}
-
-	public String getNombreDeAerolinea(){
-		return this.getAerolinea().getNombre();
-	}
-
+	
 	public String getDestino(){
 		return this.getVuelo().getDestino();
 	}
 	public void setDestino(String unDestino){
 		this.getVuelo().setDestino(unDestino);
 	}
-	
 	
 	public void comprar(Usuario unUsuario){
 		this.getEstado().comprar(this, unUsuario);
@@ -203,16 +183,13 @@ public class Asiento extends Entity {
 		this.getEstado().reservar(this, unUsuario);
 	}	
 	
-	public String getCodigoDeVuelo(){
-		return this.getVuelo().getCodigo();
-	}
 
 	/*
 	 * GETTERS Y SETTERS 
 	 */
 	public String getFecha(){
 		if (this.getVuelo().getFechaOrigen() == null) {return "";}
-		return new SimpleDateFormat("dd/MM/yyyy").format(this.getVuelo().getFechaOrigen().obtenerFecha());
+		return new SimpleDateFormat("dd/MM/yyyy").format(this.getVuelo().getFechaOrigen().getFecha());
 	}
 	
 	public void setFecha(String unaFecha){
@@ -269,4 +246,36 @@ public class Asiento extends Entity {
 	public void setTipo(char tipo) {
 		this.tipo = tipo;
 	}	
+
+	@Relation
+	public Aerolinea getAerolinea(){
+		return this.aerolinea; 
+	}
+	
+	public void setAerolinea(Aerolinea unaAerolinea){
+		this.aerolinea = unaAerolinea;
+	}
+	
+	@Relation
+	public Vuelo getVuelo() {
+		return vuelo;
+	}
+
+	public void setVuelo(Vuelo vuelo) {
+		this.vuelo = vuelo;
+	}
+	@PersistentField
+	public String getNombreDeAerolinea(){
+		return this.getAerolinea().getNombre();
+	}
+	public void setNombreDeAerolinea(String unNombre){
+		
+	}		
+	@PersistentField
+	public String getCodigoDeVuelo(){
+		return this.getVuelo().getCodigo();
+	}
+	public void setCodigoDeVuelo(String unCodigo){
+		this.getVuelo().setCodigo(unCodigo);
+	}
 }

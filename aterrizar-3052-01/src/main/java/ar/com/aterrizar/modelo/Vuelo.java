@@ -3,12 +3,25 @@ package ar.com.aterrizar.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.uqbar.commons.model.Entity;
+import org.uqbar.commons.utils.TransactionalAndObservable;
+
+import uqbar.arena.persistence.annotations.PersistentClass;
+import uqbar.arena.persistence.annotations.PersistentField;
+import uqbar.arena.persistence.annotations.Relation;
+
 import ar.com.aterrizar.entidades.Asiento;
 
 import com.aterrizar.fecha.modelo.Fecha;
 
-public class Vuelo {
+@TransactionalAndObservable
+@PersistentClass
+public class Vuelo extends Entity {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String origen;
 	private String destino;
 	private Fecha fechaOrigen;
@@ -17,6 +30,10 @@ public class Vuelo {
 	private String codigo;
 	private int popularidad;
 
+	public Vuelo(){
+		super();
+	}
+	
 	public Vuelo(String codigoDeVuelo, String unOrigen, String unDestino, Fecha fechaOrigen, Fecha fechaDestino){
 		this.setCodigo(codigoDeVuelo);
 		this.setOrigen(unOrigen);
@@ -48,6 +65,7 @@ public class Vuelo {
 		this.popularidad = popularidad;
 	}
 
+	@PersistentField
 	public String getCodigo() {
 		return codigo;
 	}
@@ -56,18 +74,20 @@ public class Vuelo {
 		this.codigo = codigo;
 	}
 
+	@PersistentField
 	public String getDestino() {
 		return this.destino;
 	}
-	
+	@Relation
 	public Fecha getFechaOrigen() {
 		return fechaOrigen;
 	}
-
+	
 	public Fecha getFechaDestino() {
 		return fechaDestino;
 	}
 
+	@PersistentField
 	public String getOrigen() {
 		return origen;
 	}

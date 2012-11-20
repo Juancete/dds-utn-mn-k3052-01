@@ -9,8 +9,20 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class Fecha {
+import org.uqbar.commons.model.Entity;
+import org.uqbar.commons.utils.TransactionalAndObservable;
 
+import uqbar.arena.persistence.annotations.PersistentClass;
+import uqbar.arena.persistence.annotations.PersistentField;
+
+@TransactionalAndObservable
+@PersistentClass
+public class Fecha extends Entity{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Calendar calendar;
 	protected Date value;
 
@@ -42,11 +54,15 @@ public class Fecha {
 	}
 
 	public boolean esAnteriorA(Fecha otraFecha) {
-		return this.obtenerFecha().before(otraFecha.obtenerFecha());
+		return this.getFecha().before(otraFecha.getFecha());
 	}
 
-	public Date obtenerFecha() {
+	@PersistentField
+	public Date getFecha() {
 		return calendar.getTime();
+	}
+	public void setFecha(Date unaFecha){
+		this.calendar.setTime(unaFecha);
 	}
 	
 	public int cantidadDeDiasEntre(Fecha unaFechaAnterior) {
