@@ -69,7 +69,7 @@ public class NivelTest {
 	public void seLeSumaUnRecargoALosObjetosDeUnNivelNoPago(){
 		listaDeAsientos = nivelNoPago.obtenerAsientosListosParaComprar(listaDeAsientos);
 		Assert.assertEquals(listaDeAsientos.size(), 1);
-		Assert.assertEquals(listaDeAsientos.get(0).precio.intValue(),10020);
+		Assert.assertEquals(listaDeAsientos.get(0).getPrecio().intValue(),10020);
 	}
 	
 	@Test

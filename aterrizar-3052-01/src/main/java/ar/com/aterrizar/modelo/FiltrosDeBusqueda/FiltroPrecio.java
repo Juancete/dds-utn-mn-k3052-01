@@ -23,7 +23,7 @@ public class FiltroPrecio extends Filtro {
 	@Override
 	protected boolean evaluarLaCondicion(Asiento unAsiento) {
 		//Ni puta idea de como es el between XD
-		return (unAsiento.precio.compareTo(precioMaximo)>0 || unAsiento.precio.compareTo(precioMinimo)<0);
+		return (unAsiento.getPrecio().compareTo(precioMaximo)>0 || unAsiento.getPrecio().compareTo(precioMinimo)<0);
 	}
 }
 

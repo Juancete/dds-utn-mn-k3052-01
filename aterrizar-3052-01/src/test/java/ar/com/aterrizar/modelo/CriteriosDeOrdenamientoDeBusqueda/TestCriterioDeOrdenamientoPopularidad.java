@@ -52,10 +52,10 @@ public class TestCriterioDeOrdenamientoPopularidad {
 		CriterioDeOrdenamientoPopularidad unCriterio = new CriterioDeOrdenamientoPopularidad();
 		unCriterio.ascendente = true;
 		Collections.sort(retornoImpostor,unCriterio);
-		Assert.assertEquals(retornoImpostor.get(0).codigo,"200");
-		Assert.assertEquals(retornoImpostor.get(1).codigo,"345");
-		Assert.assertEquals(retornoImpostor.get(2).codigo,"234");
-		Assert.assertEquals(retornoImpostor.get(3).codigo,"1130");
+		Assert.assertEquals(retornoImpostor.get(0).getCodigo(),"200");
+		Assert.assertEquals(retornoImpostor.get(1).getCodigo(),"345");
+		Assert.assertEquals(retornoImpostor.get(2).getCodigo(),"234");
+		Assert.assertEquals(retornoImpostor.get(3).getCodigo(),"1130");
 	}
 
 	@Test
@@ -63,9 +63,9 @@ public class TestCriterioDeOrdenamientoPopularidad {
 		CriterioDeOrdenamientoPopularidad unCriterio = new CriterioDeOrdenamientoPopularidad();
 		unCriterio.ascendente = false;
 		Collections.sort(retornoImpostor,unCriterio);
-		Assert.assertEquals(retornoImpostor.get(3).codigo,"200");
-		Assert.assertEquals(retornoImpostor.get(2).codigo,"345");
-		Assert.assertEquals(retornoImpostor.get(1).codigo,"234");
-		Assert.assertEquals(retornoImpostor.get(0).codigo,"1130");
+		Assert.assertEquals(retornoImpostor.get(3).getCodigo(),"200");
+		Assert.assertEquals(retornoImpostor.get(2).getCodigo(),"345");
+		Assert.assertEquals(retornoImpostor.get(1).getCodigo(),"234");
+		Assert.assertEquals(retornoImpostor.get(0).getCodigo(),"1130");
 	}
 }

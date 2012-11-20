@@ -23,7 +23,7 @@ public class NivelNoPago extends Nivel{
 	
 	private void sumarleUnRecargoALaLista(List<Asiento> listaDeAsientos){
 		for(Asiento unAsiento : listaDeAsientos){
-			unAsiento.precio = unAsiento.precio.add(recargo);
+			unAsiento.setPrecio(unAsiento.getPrecio().add(recargo));
 		}
 	}
 

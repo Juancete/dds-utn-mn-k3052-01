@@ -61,7 +61,7 @@ public class AterrizarApp {
 		try{
 			//unAsiento.reservarAsientoPara(unUsuario);
 			
-			unAsiento.aerolinea.reservarAsiento(unUsuario, unAsiento);
+			unAsiento.getAerolinea().reservarAsiento(unUsuario, unAsiento);
 			
 		} catch (NoSeEncuentraDisponibleElAsientoException e) {
 			
