@@ -95,7 +95,7 @@ public class Usuario {
 		//en la sobre reserva llamara a aterrizarApp.cancelarSobreReservasDe(asiento);
 		//TODO:realizar llamados a los observers.
 		
-		aumentarMonto(unAsiento.precio);
+		aumentarMonto(unAsiento.getPrecio());
 	}
 	
 	void aumentarMonto(BigDecimal unPrecio){

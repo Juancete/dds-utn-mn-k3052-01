@@ -18,7 +18,7 @@ public class EstadoReservado extends Estado {
 		{
 			throw new NoSeEncuentraDisponibleElAsientoException("El asiento esta reservado a otro Usuario");
 		}
-		unAsiento.aerolinea.comprarAsiento(unAsiento, unUsuario.getDni());
+		unAsiento.getAerolinea().comprarAsiento(unAsiento, unUsuario.getDni());
 		AterrizarCom.getInstance().getAsientosReservados().delete(unAsiento);
 		unAsiento.setEstado(new EstadoComprado());
 		unAsiento.getEstado().setMiAsiento(unAsiento);
@@ -31,7 +31,7 @@ public class EstadoReservado extends Estado {
 	public void reservar(Asiento unAsiento, Usuario unUsuario) {
 		try{
 			if(unAsiento.estadoReservado()) throw new NoSeEncuentraDisponibleElAsientoException(); 
-			unAsiento.aerolinea.reservarAsiento(unUsuario, unAsiento);		
+			unAsiento.getAerolinea().reservarAsiento(unUsuario, unAsiento);		
 			unAsiento.setEstado(new EstadoReservado());
 			unAsiento.getEstado().setMiAsiento(unAsiento);
 		}
@@ -46,7 +46,7 @@ public class EstadoReservado extends Estado {
 		}
 	
 	public void sobreReservar(Asiento unAsiento, Usuario unUsuario){
-		unAsiento.aerolinea.reservarAsiento(unUsuario, unAsiento);
+		unAsiento.getAerolinea().reservarAsiento(unUsuario, unAsiento);
 		unAsiento.setReservante(unUsuario);
 	}
 	}

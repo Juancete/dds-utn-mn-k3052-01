@@ -8,11 +8,11 @@ public class CriterioDeOrdenamientoPrecio extends CriterioDeOrdenamiento {
 	public int compare(Asiento unAsiento, Asiento otroAsiento) {
 		if (this.ascendente)
 		{
-			return unAsiento.precio.compareTo(otroAsiento.precio);
+			return unAsiento.getPrecio().compareTo(otroAsiento.getPrecio());
 		}
 		else
 		{
-			return otroAsiento.precio.compareTo(unAsiento.precio);
+			return otroAsiento.getPrecio().compareTo(unAsiento.getPrecio());
 		}
 	}
 
