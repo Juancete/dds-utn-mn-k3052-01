@@ -7,7 +7,6 @@ import org.uqbar.commons.model.Home;
 
 import ar.com.aterrizar.commons.model.ShowModel;
 import ar.com.aterrizar.entidades.Asiento;
-import ar.com.aterrizar.modelo.state.Estado;
 
 public class ShowAsientoPorEstadoModel extends ShowModel<Asiento> {
 

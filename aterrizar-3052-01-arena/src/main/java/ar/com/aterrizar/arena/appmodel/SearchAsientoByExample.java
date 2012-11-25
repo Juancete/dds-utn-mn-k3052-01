@@ -16,6 +16,7 @@ import ar.com.aterrizar.modelo.Busqueda;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.adapter.NoSeEncuentraDisponibleElAsientoException;
 import ar.com.aterrizar.modelo.state.AsientoYaReservadoException;
+import ar.com.aterrizar.modelo.state.EstadoReservado;
 
 public class SearchAsientoByExample extends SearchByExample<Asiento> {
 
@@ -36,6 +37,9 @@ public class SearchAsientoByExample extends SearchByExample<Asiento> {
 	public void comprar() {
 		try {
 			this.getSelected().comprar(this.miUsuario);
+			if (this.getSelected().getEstado().getClass().equals(EstadoReservado.class)){
+				AterrizarCom.getInstance().getAsientosReservados().delete(this.getSelected());
+			}
 		} catch (NoSeEncuentraDisponibleElAsientoException e) {
 			throw new UserException(e.getMessage());
 		}
