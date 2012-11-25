@@ -3,14 +3,14 @@ package ar.com.aterrizar.daos;
 public class AterrizarCom  {
 	private static AterrizarCom instance;
 	private AsientoDaoCollectionImpl asientosAterrizar;
-	private AsientoHistorialDaoCollectionImpl asientosReservados;
-	private AsientoHistorialDaoCollectionImpl asientosComprados;
+	private AsientoHistorialDaoCollectionImpl asientosCompradosoReservados;
+	private BusquedaDaoCollection busquedasRealizadas;
 		
 	public static synchronized AterrizarCom initialize() {
 		instance = new AterrizarCom();
 		instance.asientosAterrizar = new AsientoDaoCollectionImpl();
-		instance.asientosComprados = new AsientoHistorialDaoCollectionImpl();
-		instance.asientosReservados =  new AsientoHistorialDaoCollectionImpl();
+		instance.asientosCompradosoReservados = new AsientoHistorialDaoCollectionImpl();
+		instance.busquedasRealizadas = new BusquedaDaoCollection();
 		return instance;
 	}
 	
@@ -25,9 +25,12 @@ public class AterrizarCom  {
 		return instance.asientosAterrizar;
 	}
 	public AsientoHistorialDaoCollectionImpl getAsientosComprados(){
-		return instance.asientosComprados;
+		return instance.asientosCompradosoReservados;
 	}
 	public AsientoHistorialDaoCollectionImpl getAsientosReservados(){
-		return instance.asientosReservados;
+		return instance.asientosCompradosoReservados;
 	}	
+	public BusquedaDaoCollection getBusquedasRealizadas(){
+		return instance.busquedasRealizadas;
+	}
 }
