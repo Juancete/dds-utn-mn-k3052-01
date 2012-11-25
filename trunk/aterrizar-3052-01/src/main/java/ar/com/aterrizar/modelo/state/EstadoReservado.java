@@ -1,6 +1,5 @@
 package ar.com.aterrizar.modelo.state;
 
-import ar.com.aterrizar.daos.AterrizarCom;
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.adapter.NoSeEncuentraDisponibleElAsientoException;
@@ -19,7 +18,6 @@ public class EstadoReservado extends Estado {
 			throw new NoSeEncuentraDisponibleElAsientoException("El asiento esta reservado a otro Usuario");
 		}
 		unAsiento.getAerolinea().comprarAsiento(unAsiento, unUsuario.getDni());
-		AterrizarCom.getInstance().getAsientosReservados().delete(unAsiento);
 		unAsiento.setEstado(new EstadoComprado());
 		unAsiento.getEstado().setMiAsiento(unAsiento);
 		unAsiento.eliminarReservas();
