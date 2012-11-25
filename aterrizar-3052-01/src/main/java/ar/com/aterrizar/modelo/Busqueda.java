@@ -3,19 +3,33 @@ package ar.com.aterrizar.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.uqbar.commons.model.Entity;
+import org.uqbar.commons.utils.TransactionalAndObservable;
+
+import uqbar.arena.persistence.annotations.PersistentClass;
+import uqbar.arena.persistence.annotations.PersistentField;
+import uqbar.arena.persistence.annotations.Relation;
+
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.FiltrosDeBusqueda.Filtro;
 
 import com.aterrizar.fecha.modelo.Fecha;
 
-public class Busqueda {
+@TransactionalAndObservable
+@PersistentClass
+public class Busqueda extends Entity{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer escalas;
 	protected String origen;
 	protected String destino;
 	protected Fecha fecha; //formato: "AAAAMMdd"
 	protected List<Filtro> filtros = new ArrayList<Filtro>();
 
+	@PersistentField
 	public String getOrigen() {
 		return origen;
 	}
@@ -24,6 +38,7 @@ public class Busqueda {
 		this.origen = origen;
 	}
 
+	@PersistentField
 	public String getDestino() {
 		return destino;
 	}
@@ -32,6 +47,7 @@ public class Busqueda {
 		this.destino = destino;
 	}
 
+	@Relation
 	public Fecha getFecha() {
 		return fecha;
 	}
