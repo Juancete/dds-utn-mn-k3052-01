@@ -66,8 +66,11 @@ public class BusquedasWindow extends Window<BusquedaDaoCollection> {
 			.bindContentsToTransformer(new Transformer<Busqueda, String>() {
 			@Override
 			public String transform(Busqueda unaBusqueda) {
+				if (unaBusqueda.getFecha() != null){
 				return new SimpleDateFormat("dd/MM/yyyy").format(
-						unaBusqueda.getFecha());
+						unaBusqueda.getFecha());}
+				else
+				{return "";}
 			}
 		});
 	}
