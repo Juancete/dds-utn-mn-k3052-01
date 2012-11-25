@@ -9,13 +9,12 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.MainWindow;
 
 import ar.com.aterrizar.arena.appmodel.SearchAsientoByExample;
-import ar.com.aterrizar.arena.appmodel.ShowCompradosModel;
-import ar.com.aterrizar.arena.appmodel.ShowReservadosModel;
-import ar.com.aterrizar.commons.model.ShowModel;
+import ar.com.aterrizar.arena.appmodel.ShowAsientoPorEstadoModel;
 import ar.com.aterrizar.daos.AterrizarCom;
-import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.NivelPago;
 import ar.com.aterrizar.modelo.Usuario;
+import ar.com.aterrizar.modelo.state.EstadoComprado;
+import ar.com.aterrizar.modelo.state.EstadoReservado;
 import uqbar.arena.persistence.Configuration;
 
 @SuppressWarnings("serial")
@@ -65,11 +64,11 @@ public class InicioWindow extends MainWindow<Usuario> {
 	}
 
 	public void verCompras() {
-		new VistaWindow("Compras de ", this, new ShowCompradosModel(AterrizarCom.getInstance().getAsientosComprados())).open();
+		new VistaWindow("Compras de ", this, new ShowAsientoPorEstadoModel(AterrizarCom.getInstance().getAsientosComprados(), EstadoComprado.class)).open();
 	}
 
 	public void verReservas() {
-		new VistaWindow("Reservas de ", this, new ShowReservadosModel(AterrizarCom.getInstance().getAsientosReservados())).open();
+		new VistaWindow("Reservas de ", this, new ShowAsientoPorEstadoModel(AterrizarCom.getInstance().getAsientosReservados(), EstadoReservado.class)).open();
 	}
 
 	public void buscarAsientos() {
