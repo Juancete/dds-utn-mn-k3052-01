@@ -14,9 +14,7 @@ import org.uqbar.arena.windows.WindowOwner;
 
 import com.uqbar.commons.collections.Transformer;
 
-import ar.com.aterrizar.commons.model.ShowModel;
 import ar.com.aterrizar.daos.BusquedaDaoCollection;
-import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Busqueda;
 
 public class BusquedasWindow extends Window<BusquedaDaoCollection> {
