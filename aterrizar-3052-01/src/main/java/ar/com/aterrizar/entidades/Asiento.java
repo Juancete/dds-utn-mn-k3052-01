@@ -115,7 +115,7 @@ public class Asiento extends Entity {
 //		}
 //		return true;
 	}
-
+	@Relation
 	public Estado getEstado() {
 		return estado;
 	}
@@ -264,14 +264,14 @@ public class Asiento extends Entity {
 	public void setVuelo(Vuelo vuelo) {
 		this.vuelo = vuelo;
 	}
-	@PersistentField
+
 	public String getNombreDeAerolinea(){
 		return this.getAerolinea().getNombre();
 	}
 	public void setNombreDeAerolinea(String unNombre){
 		
 	}		
-	@PersistentField
+
 	public String getCodigoDeVuelo(){
 		return this.getVuelo().getCodigo();
 	}

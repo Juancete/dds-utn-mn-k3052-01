@@ -1,10 +1,14 @@
 package ar.com.aterrizar.modelo.state;
 
 import org.uqbar.commons.model.Entity;
+import org.uqbar.commons.utils.TransactionalAndObservable;
 
+import uqbar.arena.persistence.annotations.PersistentClass;
 import ar.com.aterrizar.entidades.Asiento;
 import ar.com.aterrizar.modelo.Usuario;
 
+@TransactionalAndObservable
+@PersistentClass
 public abstract class Estado extends Entity{
 	
 	/**
