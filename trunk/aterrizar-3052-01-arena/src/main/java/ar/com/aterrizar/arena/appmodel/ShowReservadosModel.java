@@ -19,9 +19,12 @@ public class ShowReservadosModel extends ShowModel<Asiento> {
 	@Override
 	public List<Asiento> getResults() {
 		List<Asiento> allAsiento = super.getResults();
-		for (Asiento unAsiento : allAsiento){
-			if(unAsiento.getEstado().getClass().equals(EstadoReservado.class)){
-				asientosFiltrados.add(unAsiento);
+		if (allAsiento != null )
+		{		
+			for (Asiento unAsiento : allAsiento){
+				if(unAsiento.getEstado().getClass().equals(EstadoReservado.class)){
+					asientosFiltrados.add(unAsiento);
+				}
 			}
 		}
 		return allAsiento;

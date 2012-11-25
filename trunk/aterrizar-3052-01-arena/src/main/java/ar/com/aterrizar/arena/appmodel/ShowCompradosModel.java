@@ -19,12 +19,15 @@ public class ShowCompradosModel extends ShowModel<Asiento> {
 
 	@Override
 	public List<Asiento> getResults() {
-		this.search();
+
 		List<Asiento> allAsiento = super.getResults();
-		asientosFiltrados = new ArrayList<Asiento>();
-		for (Asiento unAsiento : allAsiento){
-			if(unAsiento.getEstado().getClass().equals(EstadoComprado.class)){
-				asientosFiltrados.add(unAsiento);
+		if (allAsiento != null )
+		{
+			asientosFiltrados = new ArrayList<Asiento>();
+			for (Asiento unAsiento : allAsiento){
+				if(unAsiento.getEstado().getClass().equals(EstadoComprado.class)){
+					asientosFiltrados.add(unAsiento);
+				}
 			}
 		}
 		return asientosFiltrados;
