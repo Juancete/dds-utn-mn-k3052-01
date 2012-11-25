@@ -9,6 +9,8 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.MainWindow;
 
 import ar.com.aterrizar.arena.appmodel.SearchAsientoByExample;
+import ar.com.aterrizar.arena.appmodel.ShowCompradosModel;
+import ar.com.aterrizar.arena.appmodel.ShowReservadosModel;
 import ar.com.aterrizar.commons.model.ShowModel;
 import ar.com.aterrizar.daos.AterrizarCom;
 import ar.com.aterrizar.entidades.Asiento;
@@ -63,11 +65,11 @@ public class InicioWindow extends MainWindow<Usuario> {
 	}
 
 	public void verCompras() {
-		new VistaWindow("Compras de ", this, new ShowModel<Asiento>(AterrizarCom.getInstance().getAsientosComprados())).open();
+		new VistaWindow("Compras de ", this, new ShowCompradosModel(AterrizarCom.getInstance().getAsientosComprados())).open();
 	}
 
 	public void verReservas() {
-		new VistaWindow("Reservas de ", this, new ShowModel<Asiento>(AterrizarCom.getInstance().getAsientosReservados())).open();
+		new VistaWindow("Reservas de ", this, new ShowReservadosModel(AterrizarCom.getInstance().getAsientosReservados())).open();
 	}
 
 	public void buscarAsientos() {
