@@ -35,7 +35,10 @@ public class SearchAsientoByExample extends SearchByExample<Asiento> {
 		} catch (NoSeEncuentraDisponibleElAsientoException e) {
 			throw new UserException(e.getMessage());
 		}
-		AterrizarCom.getInstance().getAsientosComprados().create(this.getSelected());
+		Asiento asientoSel = this.getSelected();
+		Asiento unAsiento = new Asiento(asientoSel.getCodigo(), asientoSel.getPrecio(), asientoSel.getUbicacion(), asientoSel.getTipo(), asientoSel.getEstado(), asientoSel.getAerolinea());
+		unAsiento.setVuelo(asientoSel.getVuelo());
+		AterrizarCom.getInstance().getAsientosComprados().create(unAsiento);
 		(new InformationWindow(w, new Usuario(),
 				"Su compra se ha realizado exitosamente.")).open();
 	}
@@ -43,7 +46,10 @@ public class SearchAsientoByExample extends SearchByExample<Asiento> {
 	public void reservar() {
 		try {
 			this.getSelected().reservar(this.miUsuario);
-			AterrizarCom.getInstance().getAsientosReservados().create(this.getSelected());
+			Asiento asientoSel = this.getSelected();
+			Asiento unAsiento = new Asiento(asientoSel.getCodigo(), asientoSel.getPrecio(), asientoSel.getUbicacion(), asientoSel.getTipo(), asientoSel.getEstado(), asientoSel.getAerolinea());
+			unAsiento.setVuelo(asientoSel.getVuelo());			
+			AterrizarCom.getInstance().getAsientosReservados().create(unAsiento);
 			(new InformationWindow(w, new Usuario(),
 					"Su reserva se ha realizado exitosamente.")).open();
 		} catch (NoSeEncuentraDisponibleElAsientoException e) {
