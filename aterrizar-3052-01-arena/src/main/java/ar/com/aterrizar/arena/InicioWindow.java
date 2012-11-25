@@ -45,7 +45,7 @@ public class InicioWindow extends MainWindow<Usuario> {
 		mainPanel.setLayout(new VerticalLayout());
 
 		new Label(mainPanel).setText("Hola " + this.usuario.getNombre());
-		new Label(mainPanel).setText("ï¿½Que desea hacer?");
+		new Label(mainPanel).setText("¿Que desea hacer?");
 
 		Panel actionsPanel = new Panel(mainPanel);
 		actionsPanel.setLayout(new HorizontalLayout());
@@ -57,12 +57,19 @@ public class InicioWindow extends MainWindow<Usuario> {
 				.setCaption("Ver reservas");
 		verReservas.onClick(new MessageSend(this, "verReservas"));
 
+		Button verBusuqedas = new Button(actionsPanel)
+		.setCaption("Ver Búsquedas (NEW!)");
+		verBusuqedas.onClick(new MessageSend(this, "verBusquedas"));
+
 		Button buscarAsientos = new Button(actionsPanel)
 				.setCaption("Buscar Asientos");
 		buscarAsientos.onClick(new MessageSend(this, "buscarAsientos"));
 
 	}
-
+	public void verBusquedas(){
+		new BusquedasWindow(this, AterrizarCom.getInstance().getBusquedasRealizadas()).open();
+	}
+	
 	public void verCompras() {
 		new VistaWindow("Compras de ", this, new ShowAsientoPorEstadoModel(AterrizarCom.getInstance().getAsientosComprados(), EstadoComprado.class)).open();
 	}
