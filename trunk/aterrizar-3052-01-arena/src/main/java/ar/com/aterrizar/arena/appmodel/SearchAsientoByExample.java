@@ -4,11 +4,15 @@ import org.uqbar.commons.model.Home;
 import org.uqbar.commons.model.SearchByExample;
 import org.uqbar.commons.model.UserException;
 
+import com.aterrizar.fecha.modelo.Fecha;
+import com.aterrizar.fecha.modelo.FormatoSimple;
+
 import ar.com.aterrizar.arena.InformationWindow;
 import ar.com.aterrizar.arena.InicioWindow;
 import ar.com.aterrizar.arena.SobreReservaDialog;
 import ar.com.aterrizar.daos.AterrizarCom;
 import ar.com.aterrizar.entidades.Asiento;
+import ar.com.aterrizar.modelo.Busqueda;
 import ar.com.aterrizar.modelo.Usuario;
 import ar.com.aterrizar.modelo.adapter.NoSeEncuentraDisponibleElAsientoException;
 import ar.com.aterrizar.modelo.state.AsientoYaReservadoException;
@@ -58,6 +62,18 @@ public class SearchAsientoByExample extends SearchByExample<Asiento> {
 			new SobreReservaDialog(w, this.getSelected(), miUsuario)
 					.open();
 		}
+	}
+	
+	public void search() {
+		Busqueda busqueda = new Busqueda();
+		if(this.getExample().getOrigen() != null)
+			busqueda.setOrigen(this.getExample().getOrigen());
+		if(this.getExample().getDestino() != null)
+			busqueda.setDestino(this.getExample().getDestino());
+		if(!this.getExample().getFecha().isEmpty())
+			busqueda.setFecha(new Fecha(this.getExample().getFecha(), new FormatoSimple("dd/MM/yyyy")));
+		AterrizarCom.getInstance().getBusquedasRealizadas().create(busqueda);
+		super.search();
 	}
 
 }
