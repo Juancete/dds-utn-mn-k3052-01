@@ -24,6 +24,7 @@ import ar.com.aterrizar.arena.appmodel.ShowBusquedaModel;
 import ar.com.aterrizar.daos.AterrizarCom;
 import ar.com.aterrizar.daos.BusquedaDaoCollection;
 import ar.com.aterrizar.entidades.Asiento;
+import ar.com.aterrizar.modelo.Usuario;
 
 public class BuscarAsientoWindow extends SimpleWindow<SearchAsientoByExample> {
 	
@@ -168,21 +169,26 @@ public class BuscarAsientoWindow extends SimpleWindow<SearchAsientoByExample> {
 	}
 	
 	public void search_old(){
-		ShowBusquedaModel busquedaModelo = new ShowBusquedaModel(AterrizarCom.getInstance().getBusquedasRealizadas());
-		new BusquedasWindow(this.getOwner(), busquedaModelo).open();
-		//this.getModelObject().setExample(ShowBusquedaModel.BusquedaToAsiento(busquedaModelo.getSelected()));
-		Asiento selected = ShowBusquedaModel.BusquedaToAsiento(busquedaModelo.getSelected());
-		Asiento example = this.getModelObject().getExample();
-		String oldOrigen = example.getOrigen();
-		String oldDestino = example.getDestino();
-		String oldFecha = example.getFecha();
-		example.setOrigen(selected.getOrigen());
-		example.setDestino(selected.getDestino());
-		example.setFecha(selected.getFecha());
-		this.getModelObject().search();
-		example.setOrigen(oldOrigen);
-		example.setDestino(oldDestino);
-		example.setFecha(oldFecha);
+        ShowBusquedaModel busquedaModelo = new ShowBusquedaModel(AterrizarCom.getInstance().getBusquedasRealizadas());
+        new BusquedasWindow(this.getOwner(), busquedaModelo).open();
+        //this.getModelObject().setExample(ShowBusquedaModel.BusquedaToAsiento(busquedaModelo.getSelected()));
+        if (busquedaModelo.getSelected() != null) {
+                Asiento selected = ShowBusquedaModel
+                                .BusquedaToAsiento(busquedaModelo.getSelected());
+                Asiento example = this.getModelObject().getExample();
+                String oldOrigen = example.getOrigen();
+                String oldDestino = example.getDestino();
+                String oldFecha = example.getFecha();
+                example.setOrigen(selected.getOrigen());
+                example.setDestino(selected.getDestino());
+                example.setFecha(selected.getFecha());
+                this.getModelObject().search();
+                example.setOrigen(oldOrigen);
+                example.setDestino(oldDestino);
+                example.setFecha(oldFecha);
+        } else
+                (new InformationWindow(this.getOwner(), new Usuario(),
+                                "Debe seleccionar una buqueda antes de poder realizarla.")).open();
 	}
 
 
