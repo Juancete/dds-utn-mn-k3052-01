@@ -14,14 +14,15 @@ import org.uqbar.arena.windows.WindowOwner;
 
 import com.uqbar.commons.collections.Transformer;
 
+import ar.com.aterrizar.commons.model.ShowModel;
 import ar.com.aterrizar.daos.BusquedaDaoCollection;
 import ar.com.aterrizar.modelo.Busqueda;
 
-public class BusquedasWindow extends Window<BusquedaDaoCollection> {
+public class BusquedasWindow extends Window<ShowModel<?>> {
 
 	private static final long serialVersionUID = 1L;
-	public BusquedasWindow(WindowOwner owner, BusquedaDaoCollection model) {
-		super(owner, model);
+	public BusquedasWindow(WindowOwner owner, ShowModel<Busqueda> showModel) {
+		super(owner, showModel);
 	}
 
 
@@ -43,7 +44,8 @@ public class BusquedasWindow extends Window<BusquedaDaoCollection> {
 	public void createGrid(Panel mainPanel) {
 		Table<Busqueda> table = new Table<Busqueda>(mainPanel, Busqueda.class);
 
-		table.bindItemsToProperty(BusquedaDaoCollection.RESULTS);	
+		table.bindItemsToProperty(ShowModel.RESULTS);
+		table.bindSelection(ShowModel.SELECTED);
 		
 		Column<Busqueda> origenColumn = new Column<Busqueda>(table);
 		origenColumn.setTitle("Origen");
@@ -71,6 +73,9 @@ public class BusquedasWindow extends Window<BusquedaDaoCollection> {
 				{return "";}
 			}
 		});
+		
+		table.setHeigth(300);
+		table.setWidth(300);
 	}
 	private void addActions(Panel mainPanel) {
 

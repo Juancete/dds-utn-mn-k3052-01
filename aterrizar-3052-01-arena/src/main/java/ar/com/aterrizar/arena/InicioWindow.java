@@ -10,6 +10,7 @@ import org.uqbar.arena.windows.MainWindow;
 
 import ar.com.aterrizar.arena.appmodel.SearchAsientoByExample;
 import ar.com.aterrizar.arena.appmodel.ShowAsientoPorEstadoModel;
+import ar.com.aterrizar.arena.appmodel.ShowBusquedaModel;
 import ar.com.aterrizar.daos.AterrizarCom;
 import ar.com.aterrizar.modelo.NivelPago;
 import ar.com.aterrizar.modelo.Usuario;
@@ -45,7 +46,7 @@ public class InicioWindow extends MainWindow<Usuario> {
 		mainPanel.setLayout(new VerticalLayout());
 
 		new Label(mainPanel).setText("Hola " + this.usuario.getNombre());
-		new Label(mainPanel).setText("¿Que desea hacer?");
+		new Label(mainPanel).setText("ï¿½Que desea hacer?");
 
 		Panel actionsPanel = new Panel(mainPanel);
 		actionsPanel.setLayout(new HorizontalLayout());
@@ -58,7 +59,7 @@ public class InicioWindow extends MainWindow<Usuario> {
 		verReservas.onClick(new MessageSend(this, "verReservas"));
 
 		Button verBusuqedas = new Button(actionsPanel)
-		.setCaption("Ver Búsquedas (NEW!)");
+		.setCaption("Ver Busquedas (NEW!)");
 		verBusuqedas.onClick(new MessageSend(this, "verBusquedas"));
 
 		Button buscarAsientos = new Button(actionsPanel)
@@ -67,7 +68,7 @@ public class InicioWindow extends MainWindow<Usuario> {
 
 	}
 	public void verBusquedas(){
-		new BusquedasWindow(this, AterrizarCom.getInstance().getBusquedasRealizadas()).open();
+		new BusquedasWindow(this, new ShowBusquedaModel(AterrizarCom.getInstance().getBusquedasRealizadas())).open();
 	}
 	
 	public void verCompras() {

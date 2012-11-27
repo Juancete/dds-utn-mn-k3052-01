@@ -86,7 +86,19 @@ public class Asiento extends Entity {
 		if (!(obj instanceof Asiento))
 			return false;
 		Asiento otroAsiento = (Asiento) obj;
-		return codigo.equals(otroAsiento.getCodigo()) && precio.equals(otroAsiento.precio) && getUbicacion() == otroAsiento.getUbicacion() && getTipo() == otroAsiento.getTipo() && aerolinea.equals(otroAsiento.getAerolinea());
+		boolean ret = true;
+		if(codigo != null)
+			ret &= codigo.equals(otroAsiento.getCodigo());
+		if(precio != null)
+			ret &= precio.equals(otroAsiento.precio);
+		if(aerolinea != null)
+			ret &= aerolinea.equals(otroAsiento.getAerolinea());
+		if(getUbicacion() != otroAsiento.getUbicacion())
+			ret &= false;
+		if(getTipo() != otroAsiento.getTipo())
+			ret &= false;
+		
+		return ret;
 	}
 
 	public long getTiempo() {
@@ -193,14 +205,17 @@ public class Asiento extends Entity {
 	}
 	
 	public void setFecha(String unaFecha){
-		try{
-			this.getVuelo().setFechaOrigen(new Fecha(unaFecha, new FormatoSimple("dd/MM/yyyy")));
+		if(unaFecha.isEmpty())
+			this.getVuelo().setFechaOrigen(null);
+		else {
+			try {
+				this.getVuelo().setFechaOrigen(
+						new Fecha(unaFecha, new FormatoSimple("dd/MM/yyyy")));
+			} catch (Exception e) {
+				throw new UserException(
+						"La fecha no tiene el formato dd/MM/yyyy");
+			}
 		}
-		catch (Exception e)
-		{
-			throw new UserException("La fecha no tiene el formato dd/MM/yyyy");
-		}
-		
 	}
 
 	public void setNumeroDeAsiento(Integer numero){
