@@ -69,13 +69,7 @@ public class SearchAsientoByExample extends SearchByExample<Asiento> {
 	}
 	
 	public void search() {
-		Busqueda busqueda = new Busqueda();
-		if(this.getExample().getOrigen() != null)
-			busqueda.setOrigen(this.getExample().getOrigen());
-		if(this.getExample().getDestino() != null)
-			busqueda.setDestino(this.getExample().getDestino());
-		if(!this.getExample().getFecha().isEmpty())
-			busqueda.setFecha(new Fecha(this.getExample().getFecha(), new FormatoSimple("dd/MM/yyyy")));
+		Busqueda busqueda = ShowBusquedaModel.AsientoToBuqueda(this.getExample());
 		AterrizarCom.getInstance().getBusquedasRealizadas().create(busqueda);
 		super.search();
 	}
